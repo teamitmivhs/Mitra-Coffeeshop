@@ -1,0 +1,104 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Kopi Mitra — Cream & Caramel design system
+ * Palette: #faf8f5 (cream) · #e8c07a (caramel) · #8b4513 (espresso) · #2d2d2d (ink)
+ * Fonts: Outfit (display) · Figtree (body)
+ */
+
+@theme inline {
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-cream: var(--cream);
+  --color-caramel: var(--caramel);
+  --color-espresso: var(--espresso);
+  --color-ink: var(--ink);
+}
+
+:root {
+  --radius: 0.75rem;
+  /* brand */
+  --cream: oklch(0.975 0.013 80);
+  --caramel: oklch(0.825 0.105 75);
+  --espresso: oklch(0.42 0.09 50);
+  --ink: oklch(0.25 0.005 60);
+
+  --background: oklch(0.975 0.013 80);    /* cream */
+  --foreground: oklch(0.25 0.005 60);     /* ink */
+  --card: oklch(0.99 0.008 80);
+  --card-foreground: oklch(0.25 0.005 60);
+  --popover: oklch(0.99 0.008 80);
+  --popover-foreground: oklch(0.25 0.005 60);
+  --primary: oklch(0.42 0.09 50);         /* espresso */
+  --primary-foreground: oklch(0.975 0.013 80);
+  --secondary: oklch(0.93 0.03 80);
+  --secondary-foreground: oklch(0.25 0.005 60);
+  --muted: oklch(0.93 0.025 80);
+  --muted-foreground: oklch(0.5 0.02 60);
+  --accent: oklch(0.825 0.105 75);        /* caramel */
+  --accent-foreground: oklch(0.25 0.005 60);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.88 0.02 75);
+  --input: oklch(0.88 0.02 75);
+  --ring: oklch(0.825 0.105 75);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
