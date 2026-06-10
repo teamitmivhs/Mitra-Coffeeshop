@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, MapPin, Clock } from "lucide-react";
+import goFoodIcon from "../assets/icon-gofood.svg";
 
 export function SiteFooter() {
   return (
@@ -35,9 +36,10 @@ export function SiteFooter() {
                 href="https://gofood.link/a/G6pniU1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-accent"
+                className="inline-flex items-center gap-2 hover:text-accent"
               >
-                Order GoFood 🛵
+                <img src={goFoodIcon} alt="" aria-hidden="true" className="h-4 w-4" />
+                Order GoFood
               </a>
             </li>
           </ul>
