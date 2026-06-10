@@ -49,7 +49,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-primary-foreground/15">
         <p className="mx-auto max-w-7xl px-6 py-6 text-xs text-primary-foreground/60 lg:px-10">
-          © {new Date().getFullYear()} Kopi Mitra · Brewed with love at SMK Mitra Industri
+          © {new Date().getFullYear()} Mitra Coffeeshop · Brewed with love at SMK Mitra Industri
         </p>
       </div>
     </footer>
