@@ -81,10 +81,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Kopi Mitra — Ngopi Asik di SMK Mitra Industri" },
+      { title: "Mitra Coffeeshop — Ngopi Asik di SMK Mitra Industri" },
       { name: "description", content: "Coffee shop di SMK Mitra Industri. Americano, cappuccino, latte, matcha, choco, strawberry — harga pelajar, kualitas pro." },
-      { name: "author", content: "Kopi Mitra" },
-      { property: "og:title", content: "Kopi Mitra — Ngopi Asik di SMK Mitra Industri" },
+      { name: "author", content: "Mitra Coffeeshop" },
+      { property: "og:title", content: "Mitra Coffeeshop — Ngopi Asik di SMK Mitra Industri" },
       { property: "og:description", content: "Menu kopi & non-kopi lengkap. Tempat nongkrong favorit anak SMK Mitra Industri." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
