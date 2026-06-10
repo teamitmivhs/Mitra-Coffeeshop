@@ -19,25 +19,52 @@ export const Route = createFileRoute("/menu")({
 });
 
 const coffeeMenu = [
-  { name: "Americano", desc: "Espresso shot + air panas. Pahit klasik.", price: "8K" },
-  { name: "Espresso", desc: "Single shot, full body. Buat yang pure.", price: "8K" },
-  { name: "Cappuccino", desc: "Espresso + steamed milk + busa tebal.", price: "12K" },
-  { name: "Caffe Latte", desc: "Lembut, milky, cocok buat pemula.", price: "13K" },
-  { name: "Caramel Latte", desc: "Latte dengan sirup karamel. Signature.", price: "15K", featured: true },
-  { name: "Mocha", desc: "Coklat + espresso + susu. Manis berani.", price: "15K" },
-  { name: "Vietnam Drip", desc: "Kopi tetes + susu kental manis.", price: "12K" },
-  { name: "Kopi Susu Mitra", desc: "House blend, gula aren, susu segar.", price: "14K", featured: true },
+  // Classic Coffee
+  { name: "Americano", desc: "Espresso shot + air panas. Pahit klasik.", price: "10K" },
+  { name: "Long Black", desc: "Double shot espresso over cold water. Bold & clean.", price: "16K" },
+  // Milk-based Coffee
+  { name: "Light Brown Sugar", desc: "Espresso + brown sugar + susu. Karamel subtle.", price: "20K", featured: true },
+  { name: "Nutty Coffee", desc: "Hazelnut + espresso + susu. Kacang yang asik.", price: "18K" },
+  { name: "Coffee Latte", desc: "Lembut, milky, cocok buat pemula.", price: "16K" },
+  { name: "Caramel Macchiato", desc: "Espresso + vanilla + susu + caramel drizzle.", price: "18K" },
+  { name: "Cappuccino", desc: "Espresso + steamed milk + busa tebal.", price: "18K" },
+  { name: "Creamy Coffee", desc: "Rich, creamy, smooth. Juara buat santai.", price: "17K" },
+  { name: "Brown Sugar Shaken", desc: "Shaken espresso + brown sugar + susu. Seger.", price: "17K" },
+  { name: "M.I Signature", desc: "Racikan spesial house blend. Must try.", price: "15K", featured: true },
+  { name: "Gula Aren Coffee", desc: "Espresso + gula aren + susu segar lokal.", price: "16K" },
 ];
 
 const nonCoffeeMenu = [
-  { name: "Matcha Latte", desc: "Bubuk matcha Jepang + susu segar.", price: "15K", color: "#9bbf6e" },
-  { name: "Chocolate", desc: "Cokelat premium hangat / dingin.", price: "12K", color: "#8b4513" },
-  { name: "Strawberry Milk", desc: "Susu + saus strawberry asli.", price: "13K", color: "#e88aab" },
-  { name: "Taro Latte", desc: "Taro creamy, warna ungu cantik.", price: "14K", color: "#a78bfa" },
-  { name: "Red Velvet", desc: "Manis, lembut, instagrammable.", price: "15K", color: "#c44569" },
-  { name: "Lemon Tea", desc: "Teh + lemon segar. Bikin melek.", price: "10K", color: "#e8c07a" },
-  { name: "Lychee Soda", desc: "Soda + sirup leci. Fresh banget.", price: "12K", color: "#f9a8a8" },
-  { name: "Milo Dino", desc: "Milo dingin extra bubuk di atas.", price: "13K", color: "#6b3a2a" },
+  // Milk Series
+  { name: "Creamy Milky Choco", desc: "Cokelat premium + susu full cream. Rich banget.", price: "16K", color: "#8b4513" },
+  { name: "Creamy Milk Matcha", desc: "Matcha premium + susu creamy. Balance perfect.", price: "17K", color: "#9bbf6e" },
+  { name: "Korean Strawberry Milk", desc: "Susu + strawberry saus ala Korea. Viral!", price: "18K", color: "#e88aab" },
+  { name: "Bubblegum Latte", desc: "Warna cantik, rasa manis playful. New arrival.", price: "20K", color: "#f9a8d4", isNew: true },
+  // Matcha CS x CECHA
+  { name: "Pistachio Honey Matcha", desc: "Matcha + pistachio + madu. Kolaborasi spesial.", price: "23K", color: "#7cad4d", featured: true },
+  { name: "Matcha Latte", desc: "Bubuk matcha premium + susu segar.", price: "16K", color: "#9bbf6e" },
+  // Tea Series
+  { name: "Ice Tea", desc: "Teh tawar dingin klasik. Simpel & menyegarkan.", price: "6K", color: "#c8a96e" },
+  { name: "Lemon Tea", desc: "Teh + lemon segar. Bikin melek.", price: "12K", color: "#e8c07a" },
+  { name: "Thai Tea", desc: "Teh Thailand creamy dengan susu kental.", price: "15K", color: "#d4813a" },
+  { name: "Green Tea", desc: "Teh hijau dingin, ringan dan menyegarkan.", price: "15K", color: "#78b04a" },
+  // Summer Series
+  { name: "Lemon Mint Mojito", desc: "Lemon + mint + soda. Summer vibes banget.", price: "13K", color: "#a8d8a0" },
+  { name: "Blue Ocean", desc: "Soda biru segar dengan rasa tropical.", price: "16K", color: "#5ba3d9" },
+  { name: "Orange Squash", desc: "Jeruk peras segar, simpel dan real.", price: "8K", color: "#f0a050" },
+  { name: "Pink Beach", desc: "Fruity, segar, instagrammable. New arrival.", price: "16K", color: "#f9a8a8", isNew: true },
+];
+
+const foodMenu = [
+  { name: "French Fries", desc: "Kentang goreng renyah. Cocok buat teman ngopi.", price: "16K" },
+  { name: "Spaghetti", desc: "Pilihan: Bolognese / Aglio Olio / Carbonara.", price: "10K" },
+  { name: "Risoles", desc: "3 pcs risoles gurih. Crispy di luar, creamy di dalam.", price: "15K" },
+  { name: "Karaage", desc: "Ayam goreng Jepang per pcs. Juicy & crispy.", price: "5K" },
+  { name: "Indomie + Telur", desc: "Goreng atau rebus dengan telur. Classic.", price: "13K" },
+  { name: "Telur Rebus", desc: "Per pcs. Simple protein boost.", price: "5K" },
+  { name: "Dimsum", desc: "3 pcs (11K) atau 4 pcs (14K). Pilih sesuai lapar.", price: "11K" },
+  { name: "Bundle 1", desc: "French Fries + Risoles. Hemat combo.", price: "22K", featured: true },
+  { name: "Bundle 2", desc: "French Fries + Risoles + Karaage. Full combo!", price: "28K", featured: true },
 ];
 
 export default function MenuPage() {
@@ -152,11 +179,67 @@ export default function MenuPage() {
                     aria-hidden
                   />
                   <div>
+                    <div className="flex items-baseline gap-3">
+                      <h3 className="font-display text-2xl font-bold lg:text-3xl">
+                        {item.name}
+                      </h3>
+                      {item.isNew && (
+                        <span className="rounded-full bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-accent-foreground">
+                          New
+                        </span>
+                      )}
+                      {item.featured && (
+                        <span className="rounded-full bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-accent-foreground">
+                          Signature
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-1 text-sm text-muted-foreground">{item.desc}</p>
+                  </div>
+                </div>
+                <p className="font-display text-2xl font-bold text-primary lg:text-3xl">
+                  Rp {item.price}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* FOOD & SNACKS */}
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+        <div className="grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <div className="sticky top-28">
+              <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-foreground/70">
+                Chapter 03
+              </p>
+              <h2 className="mt-2 font-display text-6xl font-bold leading-none">
+                Food &amp; Snacks
+              </h2>
+              <p className="mt-4 max-w-xs text-sm text-foreground/70">
+                Biar ngopi makin asik — ada camilan dan makanan buat nemenin sesi panjang.
+              </p>
+            </div>
+          </div>
+          <ul className="space-y-2 lg:col-span-8">
+            {foodMenu.map((item) => (
+              <li
+                key={item.name}
+                className="flex items-baseline justify-between gap-6 border-b border-border py-6"
+              >
+                <div className="flex-1">
+                  <div className="flex items-baseline gap-3">
                     <h3 className="font-display text-2xl font-bold lg:text-3xl">
                       {item.name}
                     </h3>
-                    <p className="mt-1 text-sm text-muted-foreground">{item.desc}</p>
+                    {item.featured && (
+                      <span className="rounded-full bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-accent-foreground">
+                        Bundle
+                      </span>
+                    )}
                   </div>
+                  <p className="mt-1 text-sm text-muted-foreground">{item.desc}</p>
                 </div>
                 <p className="font-display text-2xl font-bold text-primary lg:text-3xl">
                   Rp {item.price}
