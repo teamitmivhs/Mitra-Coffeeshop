@@ -6,7 +6,7 @@ export function SiteFooter() {
     <footer className="mt-32 bg-primary text-primary-foreground">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-4 lg:px-10">
         <div className="lg:col-span-2">
-          <h3 className="font-display text-4xl font-bold tracking-tight">Kopi Mitra</h3>
+          <h3 className="font-display text-4xl font-bold tracking-tight">Mitra Coffeeshop</h3>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-primary-foreground/80">
             Tempat ngopi favorit anak SMK Mitra Industri. Dari americano klasik
             sampai matcha latte — semua ada, dengan harga bersahabat pelajar.
