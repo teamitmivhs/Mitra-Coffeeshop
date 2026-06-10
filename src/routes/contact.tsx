@@ -106,7 +106,7 @@ function ContactPage() {
           {/* Map */}
           <div className="overflow-hidden rounded-3xl border border-border bg-card">
             <iframe
-              title="Lokasi Kopi Mitra"
+              title="Lokasi Mitra Coffeeshop di SMK Mitra Industri"
               src="https://www.google.com/maps?q=SMK+Mitra+Industri+MM2100&output=embed"
               className="h-full min-h-[420px] w-full"
               loading="lazy"
