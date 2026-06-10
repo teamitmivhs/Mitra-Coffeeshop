@@ -4,16 +4,16 @@ import { Clock, Instagram, MapPin, MessageCircle, Phone } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Kontak & Lokasi — Kopi Mitra" },
+      { title: "Kontak & Lokasi — Mitra Coffeeshop" },
       {
         name: "description",
         content:
-          "Lokasi, jam buka, dan kontak Kopi Mitra di SMK Mitra Industri, Bekasi. Pesan langsung via WhatsApp.",
+          "Lokasi, jam buka, dan kontak Mitra Coffeeshop di SMK Mitra Industri, Bekasi. Pesan langsung via WhatsApp.",
       },
-      { property: "og:title", content: "Kontak & Lokasi — Kopi Mitra" },
+      { property: "og:title", content: "Kontak & Lokasi — Mitra Coffeeshop" },
       {
         property: "og:description",
-        content: "Cari tahu lokasi & jam buka Kopi Mitra, atau pesan via WhatsApp.",
+        content: "Cari tahu lokasi & jam buka Mitra Coffeeshop, atau pesan via WhatsApp.",
       },
     ],
   }),
