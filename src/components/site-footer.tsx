@@ -12,13 +12,13 @@ export function SiteFooter() {
             sampai matcha latte — semua ada, dengan harga bersahabat pelajar.
           </p>
           <a
-            href="https://instagram.com/kopimitra"
+            href="https://www.instagram.com/mitra.coffeshop/"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary-foreground/30 px-4 py-2 text-sm font-medium transition hover:bg-primary-foreground hover:text-primary"
           >
             <Instagram className="h-4 w-4" />
-            @kopimitra
+            @mitra.coffeshop
           </a>
         </div>
 
