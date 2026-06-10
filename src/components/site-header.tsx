@@ -38,7 +38,7 @@ export function SiteHeader() {
             </Link>
           ))}
           <a
-            href="https://wa.me/6281234567890?text=Halo%20Kopi%20Mitra%2C%20saya%20mau%20pesan"
+            href="https://wa.me/6281234567890?text=Halo%20Mitra%20Coffeeshop%2C%20saya%20mau%20pesan"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
