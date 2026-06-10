@@ -84,7 +84,7 @@ function ContactPage() {
                   WhatsApp
                 </a>
                 <a
-                  href="https://instagram.com/kopimitra"
+                  href="https://www.instagram.com/mitra.coffeshop/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground transition hover:scale-105"
