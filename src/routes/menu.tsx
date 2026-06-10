@@ -5,14 +5,14 @@ import menuNoncoffee from "../assets/menu-noncoffee.jpg";
 export const Route = createFileRoute("/menu")({
   head: () => ({
     meta: [
-      { title: "Menu — Kopi Mitra" },
+      { title: "Menu — Mitra Coffeeshop" },
       {
         name: "description",
         content:
-          "Menu lengkap Kopi Mitra: americano, cappuccino, latte, matcha, choco, strawberry, taro. Harga pelajar mulai Rp 8.000.",
+          "Menu lengkap Mitra Coffeeshop: americano, cappuccino, latte, matcha, choco, strawberry, taro. Harga pelajar mulai Rp 8.000.",
       },
-      { property: "og:title", content: "Menu — Kopi Mitra" },
-      { property: "og:description", content: "Daftar minuman kopi & non-kopi di Kopi Mitra." },
+      { property: "og:title", content: "Menu — Mitra Coffeeshop" },
+      { property: "og:description", content: "Daftar minuman kopi & non-kopi di Mitra Coffeeshop." },
     ],
   }),
   component: MenuPage,
