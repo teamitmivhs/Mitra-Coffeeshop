@@ -19,7 +19,7 @@ export function SiteHeader() {
             K
           </span>
           <div className="flex flex-col leading-none">
-            <span className="font-display text-lg font-bold tracking-tight">Kopi Mitra</span>
+            <span className="font-display text-lg font-bold tracking-tight">Mitra Coffeeshop</span>
             <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
               SMK Mitra Industri
             </span>
