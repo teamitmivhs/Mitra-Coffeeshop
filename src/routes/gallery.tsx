@@ -9,14 +9,14 @@ import galleryInterior from "../assets/gallery-interior.jpg";
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
-      { title: "Galeri — Kopi Mitra" },
+      { title: "Galeri — Mitra Coffeeshop" },
       {
         name: "description",
         content:
-          "Suasana cafe, barista, dan momen-momen seru di Kopi Mitra SMK Mitra Industri.",
+          "Suasana cafe, barista, dan momen-momen seru di Mitra Coffeeshop SMK Mitra Industri.",
       },
-      { property: "og:title", content: "Galeri — Kopi Mitra" },
-      { property: "og:description", content: "Lihat suasana asik di Kopi Mitra." },
+      { property: "og:title", content: "Galeri — Mitra Coffeeshop" },
+      { property: "og:description", content: "Lihat suasana asik di Mitra Coffeeshop." },
     ],
   }),
   component: GalleryPage,
@@ -39,7 +39,7 @@ function GalleryPage() {
           Gallery
         </p>
         <h1 className="mt-4 font-display text-[clamp(3rem,9vw,8rem)] font-bold leading-[0.9] tracking-tight">
-          Momen <em className="text-primary">Kopi Mitra</em>.
+          Momen <em className="text-primary">Mitra Coffeeshop</em>.
         </h1>
         <p className="mt-6 max-w-xl text-lg text-foreground/70">
           Snapshot harian dari cafe — vibes, racikan, dan senyum pelanggan
