@@ -9,13 +9,13 @@ import galleryBarista from "../assets/gallery-barista.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Kopi Mitra — Ngopi Asik di SMK Mitra Industri" },
+      { title: "Mitra Coffeeshop — Ngopi Asik di SMK Mitra Industri" },
       {
         name: "description",
         content:
           "Coffee shop di SMK Mitra Industri. Americano, latte, matcha, choco, dan banyak lagi. Harga pelajar, suasana seru.",
       },
-      { property: "og:title", content: "Kopi Mitra — Ngopi Asik di SMK Mitra Industri" },
+      { property: "og:title", content: "Mitra Coffeeshop — Ngopi Asik di SMK Mitra Industri" },
       {
         property: "og:description",
         content: "Menu kopi & non-kopi lengkap. Tempat nongkrong favorit anak SMK Mitra Industri.",
@@ -50,7 +50,7 @@ function HomePage() {
               <span className="italic text-primary">Bisa banget.</span>
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-foreground/70">
-              Dari americano klasik sampai matcha latte yang creamy — Kopi Mitra
+              Dari americano klasik sampai matcha latte yang creamy — Mitra Coffeeshop
               jadi tempat seru buat ngerjain tugas, ngobrol bareng teman, atau
               sekedar rehat antar pelajaran.
             </p>
@@ -89,7 +89,7 @@ function HomePage() {
             <div className="relative overflow-hidden rounded-3xl">
               <img
                 src={heroCoffee}
-                alt="Latte art di Kopi Mitra"
+                alt="Latte art di Mitra Coffeeshop"
                 width={1536}
                 height={1920}
                 className="aspect-[3/4] h-full w-full object-cover"
@@ -99,7 +99,7 @@ function HomePage() {
                   Signature
                 </p>
                 <p className="font-display text-lg font-bold leading-tight">
-                  Caramel Latte
+                  Coffee Latte
                 </p>
               </div>
             </div>
@@ -149,7 +149,7 @@ function HomePage() {
           </div>
           <p className="text-base leading-relaxed text-foreground/70 lg:col-span-5 lg:col-start-8">
             Buat yang udah cinta espresso atau yang lebih suka sesuatu yang
-            manis dan ringan — semua punya tempat di Kopi Mitra. Semua dibuat
+            manis dan ringan — semua punya tempat di Mitra Coffeeshop. Semua dibuat
             fresh di tempat sama barista kami.
           </p>
         </div>
@@ -171,10 +171,10 @@ function HomePage() {
               </div>
               <h3 className="mt-2 font-display text-4xl font-bold">Coffee</h3>
               <p className="mt-2 text-sm text-primary-foreground/80">
-                Americano · Espresso · Cappuccino · Latte · Mocha
+                Americano · Espresso · Long Black · CoffeeLatte · Nutty Coffee
               </p>
               <p className="mt-4 font-display text-2xl font-semibold text-accent">
-                mulai Rp 8K
+                mulai Rp 10K
               </p>
             </div>
           </article>
@@ -195,10 +195,10 @@ function HomePage() {
               </div>
               <h3 className="mt-2 font-display text-4xl font-bold">Non-Coffee</h3>
               <p className="mt-2 text-sm text-primary-foreground/80">
-                Matcha · Choco · Strawberry · Taro · Lemonade
+                Matcha · Choco · Strawberry · Taro · Blue Ocean
               </p>
               <p className="mt-4 font-display text-2xl font-semibold text-accent">
-                mulai Rp 10K
+                mulai Rp 6K
               </p>
             </div>
           </article>
@@ -248,8 +248,8 @@ function HomePage() {
                 { v: "8K", l: "Mulai Harga" },
                 { v: "4.9★", l: "Rating Cafe" },
                 { v: "320+", l: "Pelanggan/hari" },
-                { v: "12", l: "Varian Menu" },
-                { v: "100%", l: "Bikin Happy" },
+                { v: "30+", l: "Varian Menu" },
+                { v: "GoFood", l: "Bisa Delivery" },
               ].map((s) => (
                 <div
                   key={s.l}
@@ -274,7 +274,7 @@ function HomePage() {
           <div className="lg:col-span-5">
             <img
               src={galleryStudents}
-              alt="Siswa SMK Mitra Industri nongkrong di Kopi Mitra"
+              alt="Siswa SMK Mitra Industri nongkrong di Mitra Coffeeshop"
               loading="lazy"
               width={1280}
               height={1600}
@@ -289,7 +289,8 @@ function HomePage() {
               Lebih dari sekedar <em className="text-primary">secangkir kopi</em>.
             </h2>
             <p className="mt-8 text-lg leading-relaxed text-foreground/70">
-              Kopi Mitra lahir dari mimpi sederhana: kasih ruang buat anak SMK
+              
+              Mitra Coffeeshop lahir dari mimpi sederhana: kasih ruang buat anak SMK
               Mitra Industri buat rehat, ngobrol, dan kreatif bareng. Tiap
               cangkir kami racik dengan biji kopi pilihan, dan tiap senyum kami
               bagi gratis.
@@ -312,7 +313,7 @@ function HomePage() {
             <div className="mt-10 overflow-hidden rounded-3xl">
               <img
                 src={galleryBarista}
-                alt="Barista Kopi Mitra menuang latte art"
+                alt="Barista Mitra Coffeeshop menuang latte art"
                 loading="lazy"
                 width={1280}
                 height={1600}
@@ -330,17 +331,28 @@ function HomePage() {
             Mampir hari ini?
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-base text-primary-foreground/80">
-            Pesan duluan via WhatsApp biar gak antri pas jam istirahat.
+            Pesan duluan via WhatsApp biar gak antri pas jam istirahat. Atau order delivery lewat GoFood!
           </p>
-          <a
-            href="https://wa.me/6281234567890?text=Halo%20Kopi%20Mitra%2C%20saya%20mau%20pesan"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-10 inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-semibold text-accent-foreground transition hover:scale-105"
-          >
-            Pesan via WhatsApp
-            <ArrowUpRight className="h-4 w-4" />
-          </a>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="https://wa.me/6281234567890?text=Halo%20Kopi%20Mitra%2C%20saya%20mau%20pesan"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-semibold text-accent-foreground transition hover:scale-105"
+            >
+              Pesan via WhatsApp
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+            <a
+              href="https://gofood.link/a/G6pniU1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-[#EF3E2D] px-8 py-4 text-sm font-semibold text-white transition hover:scale-105"
+            >
+              Order GoFood
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
         </div>
       </section>
     </div>

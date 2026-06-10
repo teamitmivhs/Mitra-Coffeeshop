@@ -21,9 +21,8 @@ export const Route = createFileRoute("/contact")({
 });
 
 const hours = [
-  { day: "Senin – Kamis", time: "07.00 – 16.00" },
-  { day: "Jumat", time: "07.00 – 15.30" },
-  { day: "Sabtu", time: "08.00 – 13.00" },
+  { day: "Senin – Jumat", time: "07.00 – 16.00" },
+  { day: "Sabtu", time: "08.00 – 12.00" },
   { day: "Minggu", time: "Tutup" },
 ];
 
@@ -114,8 +113,36 @@ function ContactPage() {
             />
           </div>
         </div>
+          {/* Go food & grab */}
+          <div className="mt-12 rounded-3xl border border-border bg-card p-8">
+            <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-foreground/70">
+              Delivery
+            </p>
+            <h3 className="mt-2 font-display text-3xl font-bold lg:text-4xl">
+              Pesan dari mana aja.
+            </h3>
+            <p className="mt-3 max-w-lg text-sm text-muted-foreground">
+              Gak sempat mampir? Tenang — kamu bisa order Mitra Coffeeshop langsung
+              lewat GoFood. Diantar ke lokasi kamu.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-4">
+              <a
+                href="https://gofood.link/a/G6pniU1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 rounded-full bg-[#EF3E2D] px-6 py-3.5 text-sm font-semibold text-white transition hover:scale-105"
+              >
+                <svg width="20" height="20" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="20" cy="20" r="20" fill="white"/>
+                  <path d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 28C15.582 28 12 24.418 12 20C12 15.582 15.582 12 20 12C24.418 12 28 15.582 28 20C28 24.418 24.418 28 20 28Z" fill="#EF3E2D"/>
+                  <circle cx="20" cy="20" r="5" fill="#EF3E2D"/>
+                </svg>
+                Order di GoFood
+              </a>
+            </div>
+          </div>
 
-        {/* FAQ-ish */}
+
         <div className="mt-16 grid gap-6 md:grid-cols-3">
           {[
             {
@@ -127,8 +154,8 @@ function ContactPage() {
               d: "Diskon 20% setiap hari kerja jam 13.00 – 16.00 dengan kartu pelajar.",
             },
             {
-              t: "Bisa take-away?",
-              d: "Pesan via WhatsApp, kami siapin sebelum kamu sampai.",
+              t: "Bisa delivery?",
+              d: "Bisa! Order lewat GoFood — tinggal cari Mitra Coffeeshop atau klik link di atas.",
             },
           ].map((q) => (
             <div key={q.t} className="rounded-2xl border border-border bg-card p-6">

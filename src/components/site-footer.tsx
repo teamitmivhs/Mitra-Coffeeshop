@@ -30,6 +30,16 @@ export function SiteFooter() {
             <li><Link to="/menu" className="hover:text-accent">Menu Lengkap</Link></li>
             <li><Link to="/gallery" className="hover:text-accent">Galeri</Link></li>
             <li><Link to="/contact" className="hover:text-accent">Kontak</Link></li>
+            <li>
+              <a
+                href="https://gofood.link/a/G6pniU1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent"
+              >
+                Order GoFood 🛵
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -43,7 +53,11 @@ export function SiteFooter() {
           </p>
           <p className="mt-3 flex items-start gap-2 text-sm">
             <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-            Senin – Jumat<br /> 07.00 – 16.00 WIB
+            Senin – Jumat <br /> 07.30 – 16.00 WIB
+            <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+            Sabtu<br /> 08.00 – 12.00 WIB
+            <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+            Minggu Tutup
           </p>
         </div>
       </div>

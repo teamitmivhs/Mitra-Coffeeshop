@@ -24,11 +24,11 @@ export const Route = createFileRoute("/gallery")({
 
 const items = [
   { src: heroCoffee, alt: "Latte art", tag: "Signature", span: "row-span-2" },
-  { src: galleryStudents, alt: "Siswa nongkrong", tag: "Vibes", span: "" },
+  { src: galleryStudents, alt: "Siswa kumpul", tag: "Vibes", span: "" },
   { src: menuNoncoffee, alt: "Non-coffee drinks", tag: "Menu", span: "" },
-  { src: galleryBarista, alt: "Barista beraksi", tag: "Behind the Bar", span: "row-span-2" },
+  { src: galleryBarista, alt: "Barista kami", tag: "Behind the Bar", span: "row-span-2" },
   { src: galleryInterior, alt: "Interior cafe", tag: "Space", span: "" },
-  { src: menuCoffee, alt: "Iced americano", tag: "Coffee", span: "" },
+  { src: menuCoffee, alt: "M.I Signature", tag: "Coffee", span: "" },
 ];
 
 function GalleryPage() {
@@ -39,7 +39,7 @@ function GalleryPage() {
           Gallery
         </p>
         <h1 className="mt-4 font-display text-[clamp(3rem,9vw,8rem)] font-bold leading-[0.9] tracking-tight">
-          Momen <em className="text-primary">Mitra Coffeeshop</em>.
+          Mitra <em className="text-primary">Coffeeshop</em>.
         </h1>
         <p className="mt-6 max-w-xl text-lg text-foreground/70">
           Snapshot harian dari cafe — vibes, racikan, dan senyum pelanggan
