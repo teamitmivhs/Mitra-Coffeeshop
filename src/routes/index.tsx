@@ -109,12 +109,12 @@ function HomePage() {
       <section className="relative overflow-hidden bg-background">
         <div className="mx-auto max-w-7xl px-4 pt-10 pb-0 sm:px-6 lg:px-10 lg:pt-20">
           {/* Headline — Centered layout */}
-          <div className="flex flex-col items-center text-center lg:pb-24 lg:pt-6">
+          <div className="relative z-10 flex flex-col items-center text-center lg:pb-24 lg:pt-6">
             <div className="max-w-4xl">
               <p className="font-display text-[10px] font-semibold uppercase tracking-[0.25em] text-primary lg:text-xs">
                 Coffee · Vibes · School Life
               </p>
-              <h1 className="mt-3 font-display text-[clamp(2.1rem,8vw,8rem)] font-bold leading-[1.1] tracking-tighter">
+              <h1 className="mt-3 font-display text-[clamp(2.1rem,8vw,8rem)] font-bold leading-[1.1] tracking-tighter text-balance">
                 Ngopi di sekolah?{" "}
                 <span className="italic text-primary">Bisa banget.</span>
               </h1>
@@ -124,7 +124,7 @@ function HomePage() {
                 sekedar rehat antar pelajaran.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:mt-12">
+              <div className="relative z-20 mt-8 flex flex-wrap items-center justify-center gap-3 lg:mt-12">
                 <Link
                   to="/menu"
                   className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition active:scale-95 lg:px-8 lg:py-4.5 lg:text-base"
