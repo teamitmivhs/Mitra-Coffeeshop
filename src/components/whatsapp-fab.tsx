@@ -9,7 +9,7 @@ export function WhatsAppFab() {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
-      href="https://wa.me/6281234567890?text=Halo%20Mitra%20Coffeeshop%2C%20saya%20mau%20pesan"
+      href="https://wa.me/6285217971601?text=Halo%20Mitra%20Coffeeshop%2C%20saya%20mau%20pesan"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Pesan via WhatsApp"
