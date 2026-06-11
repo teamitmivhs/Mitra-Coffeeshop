@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
   { to: "/", label: "Beranda" },
@@ -49,35 +50,75 @@ export function SiteHeader() {
 
         <button
           aria-label="Toggle menu"
-          className="md:hidden"
+          className="relative h-6 w-6 md:hidden"
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <AnimatePresence mode="wait">
+            {open ? (
+              <motion.div
+                key="close"
+                initial={{ opacity: 0, rotate: -90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0, rotate: 90 }}
+                transition={{ duration: 0.2 }}
+              >
+                <X className="h-6 w-6" />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="menu"
+                initial={{ opacity: 0, rotate: 90 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0, rotate: -90 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Menu className="h-6 w-6" />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </button>
       </div>
 
-      {open && (
-        <div className="border-t border-border/60 bg-background md:hidden">
-          <nav className="mx-auto flex max-w-7xl flex-col px-6 py-4">
-            {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                className="border-b border-border/40 py-3 text-base font-medium"
-                onClick={() => setOpen(false)}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="overflow-hidden border-t border-border/60 bg-background md:hidden"
+          >
+            <nav className="mx-auto flex max-w-7xl flex-col px-6 py-4">
+              {links.map((l, i) => (
+                <motion.div
+                  key={l.to}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: i * 0.05 + 0.1 }}
+                >
+                  <Link
+                    to={l.to}
+                    className="block border-b border-border/40 py-3 text-base font-medium"
+                    onClick={() => setOpen(false)}
+                  >
+                    {l.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.a
+                href="https://wa.me/6281234567890"
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="mt-4 rounded-full bg-primary px-5 py-3 text-center text-sm font-semibold text-primary-foreground"
               >
-                {l.label}
-              </Link>
-            ))}
-            <a
-              href="https://wa.me/6281234567890"
-              className="mt-4 rounded-full bg-primary px-5 py-3 text-center text-sm font-semibold text-primary-foreground"
-            >
-              Pesan via WhatsApp
-            </a>
-          </nav>
-        </div>
-      )}
+                Pesan via WhatsApp
+              </motion.a>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
+
