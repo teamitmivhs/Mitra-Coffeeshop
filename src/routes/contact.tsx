@@ -92,7 +92,7 @@ function ContactPage() {
                   Instagram
                 </a>
                 <a
-                  href="tel:+6285217971601"
+                  href="tel:+62 852-1797-1601"
                   className="flex items-center justify-center gap-2 rounded-full border border-primary-foreground/30 px-5 py-3 text-sm font-semibold transition hover:bg-primary-foreground hover:text-primary sm:col-span-2"
                 >
                   <Phone className="h-4 w-4" />
