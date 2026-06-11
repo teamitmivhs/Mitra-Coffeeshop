@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import menuCoffee from "../assets/menu-coffee.jpg";
 import menuNoncoffee from "../assets/menu-noncoffee.jpg";
+import menuSnack from "../assets/dimsum.jpg";
 
 export const Route = createFileRoute("/menu")({
   head: () => ({
@@ -220,6 +221,16 @@ export default function MenuPage() {
               <p className="mt-4 max-w-xs text-sm text-foreground/70">
                 Biar ngopi makin asik — ada camilan dan makanan buat nemenin sesi panjang.
               </p>
+              <div className="mt-8 overflow-hidden rounded-2xl">
+                <img
+                  src={menuSnack}
+                  alt="Snacks and food menu"
+                  loading="lazy"
+                  width={1280}
+                  height={1280}
+                  className="aspect-square w-full object-cover"
+                />
+              </div>
             </div>
           </div>
           <ul className="space-y-2 lg:col-span-8">
