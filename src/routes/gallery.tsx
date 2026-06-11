@@ -24,7 +24,7 @@ export const Route = createFileRoute("/gallery")({
 
 const items = [
   { src: heroCoffee, alt: "Latte art", tag: "Signature", span: "row-span-2" },
-  { src: galleryStudents, alt: "Siswa kumpul", tag: "Vibes", span: "" },
+  { src: galleryStudents, alt: "Karya Barista", tag: "Attention", span: "" },
   { src: menuNoncoffee, alt: "Non-coffee drinks", tag: "Menu", span: "" },
   { src: galleryBarista, alt: "Barista kami", tag: "Behind the Bar", span: "row-span-2" },
   { src: galleryInterior, alt: "Interior cafe", tag: "Space", span: "" },
@@ -48,7 +48,31 @@ function GalleryPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
-        <div className="grid auto-rows-[260px] grid-cols-2 gap-4 md:grid-cols-3 lg:auto-rows-[320px]">
+        {/* Mobile: simple 2-col equal grid, no row-span */}
+        <div className="grid grid-cols-2 gap-3 md:hidden">
+          {items.map((it, i) => (
+            <figure
+              key={i}
+              className="group relative overflow-hidden rounded-2xl bg-card"
+            >
+              <img
+                src={it.src}
+                alt={it.alt}
+                loading="lazy"
+                className="aspect-square w-full object-cover transition duration-700 group-hover:scale-105"
+              />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/80 to-transparent p-3 text-primary-foreground">
+                <span className="font-display text-[9px] font-bold uppercase tracking-[0.2em] text-accent">
+                  {it.tag}
+                </span>
+                <p className="mt-0.5 font-display text-sm font-bold leading-tight">{it.alt}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        {/* Tablet+: masonry grid with row-span */}
+        <div className="hidden md:grid md:auto-rows-[260px] md:grid-cols-3 md:gap-4 lg:auto-rows-[320px]">
           {items.map((it, i) => (
             <figure
               key={i}
