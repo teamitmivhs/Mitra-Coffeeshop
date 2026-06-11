@@ -1,113 +1,111 @@
-# ☕ Kopi Mitra — Ngopi Asik di SMK Mitra Industri
+<p align="center">
+  <img src="src/assets/logo.png" width="120" alt="Mitra Coffeeshop Logo">
+</p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Runtime: Bun](https://img.shields.io/badge/Runtime-Bun%20v1.3.14-black?logo=bun)](https://bun.sh)
-[![Framework: TanStack Start](https://img.shields.io/badge/Framework-TanStack%20Start-FF4154?logo=react)](https://tanstack.com/start)
+<h1 align="center">Mitra Coffeeshop</h1>
 
-Website resmi **Kopi Mitra**, coffee shop premium yang berlokasi di lingkungan SMK Mitra Industri. Didesain dengan estetika **Magazine Layout** yang berani, modern, dan menggunakan palet warna *Cream & Caramel* yang hangat.
+<p align="center">
+  <strong>Premium Coffee Experience at SMK Mitra Industri</strong>
+</p>
 
----
-
-## ✨ Fitur Utama
-
-### 📖 Magazine-Style Design
-Implementasi layout asimetris yang responsif dan estetis, memberikan pengalaman membaca menu seperti menelusuri majalah gaya hidup.
-
-### 🗂️ Interactive Loyalty Card
-Fitur kartu loyalitas digital dengan **3D Flip Animation** (CSS3) yang intuitif. Memberikan insentif "Beli 10 Gratis 1" bagi pelanggan setia.
-
-### 🎢 Dynamic Menu Marquee
-Ticker teks berjalan yang menampilkan menu unggulan secara *real-time*, menambah kesan dinamis dan modern pada antarmuka.
-
-### 🛍️ Digital Integration
-*   **Direct WhatsApp API:** Pesan langsung tanpa simpan nomor untuk kemudahan reservasi dan *pre-order*.
-*   **GoFood Integration:** Hubungan langsung ke aplikasi Gojek untuk layanan pesan antar.
-
-### 🎬 Programmatic Marketing (Remotion)
-Sub-proyek berbasis **Remotion** untuk menghasilkan video promosi secara otomatis melalui kode, memastikan konten media sosial tetap segar dan konsisten.
+<p align="center">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/badge/Bun-v1.3.14-000000?style=for-the-badge&logo=bun&logoColor=white" alt="Bun">
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind">
+</p>
 
 ---
 
-## 🛠️ Tech Stack
+### 🛠️ Tech Stack
 
-Project ini menggunakan arsitektur mutakhir untuk menjamin performa maksimal dan pengalaman pengembang yang luar biasa:
+<p align="left">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=bun,react,ts,tailwind,vite,github,vercel,netlify" />
+  </a>
+</p>
 
-*   **Runtime:** [Bun](https://bun.sh/) — JavaScript runtime super cepat untuk instalasi, build, dan eksekusi.
-*   **Framework:** [TanStack Start](https://tanstack.com/start) — Full-stack framework dengan SSR, Type-safe routing, dan data fetching handal.
-*   **Routing:** [TanStack Router](https://tanstack.com/router) — Routing berbasis file yang sepenuhnya *type-safe*.
-*   **Styling:** [Tailwind CSS v4](https://tailwindcss.com/blog/tailwindcss-v4-alpha) — Menggunakan engine Lightning CSS untuk performa styling tingkat tinggi.
-*   **UI Primitives:** [Radix UI](https://www.radix-ui.com/) & [Shadcn UI](https://ui.shadcn.com/) — Komponen UI yang aksesibel dan mudah dikustomisasi.
-*   **Motion:** [Lucide React](https://lucide.dev/) untuk ikonografi dan CSS transitions untuk animasi mikro.
+Project ini mengimplementasikan arsitektur modern untuk menjamin performa maksimal:
+
+*   **Runtime:** Bun — Eksekusi JavaScript berperforma tinggi.
+*   **Framework:** TanStack Start — Full-stack React dengan Type-safe routing.
+*   **Styling:** Tailwind CSS v4 — High-performance CSS engine.
+*   **UI Components:** Radix UI & Shadcn UI.
+*   **Video Engine:** Remotion — Programmatic video generation.
 
 ---
 
-## 🚀 Memulai (Quick Start)
+### 🚀 Fitur Utama
 
-Pastikan Anda telah menginstal **Bun** di sistem Anda.
+- **Magazine Layout:** Estetika asimetris yang responsif dan modern.
+- **Interactive Loyalty Card:** Kartu loyalitas dengan animasi 3D Flip (CSS3).
+- **Dynamic Menu Marquee:** Ticker teks untuk display menu unggulan.
+- **WhatsApp Integration:** Akses cepat untuk pemesanan dan reservasi.
+- **GoFood Integration:** Konektivitas langsung ke ekosistem pesan antar.
 
-### 1. Inisialisasi Proyek
+---
+
+### 💻 Panduan Penggunaan
+
+#### 1. Persiapan Lingkungan
+Pastikan **Bun** telah terpasang di sistem Anda.
+
 ```bash
+# Inisialisasi Repositori
 git clone <url-repository>
 cd mitra-coffeeshop
+
+# Instalasi Dependensi
 bun install
 ```
 
-### 2. Jalankan Mode Pengembangan
+#### 2. Mode Pengembangan
 ```bash
 bun dev
 ```
-Akses di: `http://localhost:3000`
+Akses server lokal: `http://localhost:3000`
 
-### 3. Build untuk Produksi
+#### 3. Produksi
 ```bash
 bun build
 ```
 
 ---
 
-## 📹 Konten Video (Remotion)
+### 📹 Konten Video (Remotion)
 
-Proyek ini menyertakan generator video promosi di dalam direktori `remotion/`.
+Generator video promosi otomatis yang terletak di direktori `remotion/`.
 
-### Setup & Render:
-1.  Masuk ke direktori: `cd remotion`
-2.  Install dependensi: `bun install`
-3.  Render video: `bun run scripts/render-remotion.mjs`
-
-*Video hasil render akan tersimpan sesuai konfigurasi di dalam script tersebut.*
-
----
-
-## 📁 Struktur Proyek
-
-```text
-├── remotion/            # Generator video promosi (Remotion.dev)
-│   ├── src/             # Komposisi dan scene video
-│   └── scripts/         # Script render otomatis
-├── src/
-│   ├── assets/          # Media statis (Hero, Menu, Loyalty Card)
-│   ├── components/      # Komponen UI (Atomic & Shadcn)
-│   ├── lib/             # Utilitas, config, dan API helpers
-│   ├── routes/          # File-based routing (Halaman utama, Menu, Gallery)
-│   └── styles.css       # Konfigurasi Tailwind v4 & Design System
-├── vite.config.ts       # Konfigurasi bundling & SSR
-└── package.json         # Dependensi & scripts
+```bash
+cd remotion
+bun install
+bun run scripts/render-remotion.mjs
 ```
 
 ---
 
-## 🛠️ Alur Kerja Pengembangan
+### 📂 Struktur Proyek
 
-*   **Linting:** `bun lint` (ESLint)
-*   **Formatting:** `bun format` (Prettier)
-*   **Type Checking:** `bun tsc` (jika tersedia)
+```text
+├── remotion/            # Programmatic Video Generation
+├── src/
+│   ├── assets/          # Static Media Resources
+│   ├── components/      # UI Component Library
+│   ├── lib/             # Utilities & Configurations
+│   ├── routes/          # File-based Routing
+│   └── styles.css       # Tailwind v4 Design System
+└── package.json         # Project Dependencies
+```
 
 ---
 
-## 📄 Lisensi
+### 📄 Lisensi
 
-Didistribusikan di bawah Lisensi MIT. Lihat `LICENSE` untuk informasi lebih lanjut.
+Didistribusikan di bawah Lisensi MIT. Lihat file `LICENSE` untuk informasi lebih lanjut.
 
 ---
 
-**Kopi Mitra Project** — *Brewing Excellence for SMK Mitra Industri.*
+<p align="center">
+  <strong>Mitra Coffeeshop Project</strong><br>
+  <em>Brewing Excellence for SMK Mitra Industri.</em>
+</p>
