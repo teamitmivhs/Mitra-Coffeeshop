@@ -24,7 +24,7 @@ export const Route = createFileRoute("/gallery")({
 
 const items = [
   { src: heroCoffee, alt: "Latte art", tag: "Signature", span: "row-span-2" },
-  { src: galleryStudents, alt: "Karya Barista", tag: "Attention", span: "" },
+  { src: galleryStudents, alt: "Made with passion", tag: "Attention", span: "" },
   { src: menuNoncoffee, alt: "Non-coffee drinks", tag: "Menu", span: "" },
   { src: galleryBarista, alt: "Barista kami", tag: "Behind the Bar", span: "row-span-2" },
   { src: galleryInterior, alt: "Interior cafe", tag: "Space", span: "" },
