@@ -233,7 +233,6 @@ function HomePage() {
                 Khusus siswa & guru SMK Mitra Industri.
               </p>
               <a
-                href="https://wa.me/6281234567890?text=Halo%20Kopi%20Mitra%2C%20saya%20mau%20pakai%20promo%20pelajar"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
