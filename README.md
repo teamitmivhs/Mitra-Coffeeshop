@@ -52,7 +52,7 @@ Pastikan **Bun** telah terpasang di sistem Anda.
 
 ```bash
 # Inisialisasi Repositori
-git clone <url-repository>
+git clone https://github.com/teamitmivhs/Mitra-Coffeeshop
 cd mitra-coffeeshop
 
 # Instalasi Dependensi
