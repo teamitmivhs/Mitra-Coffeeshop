@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Coffee, Heart, MapPin, Sparkles, Star } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import heroCoffee from "../assets/nutty-coffee.jpg";
 import menuCoffee from "../assets/menu-coffee.jpg";
 import menuNoncoffee from "../assets/menu-noncoffee.jpg";
 import galleryStudents from "../assets/gallery-students.jpg";
@@ -107,87 +106,60 @@ function HomePage() {
   return (
     <div>
       {/* ===== HERO MAGAZINE ===== */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 pt-10 pb-20 lg:grid-cols-12 lg:px-10 lg:pt-16 lg:pb-32">
-          {/* Tag column */}
-          <aside className="lg:col-span-2">
+      <section className="relative overflow-hidden bg-background">
+        <div className="mx-auto max-w-7xl px-4 pt-10 pb-0 sm:px-6 lg:px-10 lg:pt-20">
+          {/* Headline — Centered layout */}
+          <div className="flex flex-col items-center text-center lg:pb-24 lg:pt-6">
+            <div className="max-w-4xl">
+              <p className="font-display text-[10px] font-semibold uppercase tracking-[0.25em] text-primary lg:text-xs">
+                Coffee · Vibes · School Life
+              </p>
+              <h1 className="mt-3 font-display text-[clamp(2.1rem,8vw,8rem)] font-bold leading-[1.1] tracking-tighter">
+                Ngopi di sekolah?{" "}
+                <span className="italic text-primary">Bisa banget.</span>
+              </h1>
+              <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70 lg:mt-8 lg:text-lg">
+                Dari americano klasik sampai matcha latte yang creamy — Mitra Coffeeshop
+                jadi tempat seru buat ngerjain tugas, ngobrol bareng teman, atau
+                sekedar rehat antar pelajaran.
+              </p>
 
-          </aside>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:mt-12">
+                <Link
+                  to="/menu"
+                  className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition active:scale-95 lg:px-8 lg:py-4.5 lg:text-base"
+                >
+                  Lihat Menu
+                  <ArrowUpRight className="h-4 w-4 transition group-hover:rotate-45 lg:h-5 lg:w-5" />
+                </Link>
+                <Link
+                  to="/gallery"
+                  className="inline-flex items-center gap-2 rounded-full border border-foreground/15 px-6 py-3 text-sm font-semibold text-foreground transition active:scale-95 hover:border-foreground/40 lg:px-8 lg:py-4.5 lg:text-base"
+                >
+                  Suasana
+                </Link>
+              </div>
 
-          {/* Headline */}
-          <div className="lg:col-span-7">
-            <p className="font-display text-sm font-semibold uppercase tracking-[0.22em] text-accent-foreground/70">
-              Coffee · Vibes · School Life
-            </p>
-            <h1 className="mt-6 font-display text-[clamp(3rem,9vw,8rem)] font-bold leading-[0.9] tracking-tight text-balance">
-              Ngopi di sekolah?{" "}
-              <span className="italic text-primary">Bisa banget.</span>
-            </h1>
-            <p className="mt-8 max-w-xl text-lg leading-relaxed text-foreground/70">
-              Dari americano klasik sampai matcha latte yang creamy — Mitra Coffeeshop
-              jadi tempat seru buat ngerjain tugas, ngobrol bareng teman, atau
-              sekedar rehat antar pelajaran.
-            </p>
-
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                to="/menu"
-                className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
-              >
-                Lihat Menu
-                <ArrowUpRight className="h-4 w-4 transition group-hover:rotate-45" />
-              </Link>
-              <Link
-                to="/gallery"
-                className="inline-flex items-center gap-2 rounded-full border border-foreground/20 px-7 py-4 text-sm font-semibold text-foreground transition hover:border-foreground/60"
-              >
-                Suasana Cafe
-              </Link>
-            </div>
-
-            <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-semibold uppercase tracking-[0.18em] text-foreground/50">
-              <span className="flex items-center gap-2">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500" />
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/40 lg:mt-16 lg:text-xs">
+                <span className="flex items-center gap-2">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500" />
+                  </span>
+                  Buka · 07.30 – 16.00
                 </span>
-                Buka · 07.30 – 16.00 WIB
-              </span>
-              <span className="text-foreground/20">—</span>
-              <span className="flex items-center gap-1.5">
-                <MapPin className="h-3 w-3 text-foreground/40" />
-                SMK Mitra Industri, Bekasi
-              </span>
-            </div>
-          </div>
-
-          {/* Hero image */}
-          <div className="relative lg:col-span-3">
-            <div className="absolute self-center-safe -top-6 hidden font-display text-xs uppercase tracking-[0.4em] text-muted-foreground lg:block">
-              Featured
-            </div>
-            <div className="relative overflow-hidden rounded-3xl">
-              <img
-                src={heroCoffee}
-                alt="Latte art di Mitra Coffeeshop"
-                width={1600}
-                height={1920}
-                className="aspect-[3/4] h-full w-full object-cover"
-              />
-              <div className="absolute bottom-4 left-4 right-4 rounded-2xl bg-background/90 px-4 py-3 backdrop-blur">
-                <p className="font-display text-xs font-semibold uppercase tracking-wider text-primary">
-                  Signature
-                </p>
-                <p className="font-display text-lg font-bold leading-tight">
-                  Nutty Coffee
-                </p>
+                <span className="hidden text-foreground/10 sm:block">—</span>
+                <span className="flex items-center gap-1.5">
+                  <MapPin className="h-3 w-3 text-foreground/30" />
+                  SMK Mitra Industri
+                </span>
               </div>
             </div>
           </div>
         </div>
 
         {/* ticker */}
-        <div className="border-y border-border bg-primary py-4 text-primary-foreground overflow-hidden">
+        <div className="mt-8 border-y border-border bg-primary py-3 text-primary-foreground overflow-hidden lg:mt-0 lg:py-4">
           <style>{`
             @keyframes marquee {
               from { transform: translateX(0); }
@@ -196,13 +168,13 @@ function HomePage() {
             .marquee-track {
               display: flex;
               width: max-content;
-              animation: marquee 18s linear infinite;
+              animation: marquee 25s linear infinite;
             }
             .marquee-track:hover {
               animation-play-state: paused;
             }
           `}</style>
-          <div className="marquee-track gap-0 font-display text-sm font-semibold uppercase tracking-[0.3em]">
+          <div className="marquee-track gap-0 font-display text-[10px] font-bold uppercase tracking-[0.25em] lg:text-sm">
             {[
               "Americano",
               "Cappuccino",
@@ -212,7 +184,7 @@ function HomePage() {
               "Nutty Coffee",
               "Caramel Macchiato",
               "GoFood",
-              "Loyality Card",
+              "Loyalty Card",
             ]
               .concat([
                 "Americano",
@@ -223,11 +195,11 @@ function HomePage() {
                 "Nutty Coffee",
                 "Caramel Macchiato",
                 "GoFood",
-                "Loyality Card",
+                "Loyalty Card",
               ])
               .map((t, i) => (
-                <span key={i} className="flex items-center whitespace-nowrap pr-12">
-                  {t} <span className="ml-12 text-accent">✦</span>
+                <span key={i} className="flex items-center whitespace-nowrap pr-10 lg:pr-12">
+                  {t} <span className="ml-10 text-accent lg:ml-12">✦</span>
                 </span>
               ))}
           </div>
@@ -235,226 +207,227 @@ function HomePage() {
       </section>
 
       {/* ===== MENU PREVIEW ===== */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-        <div className="grid gap-6 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-foreground/70">
-              Menu Spotlight
-            </p>
-            <h2 className="mt-4 font-display text-5xl font-bold leading-[0.95] tracking-tight lg:text-7xl">
-              Dua sisi: <em className="text-primary">coffee</em> & <em className="text-primary">non-coffee</em>.
-            </h2>
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-10 lg:py-24">
+        <div className="">
+          <div className="grid gap-4 lg:grid-cols-12 lg:gap-6">
+            <div className="lg:col-span-6">
+              <p className="font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-primary lg:text-xs">
+                Menu Spotlight
+              </p>
+              <h2 className="mt-2 font-display text-3xl font-bold leading-[0.95] tracking-tight lg:mt-4 lg:text-7xl">
+                Dua sisi: <em className="text-primary">coffee</em> & <em className="text-primary">non-coffee</em>.
+              </h2>
+            </div>
+            <div className="lg:col-span-5 lg:col-start-8">
+              <p className="text-sm leading-relaxed text-foreground/70 lg:text-base">
+                Buat yang udah cinta espresso atau yang lebih suka sesuatu yang
+                manis dan ringan — semua punya tempat di Mitra Coffeeshop.
+              </p>
+            </div>
           </div>
-          <p className="text-base leading-relaxed text-foreground/70 lg:col-span-5 lg:col-start-8">
-            Buat yang udah cinta espresso atau yang lebih suka sesuatu yang
-            manis dan ringan — semua punya tempat di Mitra Coffeeshop. Semua dibuat
-            fresh di tempat sama barista kami.
-          </p>
         </div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2">
-          <article className="group relative overflow-hidden rounded-3xl bg-card">
+        {/* Mobile: 2-column grid, Desktop: 2-column grid */}
+        <div className="mt-8 grid grid-cols-2 gap-3 lg:mt-16 lg:grid-cols-2 lg:gap-8">
+          <article className="group relative overflow-hidden rounded-[1.5rem] bg-card lg:rounded-[2rem]">
             <img
               src={menuCoffee}
               alt="Iced coffee"
               loading="lazy"
               width={1280}
               height={1280}
-              className="aspect-[4/5] w-full object-cover transition duration-700 group-hover:scale-105"
+              className="aspect-[3/4] w-full object-cover transition duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/0 to-primary/0" />
-            <div className="absolute bottom-0 left-0 right-0 p-8 text-primary-foreground">
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-                <Coffee className="h-4 w-4" /> The Classics
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 text-primary-foreground lg:p-10">
+              <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-accent lg:gap-2 lg:text-[10px]">
+                <Coffee className="h-2.5 w-2.5 lg:h-3 lg:w-3" /> The Classics
               </div>
-              <h3 className="mt-2 font-display text-4xl font-bold">Coffee</h3>
-              <p className="mt-2 text-sm text-primary-foreground/80">
-                Americano · Espresso · Long Black · CoffeeLatte · Nutty Coffee
+              <h3 className="mt-1 font-display text-xl font-bold lg:mt-2 lg:text-5xl">Coffee</h3>
+              <p className="mt-1 text-[10px] text-primary-foreground/70 lg:mt-2 lg:text-sm">
+                Americano · Espresso · Latte · Signature
               </p>
-              <p className="mt-4 font-display text-2xl font-semibold text-accent">
+              <p className="mt-2 font-display text-base font-bold text-accent lg:mt-4 lg:text-2xl">
                 mulai Rp 10K
               </p>
             </div>
           </article>
 
-          <article className="group relative overflow-hidden rounded-3xl bg-card">
+          <article className="group relative overflow-hidden rounded-[1.5rem] bg-card lg:rounded-[2rem]">
             <img
               src={menuNoncoffee}
               alt="Non-coffee drinks"
               loading="lazy"
               width={1280}
               height={1280}
-              className="aspect-[4/5] w-full object-cover transition duration-700 group-hover:scale-105"
+              className="aspect-[3/4] w-full object-cover transition duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/0 to-primary/0" />
-            <div className="absolute bottom-0 left-0 right-0 p-8 text-primary-foreground">
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-                <Sparkles className="h-4 w-4" /> Sweet Side
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 text-primary-foreground lg:p-10">
+              <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-accent lg:gap-2 lg:text-[10px]">
+                <Sparkles className="h-2.5 w-2.5 lg:h-3 lg:w-3" /> Sweet Side
               </div>
-              <h3 className="mt-2 font-display text-4xl font-bold">Non-Coffee</h3>
-              <p className="mt-2 text-sm text-primary-foreground/80">
-                Matcha · Choco · Strawberry · Taro · Blue Ocean
+              <h3 className="mt-1 font-display text-xl font-bold lg:mt-2 lg:text-5xl">Non-Coffee</h3>
+              <p className="mt-1 text-[10px] text-primary-foreground/70 lg:mt-2 lg:text-sm">
+                Matcha · Choco · Strawberry · Taro · Soda
               </p>
-              <p className="mt-4 font-display text-2xl font-semibold text-accent">
+              <p className="mt-2 font-display text-base font-bold text-accent lg:mt-4 lg:text-2xl">
                 mulai Rp 6K
               </p>
             </div>
           </article>
         </div>
 
-        <div className="mt-16 flex justify-center">
-          <Link to="/menu">
+        <div className="mt-6 flex justify-center lg:mt-16">
+          <Link to="/menu" className="w-full sm:w-auto">
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group inline-flex items-center gap-3 rounded-full border border-primary/30 bg-background px-10 py-4 text-sm font-semibold text-primary shadow-sm transition hover:border-primary hover:bg-primary/5 hover:shadow-md"
+              whileTap={{ scale: 0.98 }}
+              className="group flex items-center justify-center gap-3 rounded-full border border-primary/20 bg-background px-8 py-4 text-sm font-bold text-primary shadow-sm transition hover:border-primary/40 hover:bg-primary/5"
             >
-              Lihat menu lengkap
+              Lihat Menu Lengkap
               <ArrowUpRight className="h-4 w-4 transition group-hover:rotate-45" />
             </motion.div>
           </Link>
         </div>
       </section>
 
-      {/* ===== Loyality CARD BANNER ===== */}
-      <section className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="relative overflow-hidden rounded-[2rem] bg-accent p-6 sm:p-10 lg:rounded-[2.5rem] lg:p-16">
-          <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-primary/20 blur-3xl" />
-          <div className="absolute -bottom-10 -left-10 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
-          <div className="relative flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-10">
-            {/* Card di atas di mobile, kanan di desktop */}
-            <div className="lg:order-2">
-              <LoyalityCard />
-            </div>
-            {/* Teks di bawah di mobile, kiri di desktop */}
-            <div className="lg:order-1">
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-primary">
-                Dapatkan Loyality Card saat Pembelian
+      {/* ===== LOYALTY CARD BANNER ===== */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+        <div className="relative overflow-hidden rounded-[1.75rem] bg-accent p-6 sm:p-8 lg:rounded-[3rem] lg:p-20">
+          <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
+          <div className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
+          
+          <div className="relative grid gap-6 lg:grid-cols-2 lg:items-center lg:gap-16">
+            <div className="order-2 lg:order-1">
+              <p className="font-display text-[10px] font-bold uppercase tracking-[0.22em] text-primary lg:text-xs">
+                Membership Benefit
               </p>
-              <h2 className="mt-3 font-display text-4xl font-bold leading-[0.95] tracking-tight text-primary sm:text-5xl lg:text-6xl">
+              <h2 className="mt-2 font-display text-2xl font-bold leading-[1] tracking-tight text-primary sm:text-3xl lg:text-7xl">
                 Beli 10 gratis 1!{" "}
                 <em className="text-primary-foreground">Ngopi makin hemat.</em>
               </h2>
-              <p className="mt-4 text-sm text-primary/80 sm:text-base">
-                Minta Loyality card ke kasir saat pertama beli. Tiap pembelian kopi dapat 1 stempel — kumpulkan 10, kopi berikutnya <strong>gratis!</strong>
+              <p className="mt-3 text-sm leading-relaxed text-primary/70 lg:mt-4 lg:text-lg">
+                Minta Loyalty Card ke kasir saat pembelian pertama. Kumpulkan 10 stempel, dan nikmati kopi favoritmu secara <strong>gratis!</strong>
               </p>
+              <div className="mt-4 lg:mt-8">
+                <Link to="/contact" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
+                  Cara mendapatkan kartu <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+            
+            <div className="order-1 lg:order-2">
+              <LoyalityCard />
             </div>
           </div>
         </div>
       </section>
 
       {/* ===== VIBE / STORY ===== */}
-      <section className="mx-auto max-w-7xl px-6 py-32 lg:px-10">
-        <div className="grid gap-10 lg:grid-cols-12">
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-10 lg:py-32">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <img
-              src={galleryStudents}
-              alt="Siswa SMK Mitra Industri nongkrong di Mitra Coffeeshop"
-              loading="lazy"
-              width={1280}
-              height={1600}
-              className="aspect-[4/5] w-full rounded-3xl object-cover"
-            />
+            <div className="relative">
+              <img
+                src={galleryStudents}
+                alt="Siswa SMK Mitra Industri nongkrong"
+                loading="lazy"
+                width={1280}
+                height={1600}
+                className="aspect-[3/2] w-full rounded-[1.5rem] object-cover sm:aspect-[4/3] lg:aspect-[4/5] lg:rounded-[3rem]"
+              />
+              <div className="absolute -bottom-4 -right-4 hidden h-24 w-24 items-center justify-center rounded-full bg-accent text-accent-foreground lg:flex">
+                <Star className="h-10 w-10 animate-spin-slow" />
+              </div>
+            </div>
           </div>
-          <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-primary/20 blur-3xl lg:hidden" />
-          <div className="absolute -bottom-10 -left-10 h-64 w-64 rounded-full bg-primary/10 blur-3xl lg:hidden" />
-          <div className="absolute -right-20 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-primary/20 blur-3xl hidden lg:block" />
-          <div className="absolute -left-20 bottom-1/3 h-96 w-96 rounded-full bg-primary/10 blur-3xl hidden lg:block" />
-          <div className="relative lg:col-span-7 lg:pl-10">
-            <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-foreground/70">
-              Vibe
+          <div className="flex flex-col justify-center lg:col-span-7 lg:pl-10">
+            <p className="font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-primary lg:text-xs">
+              The Vibes
             </p>
-            <h2 className="mt-4 font-display text-5xl font-bold leading-[0.95] tracking-tight lg:text-7xl">
-              Tempat nongkrong favorit <em className="text-primary">anak SMK Mitra Industri</em>.
+            <h2 className="mt-2 font-display text-3xl font-bold leading-[1] tracking-tight lg:mt-6 lg:text-7xl">
+              Tempat nongkrong favorit <em className="text-primary">anak SMK Mitra</em>.
             </h2>
-            <p className="mt-8 text-lg leading-relaxed text-foreground/70">
-              Dari pagi sampai sore, cafe kami selalu ramai dengan siswa yang datang buat ngopi, ngerjain tugas, atau sekedar nongkrong bareng teman. Suasana yang santai dan ramah bikin Mitra Coffeeshop jadi tempat favorit buat rehat sejenak dari padatnya jadwal sekolah.
+            <p className="mt-3 text-sm leading-relaxed text-foreground/70 lg:mt-8 lg:text-lg">
+              Dari pagi sampai sore, cafe kami selalu ramai dengan siswa yang datang buat ngopi, ngerjain tugas, atau sekedar nongkrong bareng teman. Suasana santai dan ramah bikin Mitra Coffeeshop jadi rumah kedua.
             </p>
           </div>
         </div>
 
-        <div className="mt-20 grid gap-10 lg:grid-cols-12">
-          <div className="relative lg:col-span-5">
-            <img
-              src={strawberryLatte}
-              alt="Strawberry latte dengan latte art di Mitra Coffeeshop"
-              loading="lazy"
-              width={1280}
-              height={1600}
-              className="aspect-[4/5] w-full rounded-3xl object-cover"
-            />
-          </div>  
-          <div className="lg:col-span-7 lg:pl-10">
-            <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-foreground/70">
-              Story
+        <div className="mt-10 grid gap-8 lg:mt-32 lg:grid-cols-12 lg:gap-16">
+          <div className="order-2 lg:col-span-7 lg:order-1 lg:pr-10">
+            <p className="font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-primary lg:text-xs">
+              Our Story
             </p>
-            <h2 className="mt-4 font-display text-5xl font-bold leading-[0.95] tracking-tight lg:text-7xl">
+            <h2 className="mt-2 font-display text-3xl font-bold leading-[1] tracking-tight lg:mt-6 lg:text-7xl">
               Lebih dari sekedar <em className="text-primary">secangkir kopi</em>.
             </h2>
-            <p className="mt-8 text-lg leading-relaxed text-foreground/70">
-              
+            <p className="mt-3 text-sm leading-relaxed text-foreground/70 lg:mt-8 lg:text-lg">
               Mitra Coffeeshop lahir dari mimpi sederhana: kasih ruang buat anak SMK
-              Mitra Industri buat rehat, ngobrol, dan kreatif bareng. Tiap
-              cangkir kami racik dengan biji kopi pilihan, dan tiap senyum kami
-              bagi gratis.
+              Mitra Industri buat rehat, ngobrol, dan kreatif bareng.
             </p>
 
-            <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3 lg:mt-12 lg:gap-6">
               {[
-                { icon: Coffee, t: "Biji Pilihan", d: "Arabika lokal terbaik" },
-                { icon: Heart, t: "Harga Pelajar", d: "Mulai dari 8 ribu" },
-                { icon: Sparkles, t: "Vibes Seru", d: "Tempat nongkrong asik" },
+                { icon: Coffee, t: "Biji Pilihan", d: "Arabika lokal" },
+                { icon: Heart, t: "Harga Pelajar", d: "Mulai 8 Ribu" },
+                { icon: Sparkles, t: "Vibes Seru", d: "Nongkrong asik" },
               ].map(({ icon: Icon, t, d }) => (
-                <div key={t} className="rounded-2xl border border-border bg-card p-5">
-                  <Icon className="h-6 w-6 text-primary" />
-                  <p className="mt-3 font-display text-base font-bold">{t}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{d}</p>
+                <div key={t} className="flex items-center gap-3 rounded-xl border border-border bg-card p-3 lg:flex-col lg:items-start lg:rounded-2xl lg:p-6">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/5 text-primary lg:h-12 lg:w-12">
+                    <Icon className="h-4 w-4 lg:h-6 lg:w-6" />
+                  </div>
+                  <div>
+                    <p className="font-display text-sm font-bold lg:text-base">{t}</p>
+                    <p className="text-[11px] text-muted-foreground lg:text-xs">{d}</p>
+                  </div>
                 </div>
               ))}
             </div>
-
-            <div className="mt-10 overflow-hidden rounded-3xl">
-              <img
-                src={galleryBarista}
-                alt="Barista Mitra Coffeeshop menuang latte art"
-                loading="lazy"
-                width={1280}
-                height={1600}
-                className="aspect-[4/5] w-full object-cover"
-              />
-            </div>
+          </div>
+          <div className="order-1 lg:col-span-5 lg:order-2">
+            <img
+              src={strawberryLatte}
+              alt="Strawberry latte"
+              loading="lazy"
+              width={1280}
+              height={1600}
+              className="aspect-[4/5] w-full rounded-[1.5rem] object-cover lg:rounded-[3rem]"
+            />
           </div>
         </div>
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
-        <div className="rounded-[2.5rem] bg-primary p-16 text-center text-primary-foreground">
-          <h2 className="font-display text-5xl font-bold leading-[0.95] tracking-tight lg:text-7xl">
-            Mampir hari ini?
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-base text-primary-foreground/80">
-            Pesan duluan via WhatsApp biar gak antri pas jam istirahat. Atau order delivery lewat GoFood!
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="https://wa.me/6281234567890?text=Halo%20Kopi%20Mitra%2C%20saya%20mau%20pesan"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-semibold text-accent-foreground transition hover:scale-105"
-            >
-              Pesan via WhatsApp
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-            <a
-              href="https://gofood.link/a/G6pniU1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#df1d0c] px-8 py-4 text-sm font-semibold text-white transition hover:scale-105"
-            >
-              Order di GoFood
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
+      <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-10 lg:pb-32">
+        <div className="relative overflow-hidden rounded-[1.75rem] bg-primary px-6 py-10 text-center text-primary-foreground sm:px-8 sm:py-12 lg:rounded-[2.5rem] lg:py-24">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent opacity-50" />
+          <div className="relative">
+            <h2 className="font-display text-3xl font-bold leading-[1] tracking-tight sm:text-4xl lg:text-8xl">
+              Mampir hari ini?
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-sm text-primary-foreground/70 lg:mt-8 lg:text-lg">
+              Pesan duluan via WhatsApp biar gak antri pas jam istirahat. Atau order delivery lewat GoFood!
+            </p>
+            <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row lg:mt-14 lg:gap-5">
+              <a
+                href="https://wa.me/6281234567890"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-bold text-accent-foreground transition active:scale-95 sm:w-auto lg:px-10 lg:py-5 lg:text-base"
+              >
+                Pesan via WhatsApp
+                <ArrowUpRight className="h-4 w-4 transition group-hover:rotate-45" />
+              </a>
+              <a
+                href="https://gofood.link/a/G6pniU1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#df1d0c] px-8 py-4 text-sm font-bold text-white transition active:scale-95 sm:w-auto lg:px-10 lg:py-5 lg:text-base"
+              >
+                Order di GoFood
+              </a>
+            </div>
           </div>
         </div>
       </section>
