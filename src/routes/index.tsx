@@ -179,7 +179,7 @@ function HomePage() {
                   Signature
                 </p>
                 <p className="font-display text-lg font-bold leading-tight">
-                  Brown Sugar
+                  Nutty Coffee
                 </p>
               </div>
             </div>
