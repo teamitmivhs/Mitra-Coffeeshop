@@ -1,10 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Coffee, Heart, Sparkles, Star } from "lucide-react";
+import { useState } from "react";
 import heroCoffee from "../assets/hero-coffee.jpg";
 import menuCoffee from "../assets/menu-coffee.jpg";
 import menuNoncoffee from "../assets/menu-noncoffee.jpg";
 import galleryStudents from "../assets/gallery-students.jpg";
 import galleryBarista from "../assets/gallery-barista.jpg";
+import frontCard from "../assets/front-card.jpeg";
+import rearCard from "../assets/rear-card.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,6 +27,78 @@ export const Route = createFileRoute("/")({
   }),
   component: HomePage,
 });
+
+function LoyaltyCard() {
+  const [flipped, setFlipped] = useState(false);
+
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <div
+        className="relative cursor-pointer"
+        style={{ perspective: "1200px", width: "340px", height: "214px" }}
+        onClick={() => setFlipped((f) => !f)}
+        onMouseEnter={() => setFlipped(true)}
+        onMouseLeave={() => setFlipped(false)}
+        role="button"
+        aria-label="Flip loyalty card"
+      >
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            transformStyle: "preserve-3d",
+            transition: "transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)",
+            transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+          }}
+        >
+          {/* FRONT */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+              borderRadius: "16px",
+              overflow: "hidden",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.25)",
+            }}
+          >
+            <img
+              src={frontCard}
+              alt="Loyalty card depan"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </div>
+
+          {/* REAR */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+              transform: "rotateY(180deg)",
+              borderRadius: "16px",
+              overflow: "hidden",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.25)",
+            }}
+          >
+            <img
+              src={rearCard}
+              alt="Loyalty card belakang"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </div>
+        </div>
+      </div>
+
+      <p className="text-center text-xs text-primary/60">
+        Hover atau tap kartu untuk melihat baliknya ✦
+      </p>
+    </div>
+  );
+}
 
 function HomePage() {
   return (
@@ -215,7 +290,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ===== PROMO BANNER ===== */}
+      {/* ===== LOYALTY CARD BANNER ===== */}
       <section className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="relative overflow-hidden rounded-[2.5rem] bg-accent p-10 lg:p-16">
           <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-primary/20 blur-3xl" />
@@ -223,46 +298,17 @@ function HomePage() {
           <div className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-primary">
-                Promo Spesial Pelajar
+                Dapatkan Loyalty Card saat Pembelian
               </p>
               <h2 className="mt-4 font-display text-5xl font-bold leading-[0.95] tracking-tight text-primary lg:text-6xl">
-                Tunjukin kartu pelajar, dapet diskon 20%.
+                Beli 10 gratis 1! <em className="text-primary-foreground">Ngopi makin hemat.</em>
               </h2>
               <p className="mt-6 max-w-md text-base text-primary/80">
                 Berlaku setiap hari Senin – Jumat, jam 13.00 – 16.00 WIB.
-                Khusus siswa & guru SMK Mitra Industri.
+                Tunjukkan loyalty card kamu ke kasir setiap kali beli kopi, dan dapatkan stempel. Setelah 10 stempel, kopi berikutnya gratis! Ayo kumpulkan stempelnya dan nikmati kopi gratis di Mitra Coffeeshop!
               </p>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
-              >
-                Klaim Promo
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
             </div>
-            <div className="grid grid-cols-3 gap-4 text-center">
-              {[
-                { v: "20%", l: "Diskon Pelajar" },
-                { v: "8K", l: "Mulai Harga" },
-                { v: "4.9★", l: "Rating Cafe" },
-                { v: "320+", l: "Pelanggan/hari" },
-                { v: "30+", l: "Varian Menu" },
-                { v: "GoFood", l: "Bisa Delivery" },
-              ].map((s) => (
-                <div
-                  key={s.l}
-                  className="rounded-2xl bg-background/60 px-3 py-5 backdrop-blur"
-                >
-                  <p className="font-display text-3xl font-bold text-primary">
-                    {s.v}
-                  </p>
-                  <p className="mt-1 text-[10px] uppercase tracking-[0.15em] text-foreground/60">
-                    {s.l}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <LoyaltyCard />
           </div>
         </div>
       </section>
