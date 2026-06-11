@@ -122,7 +122,7 @@ function ContactPage() {
               Pesan dari mana aja.
             </h3>
             <p className="mt-3 max-w-lg text-sm text-muted-foreground">
-              Gak sempat mampir? Tenang — kamu bisa order Mitra Coffeeshop langsung
+              Gak sempat mampir? Tenang — kamu bisa order kopi di Mitra Coffeeshop langsung
               lewat GoFood. Diantar ke lokasi kamu.
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
@@ -130,14 +130,19 @@ function ContactPage() {
                 href="https://gofood.link/a/G6pniU1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 rounded-full bg-[#EF3E2D] px-6 py-3.5 text-sm font-semibold text-white transition hover:scale-105"
+                className="inline-flex items-center gap-2 rounded-full bg-[#ba1e10] px-6 py-3.5 text-sm font-semibold text-white transition hover:scale-105"
               >
-                <svg width="20" height="20" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle cx="20" cy="20" r="20" fill="white"/>
-                  <path d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 28C15.582 28 12 24.418 12 20C12 15.582 15.582 12 20 12C24.418 12 28 15.582 28 20C28 24.418 24.418 28 20 28Z" fill="#EF3E2D"/>
-                  <circle cx="20" cy="20" r="5" fill="#EF3E2D"/>
-                </svg>
+                <img src="/src/assets/icon-gofood.svg" alt="" aria-hidden="true" className="h-10 w-10" />
                 Order di GoFood
+              </a>
+              <a
+                href="https://wa.me/6281234567890?text=Halo%20Kopi%20Mitra%2C%20saya%20mau%20pesan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white transition hover:scale-105"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Pesan via WhatsApp
               </a>
             </div>
           </div>
@@ -150,8 +155,8 @@ function ContactPage() {
               d: "Bisa banget. Tempat duduk indoor & outdoor tersedia.",
             },
             {
-              t: "Ada promo pelajar?",
-              d: "Diskon 20% setiap hari kerja jam 13.00 – 16.00 dengan kartu pelajar.",
+              t: "Ada loyalty card?",
+              d: "Ada! Minta ke kasir saat pertama beli. Kumpulkan 10 stempel, kopi berikutnya gratis!",
             },
             {
               t: "Bisa delivery?",
