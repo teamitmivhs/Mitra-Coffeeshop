@@ -1,13 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Coffee, Heart, Sparkles, Star } from "lucide-react";
+import { ArrowUpRight, Coffee, Heart, MapPin, Sparkles, Star } from "lucide-react";
 import { useState } from "react";
-import heroCoffee from "../assets/hero-coffee.jpg";
+import { motion } from "framer-motion";
+import heroCoffee from "../assets/nutty-coffee.jpg";
 import menuCoffee from "../assets/menu-coffee.jpg";
 import menuNoncoffee from "../assets/menu-noncoffee.jpg";
 import galleryStudents from "../assets/gallery-students.jpg";
 import galleryBarista from "../assets/gallery-barista.jpg";
 import frontCard from "../assets/front-card.jpeg";
 import rearCard from "../assets/rear-card.jpeg";
+import strawberryLatte from "../assets/strawberry-latte.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,11 +30,11 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-function LoyaltyCard() {
+function LoyalityCard() {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <div className="flex flex-col items-center gap-3 w-full">
+    <div className="flex flex-col items-center gap-5 w-full">
       {/* perspective wrapper — fluid width, fixed aspect ratio */}
       <div
         className="relative w-full cursor-pointer"
@@ -41,7 +43,7 @@ function LoyaltyCard() {
         onMouseEnter={() => setFlipped(true)}
         onMouseLeave={() => setFlipped(false)}
         role="button"
-        aria-label="Flip loyalty card"
+        aria-label="Flip Loyality card"
       >
         <div
           style={{
@@ -67,7 +69,7 @@ function LoyaltyCard() {
           >
             <img
               src={frontCard}
-              alt="Loyalty card depan"
+              alt="Loyality card depan"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
@@ -87,7 +89,7 @@ function LoyaltyCard() {
           >
             <img
               src={rearCard}
-              alt="Loyalty card belakang"
+              alt="Loyality card belakang"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
@@ -143,13 +145,19 @@ function HomePage() {
               </Link>
             </div>
 
-            <div className="mt-12 flex items-center gap-6 text-xs text-muted-foreground">
-              <div className="flex items-center gap-1.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-accent text-accent" />
-                ))}
-              </div>
-              <span>Rating 4.9 dari 320+ pelajar</span>
+            <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-semibold uppercase tracking-[0.18em] text-foreground/50">
+              <span className="flex items-center gap-2">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500" />
+                </span>
+                Buka · 07.30 – 16.00 WIB
+              </span>
+              <span className="text-foreground/20">—</span>
+              <span className="flex items-center gap-1.5">
+                <MapPin className="h-3 w-3 text-foreground/40" />
+                SMK Mitra Industri, Bekasi
+              </span>
             </div>
           </div>
 
@@ -162,7 +170,7 @@ function HomePage() {
               <img
                 src={heroCoffee}
                 alt="Latte art di Mitra Coffeeshop"
-                width={1536}
+                width={1600}
                 height={1920}
                 className="aspect-[3/4] h-full w-full object-cover"
               />
@@ -171,7 +179,7 @@ function HomePage() {
                   Signature
                 </p>
                 <p className="font-display text-lg font-bold leading-tight">
-                  Coffee Latte
+                  Brown Sugar
                 </p>
               </div>
             </div>
@@ -204,7 +212,7 @@ function HomePage() {
               "Nutty Coffee",
               "Caramel Macchiato",
               "GoFood",
-              "Loyalty Card",
+              "Loyality Card",
             ]
               .concat([
                 "Americano",
@@ -215,7 +223,7 @@ function HomePage() {
                 "Nutty Coffee",
                 "Caramel Macchiato",
                 "GoFood",
-                "Loyalty Card",
+                "Loyality Card",
               ])
               .map((t, i) => (
                 <span key={i} className="flex items-center whitespace-nowrap pr-12">
@@ -294,18 +302,21 @@ function HomePage() {
           </article>
         </div>
 
-        <div className="mt-10 flex justify-center">
-          <Link
-            to="/menu"
-            className="group inline-flex items-center gap-2 font-display text-base font-semibold text-primary"
-          >
-            Lihat menu lengkap
-            <ArrowUpRight className="h-4 w-4 transition group-hover:rotate-45" />
+        <div className="mt-16 flex justify-center">
+          <Link to="/menu">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group inline-flex items-center gap-3 rounded-full border border-primary/30 bg-background px-10 py-4 text-sm font-semibold text-primary shadow-sm transition hover:border-primary hover:bg-primary/5 hover:shadow-md"
+            >
+              Lihat menu lengkap
+              <ArrowUpRight className="h-4 w-4 transition group-hover:rotate-45" />
+            </motion.div>
           </Link>
         </div>
       </section>
 
-      {/* ===== LOYALTY CARD BANNER ===== */}
+      {/* ===== Loyality CARD BANNER ===== */}
       <section className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="relative overflow-hidden rounded-[2rem] bg-accent p-6 sm:p-10 lg:rounded-[2.5rem] lg:p-16">
           <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-primary/20 blur-3xl" />
@@ -313,19 +324,19 @@ function HomePage() {
           <div className="relative flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-10">
             {/* Card di atas di mobile, kanan di desktop */}
             <div className="lg:order-2">
-              <LoyaltyCard />
+              <LoyalityCard />
             </div>
             {/* Teks di bawah di mobile, kiri di desktop */}
             <div className="lg:order-1">
               <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-primary">
-                Dapatkan Loyalty Card saat Pembelian
+                Dapatkan Loyality Card saat Pembelian
               </p>
               <h2 className="mt-3 font-display text-4xl font-bold leading-[0.95] tracking-tight text-primary sm:text-5xl lg:text-6xl">
                 Beli 10 gratis 1!{" "}
                 <em className="text-primary-foreground">Ngopi makin hemat.</em>
               </h2>
               <p className="mt-4 text-sm text-primary/80 sm:text-base">
-                Minta loyalty card ke kasir saat pertama beli. Tiap pembelian kopi dapat 1 stempel — kumpulkan 10, kopi berikutnya <strong>gratis!</strong>
+                Minta Loyality card ke kasir saat pertama beli. Tiap pembelian kopi dapat 1 stempel — kumpulkan 10, kopi berikutnya <strong>gratis!</strong>
               </p>
             </div>
           </div>
@@ -345,6 +356,34 @@ function HomePage() {
               className="aspect-[4/5] w-full rounded-3xl object-cover"
             />
           </div>
+          <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-primary/20 blur-3xl lg:hidden" />
+          <div className="absolute -bottom-10 -left-10 h-64 w-64 rounded-full bg-primary/10 blur-3xl lg:hidden" />
+          <div className="absolute -right-20 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-primary/20 blur-3xl hidden lg:block" />
+          <div className="absolute -left-20 bottom-1/3 h-96 w-96 rounded-full bg-primary/10 blur-3xl hidden lg:block" />
+          <div className="relative lg:col-span-7 lg:pl-10">
+            <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-foreground/70">
+              Vibe
+            </p>
+            <h2 className="mt-4 font-display text-5xl font-bold leading-[0.95] tracking-tight lg:text-7xl">
+              Tempat nongkrong favorit <em className="text-primary">anak SMK Mitra Industri</em>.
+            </h2>
+            <p className="mt-8 text-lg leading-relaxed text-foreground/70">
+              Dari pagi sampai sore, cafe kami selalu ramai dengan siswa yang datang buat ngopi, ngerjain tugas, atau sekedar nongkrong bareng teman. Suasana yang santai dan ramah bikin Mitra Coffeeshop jadi tempat favorit buat rehat sejenak dari padatnya jadwal sekolah.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-20 grid gap-10 lg:grid-cols-12">
+          <div className="relative lg:col-span-5">
+            <img
+              src={strawberryLatte}
+              alt="Strawberry latte dengan latte art di Mitra Coffeeshop"
+              loading="lazy"
+              width={1280}
+              height={1600}
+              className="aspect-[4/5] w-full rounded-3xl object-cover"
+            />
+          </div>  
           <div className="lg:col-span-7 lg:pl-10">
             <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-foreground/70">
               Story
@@ -381,7 +420,7 @@ function HomePage() {
                 loading="lazy"
                 width={1280}
                 height={1600}
-                className="aspect-[16/9] w-full object-cover"
+                className="aspect-[4/5] w-full object-cover"
               />
             </div>
           </div>
@@ -411,9 +450,9 @@ function HomePage() {
               href="https://gofood.link/a/G6pniU1"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#df1d0c] px-8 py-4 text-sm font-semibold text-white transition hover:scale-120"
+              className="inline-flex items-center gap-2 rounded-full bg-[#df1d0c] px-8 py-4 text-sm font-semibold text-white transition hover:scale-105"
             >
-              Order GoFood
+              Order di GoFood
               <ArrowUpRight className="h-4 w-4" />
             </a>
           </div>
