@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logoImage from "../assets/logo.jpg";
 
 const links = [
   { to: "/", label: "Beranda" },
@@ -17,7 +18,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <Link to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
           <span className="grid h-9 w-9 place-items-center rounded-full bg-primary text-primary-foreground font-display text-lg font-bold">
-            <img src="/src/assets/logo.jpg" alt="Mitra Coffeeshop Logo" className="h-full w-full object-cover" />
+            <img src={logoImage} alt="Mitra Coffeeshop Logo" className="h-full w-full object-cover" />
           </span>
           <div className="flex flex-col leading-none">
             <span className="font-display text-lg font-bold tracking-tight">Mitra Coffeeshop</span>

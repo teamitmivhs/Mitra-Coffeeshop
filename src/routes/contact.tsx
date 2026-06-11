@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Clock, Instagram, MapPin, MessageCircle, Phone } from "lucide-react";
+import gofoodIcon from "../assets/icon-gofood.svg";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -132,7 +133,7 @@ function ContactPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-[#ba1e10] px-6 py-3.5 text-sm font-semibold text-white transition hover:scale-105"
               >
-                <img src="/src/assets/icon-gofood.svg" alt="" aria-hidden="true" className="h-10 w-10" />
+                <img src={gofoodIcon} alt="" aria-hidden="true" className="h-10 w-10" />
                 Order di GoFood
               </a>
               <a
