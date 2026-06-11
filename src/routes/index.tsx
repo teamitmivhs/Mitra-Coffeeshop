@@ -411,7 +411,7 @@ function HomePage() {
             </p>
             <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row lg:mt-14 lg:gap-5">
               <a
-                href="https://wa.me/6281234567890"
+                href="https://wa.me/6285217971601"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-bold text-accent-foreground transition active:scale-95 sm:w-auto lg:px-10 lg:py-5 lg:text-base"

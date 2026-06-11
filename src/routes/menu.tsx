@@ -342,7 +342,7 @@ export default function MenuPage() {
               Pesan sekarang via WhatsApp biar gak antri pas jam istirahat.
             </p>
             <a
-              href="https://wa.me/6281234567890"
+              href="https://wa.me/6285217971601"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-10 inline-flex items-center gap-2 rounded-full bg-primary px-10 py-4 text-sm font-bold text-primary-foreground transition active:scale-95 lg:mt-14 lg:px-12 lg:py-5 lg:text-lg"
