@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/assets/logo.png" width="120" alt="Mitra Coffeeshop Logo">
+  <img src="src/assets/logo.jpg" width="120" alt="Mitra Coffeeshop Logo">
 </p>
 
 <h1 align="center">Mitra Coffeeshop</h1>
