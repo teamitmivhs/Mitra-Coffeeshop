@@ -31,14 +31,13 @@ Project ini mengimplementasikan arsitektur modern untuk menjamin performa maksim
 *   **Framework:** TanStack Start — Full-stack React dengan Type-safe routing.
 *   **Styling:** Tailwind CSS v4 — High-performance CSS engine.
 *   **UI Components:** Radix UI & Shadcn UI.
-*   **Video Engine:** Remotion — Programmatic video generation.
 
 ---
 
 ### 🚀 Fitur Utama
 
 - **Magazine Layout:** Estetika asimetris yang responsif dan modern.
-- **Interactive Loyalty Card:** Kartu loyalitas dengan animasi 3D Flip (CSS3).
+- **Interactive Loyality Card:** Kartu loyalitas dengan animasi 3D Flip (CSS3).
 - **Dynamic Menu Marquee:** Ticker teks untuk display menu unggulan.
 - **WhatsApp Integration:** Akses cepat untuk pemesanan dan reservasi.
 - **GoFood Integration:** Konektivitas langsung ke ekosistem pesan antar.
@@ -72,22 +71,9 @@ bun build
 
 ---
 
-### 📹 Konten Video (Remotion)
-
-Generator video promosi otomatis yang terletak di direktori `remotion/`.
-
-```bash
-cd remotion
-bun install
-bun run scripts/render-remotion.mjs
-```
-
----
-
 ### 📂 Struktur Proyek
 
 ```text
-├── remotion/            # Programmatic Video Generation
 ├── src/
 │   ├── assets/          # Static Media Resources
 │   ├── components/      # UI Component Library
