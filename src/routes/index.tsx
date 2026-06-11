@@ -32,10 +32,11 @@ function LoyaltyCard() {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-3 w-full">
+      {/* perspective wrapper — fluid width, fixed aspect ratio */}
       <div
-        className="relative cursor-pointer"
-        style={{ perspective: "1200px", width: "340px", height: "214px" }}
+        className="relative w-full cursor-pointer"
+        style={{ perspective: "1200px", aspectRatio: "85.6 / 54" }}
         onClick={() => setFlipped((f) => !f)}
         onMouseEnter={() => setFlipped(true)}
         onMouseLeave={() => setFlipped(false)}
@@ -108,11 +109,7 @@ function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 pt-10 pb-20 lg:grid-cols-12 lg:px-10 lg:pt-16 lg:pb-32">
           {/* Tag column */}
           <aside className="lg:col-span-2">
-            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-muted-foreground">
-              <span className="h-px w-8 bg-foreground/30" />
-              Issue 01
-            </div>
-            <p className="mt-3 font-display text-sm font-semibold text-primary">Juni 2026</p>
+
           </aside>
 
           {/* Headline */}
@@ -158,7 +155,7 @@ function HomePage() {
 
           {/* Hero image */}
           <div className="relative lg:col-span-3">
-            <div className="absolute -left-6 -top-6 hidden font-display text-xs uppercase tracking-[0.2em] text-muted-foreground lg:block">
+            <div className="absolute self-center-safe -top-6 hidden font-display text-xs uppercase tracking-[0.4em] text-muted-foreground lg:block">
               Featured
             </div>
             <div className="relative overflow-hidden rounded-3xl">
@@ -182,29 +179,47 @@ function HomePage() {
         </div>
 
         {/* ticker */}
-        <div className="border-y border-border bg-primary py-4 text-primary-foreground">
-          <div className="flex gap-12 overflow-hidden whitespace-nowrap font-display text-sm font-semibold uppercase tracking-[0.3em]">
+        <div className="border-y border-border bg-primary py-4 text-primary-foreground overflow-hidden">
+          <style>{`
+            @keyframes marquee {
+              from { transform: translateX(0); }
+              to { transform: translateX(-50%); }
+            }
+            .marquee-track {
+              display: flex;
+              width: max-content;
+              animation: marquee 18s linear infinite;
+            }
+            .marquee-track:hover {
+              animation-play-state: paused;
+            }
+          `}</style>
+          <div className="marquee-track gap-0 font-display text-sm font-semibold uppercase tracking-[0.3em]">
             {[
               "Americano",
               "Cappuccino",
               "Latte",
-              "Matcha",
-              "Choco",
-              "Strawberry",
-              "Taro",
-              "Promo Pelajar",
+              "Matcha Latte",
+              "Creamy Milky Choco",
+              "Nutty Coffee",
+              "Caramel Macchiato",
+              "GoFood",
+              "Loyalty Card",
             ]
               .concat([
                 "Americano",
                 "Cappuccino",
                 "Latte",
-                "Matcha",
-                "Choco",
-                "Strawberry",
+                "Matcha Latte",
+                "Creamy Milky Choco",
+                "Nutty Coffee",
+                "Caramel Macchiato",
+                "GoFood",
+                "Loyalty Card",
               ])
               .map((t, i) => (
-                <span key={i} className="flex items-center gap-12">
-                  {t} <span className="text-accent">✦</span>
+                <span key={i} className="flex items-center whitespace-nowrap pr-12">
+                  {t} <span className="ml-12 text-accent">✦</span>
                 </span>
               ))}
           </div>
@@ -292,23 +307,27 @@ function HomePage() {
 
       {/* ===== LOYALTY CARD BANNER ===== */}
       <section className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-accent p-10 lg:p-16">
+        <div className="relative overflow-hidden rounded-[2rem] bg-accent p-6 sm:p-10 lg:rounded-[2.5rem] lg:p-16">
           <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-primary/20 blur-3xl" />
           <div className="absolute -bottom-10 -left-10 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
-          <div className="relative grid gap-10 lg:grid-cols-2 lg:items-center">
-            <div>
+          <div className="relative flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-10">
+            {/* Card di atas di mobile, kanan di desktop */}
+            <div className="lg:order-2">
+              <LoyaltyCard />
+            </div>
+            {/* Teks di bawah di mobile, kiri di desktop */}
+            <div className="lg:order-1">
               <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-primary">
                 Dapatkan Loyalty Card saat Pembelian
               </p>
-              <h2 className="mt-4 font-display text-5xl font-bold leading-[0.95] tracking-tight text-primary lg:text-6xl">
-                Beli 10 gratis 1! <em className="text-primary-foreground">Ngopi makin hemat.</em>
+              <h2 className="mt-3 font-display text-4xl font-bold leading-[0.95] tracking-tight text-primary sm:text-5xl lg:text-6xl">
+                Beli 10 gratis 1!{" "}
+                <em className="text-primary-foreground">Ngopi makin hemat.</em>
               </h2>
-              <p className="mt-6 max-w-md text-base text-primary/80">
-                Berlaku setiap hari Senin – Jumat, jam 13.00 – 16.00 WIB.
-                Tunjukkan loyalty card kamu ke kasir setiap kali beli kopi, dan dapatkan stempel. Setelah 10 stempel, kopi berikutnya gratis! Ayo kumpulkan stempelnya dan nikmati kopi gratis di Mitra Coffeeshop!
+              <p className="mt-4 text-sm text-primary/80 sm:text-base">
+                Minta loyalty card ke kasir saat pertama beli. Tiap pembelian kopi dapat 1 stempel — kumpulkan 10, kopi berikutnya <strong>gratis!</strong>
               </p>
             </div>
-            <LoyaltyCard />
           </div>
         </div>
       </section>
@@ -392,7 +411,7 @@ function HomePage() {
               href="https://gofood.link/a/G6pniU1"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#EF3E2D] px-8 py-4 text-sm font-semibold text-white transition hover:scale-105"
+              className="inline-flex items-center gap-2 rounded-full bg-[#df1d0c] px-8 py-4 text-sm font-semibold text-white transition hover:scale-120"
             >
               Order GoFood
               <ArrowUpRight className="h-4 w-4" />
