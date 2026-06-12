@@ -184,7 +184,7 @@ function HomePage() {
               "Nutty Coffee",
               "Caramel Macchiato",
               "GoFood",
-              "Loyalty Card",
+              "Loyality Card",
             ]
               .concat([
                 "Americano",
@@ -195,7 +195,7 @@ function HomePage() {
                 "Nutty Coffee",
                 "Caramel Macchiato",
                 "GoFood",
-                "Loyalty Card",
+                "Loyality Card",
               ])
               .map((t, i) => (
                 <span key={i} className="flex items-center whitespace-nowrap pr-10 lg:pr-12">
@@ -291,7 +291,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ===== LOYALTY CARD BANNER ===== */}
+      {/* ===== LOYALITY CARD BANNER ===== */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <div className="relative overflow-hidden rounded-[1.75rem] bg-accent p-6 sm:p-8 lg:rounded-[3rem] lg:p-20">
           <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
@@ -307,7 +307,7 @@ function HomePage() {
                 <em className="text-primary-foreground">Ngopi makin hemat.</em>
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-primary/70 lg:mt-4 lg:text-lg">
-                Minta Loyalty Card ke kasir saat pembelian pertama. Kumpulkan 10 stempel, dan nikmati kopi favoritmu secara <strong>gratis!</strong>
+                Minta Loyality Card ke kasir saat pembelian pertama. Kumpulkan 10 stempel, dan nikmati kopi favoritmu secara <strong>gratis!</strong>
               </p>
               <div className="mt-4 lg:mt-8">
                 <Link to="/contact" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
