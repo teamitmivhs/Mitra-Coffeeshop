@@ -40,7 +40,7 @@ export function SiteHeader() {
             </Link>
           ))}
           <a
-            href="https://wa.me/6281234567890?text=Halo%20Mitra%20Coffeeshop%2C%20saya%20mau%20pesan"
+            href="https://wa.me/6285217971601?text=Halo%20Mitra%20Coffeeshop%2C%20saya%20mau%20pesan"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
@@ -107,7 +107,7 @@ export function SiteHeader() {
                 </motion.div>
               ))}
               <motion.a
-                href="https://wa.me/6281234567890"
+                href="https://wa.me/6285217971601"
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
