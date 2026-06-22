@@ -9,11 +9,25 @@
 </p>
 
 <p align="center">
+  <a href="https://coffeeshop.itmivhs.net" target="_blank">
+    <img src="https://img.shields.io/badge/🌐 Live Demo-coffeeshop.itmivhs.net-6F4E37?style=for-the-badge" alt="Live Demo">
+  </a>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" alt="License">
   <img src="https://img.shields.io/badge/Bun-v1.3.14-000000?style=for-the-badge&logo=bun&logoColor=white" alt="Bun">
   <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React">
   <img src="https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind">
 </p>
+
+---
+
+### 🌐 Live Demo
+
+Website sudah di-deploy dan dapat diakses di:
+
+> **[https://coffeeshop.itmivhs.net](https://coffeeshop.itmivhs.net)**
 
 ---
 
