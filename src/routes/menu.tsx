@@ -421,6 +421,7 @@ const rowVariants = {
   visible:  { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 280, damping: 22 } },
 };
 
+
 function MenuShowcase({
   chapter,
   title,
@@ -463,13 +464,16 @@ function MenuShowcase({
           </div>
         </div>
 
-        {/* Mobile: category header (no image panel — just text) */}
+        {/* Mobile: category header */}
         <div className="mb-2 lg:hidden">
           <p className="font-display text-[10px] font-bold uppercase tracking-[0.3em] text-accent-foreground/60">
             {chapter}
           </p>
           <h2 className="mt-1 font-display text-4xl font-black leading-[0.9]">{title}</h2>
           <p className="mt-2 text-xs text-foreground/60">{blurb}</p>
+          <p className="mt-2 text-[11px] text-muted-foreground">
+            Tap tiap item untuk lihat preview
+          </p>
         </div>
 
         {/* Item list */}
@@ -484,30 +488,44 @@ function MenuShowcase({
         >
           {items.map((item, i) => {
             const isActive = activeIndex === i;
+            const isMobileActive = mobileItem?.name === item.name;
             return (
               <motion.li
                 key={item.name}
                 variants={rowVariants}
-                
                 onPointerEnter={(e) => { if (e.pointerType === "mouse") setActiveIndex(i); }}
                 onPointerLeave={(e) => { if (e.pointerType === "mouse") setActiveIndex(null); }}
                 onClick={() => handleTap(i)}
-                whileTap={{ scale: 0.97 }}
+                whileTap={{ scale: 0.98 }}
                 className="group relative -mx-3 cursor-pointer overflow-hidden rounded-xl px-3 py-4 lg:gap-6 lg:py-5"
               >
-                {/* ── P5 accent — full-row colored bg that slides in from left ── */}
+                {/* Desktop: P5 accent bg */}
                 <motion.div
                   className="absolute inset-y-0 left-0 rounded-xl"
                   style={{ backgroundColor: item.tone, originX: 0 }}
                   animate={{ scaleX: isActive ? 1 : 0, opacity: isActive ? 0.18 : 0 }}
                   transition={{ duration: 0.22, ease: "easeOut" }}
                 />
-                {/* Left accent bar */}
+                {/* Left accent bar — desktop hover only */}
                 <motion.div
-                  className="absolute inset-y-2 left-0 w-[3px] rounded-full"
+                  className="absolute inset-y-2 left-0 hidden w-[3px] rounded-full lg:block"
                   style={{ backgroundColor: item.tone }}
                   animate={{ scaleY: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
                   transition={{ duration: 0.18, ease: "easeOut" }}
+                />
+                {/* Left accent bar — mobile, always visible & subtle */}
+                <motion.div
+                  className="absolute inset-y-3 left-0 w-[3px] rounded-full lg:hidden"
+                  style={{ backgroundColor: item.tone }}
+                  animate={{ opacity: isMobileActive ? 1 : 0.35 }}
+                  transition={{ duration: 0.2 }}
+                />
+                {/* Mobile active: very faint tinted bg */}
+                <motion.div
+                  className="absolute inset-0 rounded-xl lg:hidden"
+                  style={{ backgroundColor: item.tone }}
+                  animate={{ opacity: isMobileActive ? 0.07 : 0 }}
+                  transition={{ duration: 0.2 }}
                 />
 
                 <div className="relative flex items-center justify-between gap-4">
@@ -536,13 +554,19 @@ function MenuShowcase({
                     </p>
                   </div>
 
-                  <motion.p
-                    className="shrink-0 font-display text-xl font-bold text-primary lg:text-2xl"
-                    animate={{ scale: isActive ? 1.08 : 1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 22 }}
-                  >
-                    Rp {item.price}
-                  </motion.p>
+                  <div className="flex shrink-0 flex-col items-end gap-0.5">
+                    <motion.p
+                      className="font-display text-xl font-bold text-primary lg:text-2xl"
+                      animate={{ scale: isActive ? 1.08 : 1 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 22 }}
+                    >
+                      Rp {item.price}
+                    </motion.p>
+                    {/* Mobile-only: kecil, subtle tap hint di bawah harga */}
+                    <span className="text-[10px] text-muted-foreground/60 lg:hidden">
+                      {isMobileActive ? "✓ preview aktif" : "tap preview"}
+                    </span>
+                  </div>
                 </div>
               </motion.li>
             );
