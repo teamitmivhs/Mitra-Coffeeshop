@@ -33,8 +33,8 @@ type MenuItem = {
   name:      string;
   desc:      string;
   price:     string;
-  tone:      string;   // dominan warna item — dipakai buat bg showcase & floating card
-  image:     string;   // per-item image; swap ke path asli setelah foto tersedia
+  tone:      string;   
+  image:     string;   
   featured?: boolean;
   isNew?:    boolean;
 };
