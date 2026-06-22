@@ -1,355 +1,564 @@
 import { createFileRoute } from "@tanstack/react-router";
-import menuCoffee from "../assets/menu-coffee.jpg";
-import menuNoncoffee from "../assets/menu-noncoffee.jpg";
-import menuSnack from "../assets/dimsum.jpg";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
+
+import menuCoffee    from "../assets/menu-coffee.jpg";
+import blueOcean from "../assets/blueocean.jpg";
+import menuSnack     from "../assets/dimsum.jpg";
+import latteArt    from "../assets/latteart.jpg";
+import galleryBarista  from "../assets/gallery-barista.jpg";
+import galleryInterior from "../assets/gallery-interior.jpg";
+import galleryStudents from "../assets/gallery-students.jpg";
+import frenchFries     from "../assets/frenchfries.jpg";
+import brownSugar from "../assets/brown-sugar.jpg";
+import nuttyCoffee from "../assets/nuttycoffee.jpg";
+import strawberryLatte from "../assets/strawberry-latte.jpg";
+import dimsum from "../assets/dimsum.jpg";
 
 export const Route = createFileRoute("/menu")({
   head: () => ({
     meta: [
       { title: "Menu — Mitra Coffeeshop" },
-      {
-        name: "description",
-        content:
-          "Menu lengkap Mitra Coffeeshop: americano, cappuccino, latte, matcha, choco, strawberry, taro. Harga pelajar mulai Rp 8.000.",
-      },
-      { property: "og:title", content: "Menu — Mitra Coffeeshop" },
+      { name: "description", content: "Menu lengkap Mitra Coffeeshop: americano, cappuccino, latte, matcha, choco, strawberry, taro. Harga pelajar mulai Rp 8.000." },
+      { property: "og:title",       content: "Menu — Mitra Coffeeshop" },
       { property: "og:description", content: "Daftar minuman kopi & non-kopi di Mitra Coffeeshop." },
     ],
   }),
   component: MenuPage,
 });
 
-const coffeeMenu = [
-  // Classic Coffee
-  { name: "Americano", desc: "Espresso shot + air panas. Pahit klasik.", price: "10K" },
-  { name: "Long Black", desc: "Double shot espresso over cold water. Bold & clean.", price: "16K" },
-  // Milk-based Coffee
-  { name: "Light Brown Sugar", desc: "Espresso + brown sugar + susu. Karamel subtle.", price: "20K", featured: true },
-  { name: "Nutty Coffee", desc: "Hazelnut + espresso + susu. Kacang yang asik.", price: "18K" },
-  { name: "Coffee Latte", desc: "Lembut, milky, cocok buat pemula.", price: "16K" },
-  { name: "Caramel Macchiato", desc: "Espresso + vanilla + susu + caramel drizzle.", price: "18K" },
-  { name: "Cappuccino", desc: "Espresso + steamed milk + busa tebal.", price: "18K" },
-  { name: "Creamy Coffee", desc: "Rich, creamy, smooth. Juara buat santai.", price: "17K" },
-  { name: "Brown Sugar Shaken", desc: "Shaken espresso + brown sugar + susu. Seger.", price: "17K" },
-  { name: "M.I Signature", desc: "Racikan spesial house blend. Must try.", price: "15K", featured: true },
-  { name: "Gula Aren Coffee", desc: "Espresso + gula aren + susu segar lokal.", price: "16K" },
+// ─── Types ──────────────────────────────────────────────────────────────────
+type MenuItem = {
+  name:      string;
+  desc:      string;
+  price:     string;
+  tone:      string;   // dominan warna item — dipakai buat bg showcase & floating card
+  image:     string;   // per-item image; swap ke path asli setelah foto tersedia
+  featured?: boolean;
+  isNew?:    boolean;
+};
+
+// ─── Data ───────────────────────────────────────────────────────────────────
+// ── Coffee ──
+// TODO: ganti tiap `image` ke import dari ../assets/menu/coffee/<nama>.jpg
+const coffeeMenu: MenuItem[] = [
+  { name: "Americano",          desc: "Espresso shot + air panas. Pahit klasik.",            price: "10K", tone: "#3d2418", image: latteArt                     },
+  { name: "Long Black",         desc: "Double shot espresso over cold water. Bold & clean.", price: "16K", tone: "#241410", image: latteArt                     },
+  { name: "Light Brown Sugar",  desc: "Espresso + brown sugar + susu. Karamel subtle.",      price: "20K", tone: "#a9703c", image: brownSugar,    featured: true   },
+  { name: "Nutty Coffee",       desc: "Hazelnut + espresso + susu. Kacang yang asik.",       price: "18K", tone: "#8a5a35", image: nuttyCoffee                  },
+  { name: "Coffee Latte",       desc: "Lembut, milky, cocok buat pemula.",                   price: "16K", tone: "#caa06a", image: latteArt                     },
+  { name: "Caramel Macchiato",  desc: "Espresso + vanilla + susu + caramel drizzle.",        price: "18K", tone: "#c08838", image: latteArt                     },
+  { name: "Cappuccino",         desc: "Espresso + steamed milk + busa tebal.",               price: "18K", tone: "#b48a5e", image: latteArt                     },
+  { name: "Creamy Coffee",      desc: "Rich, creamy, smooth. Juara buat santai.",            price: "17K", tone: "#9c7148", image: galleryBarista                 },
+  { name: "Brown Sugar Shaken", desc: "Shaken espresso + brown sugar + susu. Seger.",        price: "17K", tone: "#7a4a28", image: menuCoffee                     },
+  { name: "M.I Signature",      desc: "Racikan spesial house blend. Must try.",              price: "15K", tone: "#5c3420", image: galleryBarista, featured: true  },
+  { name: "Gula Aren Coffee",   desc: "Espresso + gula aren + susu segar lokal.",            price: "16K", tone: "#6b3f22", image: menuCoffee                     },
 ];
 
-const nonCoffeeMenu = [
-  // Milk Series
-  { name: "Creamy Milky Choco", desc: "Cokelat premium + susu full cream. Rich banget.", price: "16K", color: "#8b4513" },
-  { name: "Creamy Milk Matcha", desc: "Matcha premium + susu creamy. Balance perfect.", price: "17K", color: "#9bbf6e" },
-  { name: "Korean Strawberry Milk", desc: "Susu + strawberry saus ala Korea. Viral!", price: "18K", color: "#e88aab" },
-  { name: "Bubblegum Latte", desc: "Warna cantik, rasa manis playful. New arrival.", price: "20K", color: "#f9a8d4", isNew: true },
-  // Matcha CS x CECHA
-  { name: "Pistachio Honey Matcha", desc: "Matcha + pistachio + madu. Kolaborasi spesial.", price: "23K", color: "#7cad4d", featured: true },
-  { name: "Matcha Latte", desc: "Bubuk matcha premium + susu segar.", price: "16K", color: "#9bbf6e" },
-  // Tea Series
-  { name: "Ice Tea", desc: "Teh tawar dingin klasik. Simpel & menyegarkan.", price: "6K", color: "#c8a96e" },
-  { name: "Lemon Tea", desc: "Teh + lemon segar. Bikin melek.", price: "12K", color: "#e8c07a" },
-  { name: "Thai Tea", desc: "Teh Thailand creamy dengan susu kental.", price: "15K", color: "#d4813a" },
-  { name: "Green Tea", desc: "Teh hijau dingin, ringan dan menyegarkan.", price: "15K", color: "#78b04a" },
-  // Summer Series
-  { name: "Lemon Mint Mojito", desc: "Lemon + mint + soda. Summer vibes banget.", price: "13K", color: "#a8d8a0" },
-  { name: "Blue Ocean", desc: "Soda biru segar dengan rasa tropical.", price: "16K", color: "#5ba3d9" },
-  { name: "Orange Squash", desc: "Jeruk peras segar, simpel dan real.", price: "8K", color: "#f0a050" },
-  { name: "Pink Beach", desc: "Fruity, segar, instagrammable. New arrival.", price: "16K", color: "#f9a8a8", isNew: true },
+// ── Non-Coffee ──
+// TODO: ganti tiap `image` ke import dari ../assets/menu/noncoffee/<nama>.jpg
+const nonCoffeeMenu: MenuItem[] = [
+  { name: "Creamy Milky Choco",     desc: "Cokelat premium + susu full cream. Rich banget.",  price: "16K", tone: "#5a3420", image: brownSugar                     },
+  { name: "Creamy Milk Matcha",     desc: "Matcha premium + susu creamy. Balance perfect.",   price: "17K", tone: "#6f8f43", image: brownSugar                     },
+  { name: "Korean Strawberry Milk", desc: "Susu + strawberry saus ala Korea. Viral!",         price: "18K", tone: "#c2496f", image: strawberryLatte                  },
+  { name: "Bubblegum Latte",        desc: "Warna cantik, rasa manis playful. New arrival.",   price: "20K", tone: "#cc5f9a", image: brownSugar, isNew: true      },
+  { name: "Pistachio Honey Matcha", desc: "Matcha + pistachio + madu. Kolaborasi spesial.",   price: "23K", tone: "#5e7d34", image: brownSugar, featured: true   },
+  { name: "Matcha Latte",           desc: "Bubuk matcha premium + susu segar.",               price: "16K", tone: "#6f8f43", image: brownSugar                  },
+  { name: "Ice Tea",                desc: "Teh tawar dingin klasik. Simpel & menyegarkan.",   price: "6K",  tone: "#9a7a3e", image: galleryStudents                },
+  { name: "Lemon Tea",              desc: "Teh + lemon segar. Bikin melek.",                  price: "12K", tone: "#c79a3e", image: galleryStudents                },
+  { name: "Thai Tea",               desc: "Teh Thailand creamy dengan susu kental.",          price: "15K", tone: "#a85a1f", image: galleryStudents                },
+  { name: "Green Tea",              desc: "Teh hijau dingin, ringan dan menyegarkan.",        price: "15K", tone: "#4f8a2a", image: galleryStudents                },
+  { name: "Lemon Mint Mojito",      desc: "Lemon + mint + soda. Summer vibes banget.",        price: "13K", tone: "#5fae6a", image: galleryInterior                },
+  { name: "Blue Ocean",             desc: "Soda biru segar dengan rasa tropical.",            price: "16K", tone: "#2f7ab8", image: blueOcean                },
+  { name: "Orange Squash",          desc: "Jeruk peras segar, simpel dan real.",              price: "8K",  tone: "#d4762a", image: galleryInterior                },
+  { name: "Pink Beach",             desc: "Fruity, segar, instagrammable. New arrival.",      price: "16K", tone: "#d9657a", image: galleryInterior, isNew: true    },
 ];
 
-const foodMenu = [
-  { name: "French Fries", desc: "Kentang goreng renyah. Cocok buat teman ngopi.", price: "16K" },
-  { name: "Spaghetti", desc: "Pilihan: Bolognese / Aglio Olio / Carbonara.", price: "10K" },
-  { name: "Risoles", desc: "3 pcs risoles gurih. Crispy di luar, creamy di dalam.", price: "15K" },
-  { name: "Karaage", desc: "Ayam goreng Jepang per pcs. Juicy & crispy.", price: "5K" },
-  { name: "Indomie + Telur", desc: "Goreng atau rebus dengan telur. Classic.", price: "13K" },
-  { name: "Telur Rebus", desc: "Per pcs. Simple protein boost.", price: "5K" },
-  { name: "Dimsum", desc: "3 pcs (11K) atau 4 pcs (14K). Pilih sesuai lapar.", price: "11K" },
-  { name: "Bundle 1", desc: "French Fries + Risoles. Hemat combo.", price: "22K", featured: true },
-  { name: "Bundle 2", desc: "French Fries + Risoles + Karaage. Full combo!", price: "28K", featured: true },
+// ── Food & Snacks ──
+// TODO: ganti tiap `image` ke import dari ../assets/menu/food/<nama>.jpg
+const foodMenu: MenuItem[] = [
+  { name: "French Fries",    desc: "Kentang goreng renyah. Cocok buat teman ngopi.",        price: "16K", tone: "#c08a2e", image: frenchFries               },
+  { name: "Spaghetti",       desc: "Pilihan: Bolognese / Aglio Olio / Carbonara.",          price: "10K", tone: "#a6442c", image: menuSnack               },
+  { name: "Risoles",         desc: "3 pcs risoles gurih. Crispy di luar, creamy di dalam.", price: "15K", tone: "#b8893e", image: menuSnack               },
+  { name: "Karaage",         desc: "Ayam goreng Jepang per pcs. Juicy & crispy.",           price: "5K",  tone: "#9c5a22", image: menuSnack               },
+  { name: "Indomie + Telur", desc: "Goreng atau rebus dengan telur. Classic.",              price: "13K", tone: "#bb4a2a", image: menuSnack               },
+  { name: "Telur Rebus",     desc: "Per pcs. Simple protein boost.",                        price: "5K",  tone: "#d4a23e", image: menuSnack               },
+  { name: "Dimsum",          desc: "3 pcs (11K) atau 4 pcs (14K). Pilih sesuai lapar.",    price: "11K", tone: "#a35d3a", image: dimsum              },
+  { name: "Bundle 1",        desc: "French Fries + Risoles. Hemat combo.",                  price: "22K", tone: "#8a4a26", image: frenchFries, featured: true },
+  { name: "Bundle 2",        desc: "French Fries + Risoles + Karaage. Full combo!",         price: "28K", tone: "#7a3e1e", image: menuSnack, featured: true },
 ];
 
+// ─── Mobile Floating Card (Persona 5 bottom-sheet style) ────────────────────
+// Muncul dari bawah saat item di-tap di mobile. Auto-dismiss setelah 3 detik
+// atau tap item yang sama lagi untuk tutup.
+function FloatingCard({
+  item,
+  onDismiss,
+}: {
+  item: MenuItem | null;
+  onDismiss: () => void;
+}) {
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (item) {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(onDismiss, 3200);
+    }
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, [item, onDismiss]);
+
+  return (
+    <AnimatePresence>
+      {item && (
+        <>
+          {/* backdrop tap-to-dismiss */}
+          <motion.div
+            key="backdrop"
+            className="fixed inset-0 z-40 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onDismiss}
+          />
+          {/* card */}
+          <motion.div
+            key="card"
+            className="fixed inset-x-4 bottom-6 z-50 overflow-hidden rounded-2xl lg:hidden"
+            initial={{ y: 80, opacity: 0, scale: 0.95 }}
+            animate={{ y: 0,  opacity: 1, scale: 1    }}
+            exit={{    y: 80, opacity: 0, scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 420, damping: 30 }}
+          >
+            {/* Colored background */}
+            <motion.div
+              className="relative isolate flex h-36 items-stretch overflow-hidden"
+              style={{ backgroundColor: item.tone }}
+            >
+              {/* ── P5 diagonal stripe decoration ── */}
+              <svg
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full opacity-10"
+                preserveAspectRatio="none"
+              >
+                {Array.from({ length: 12 }).map((_, i) => (
+                  <line
+                    key={i}
+                    x1={i * 32 - 20} y1="0"
+                    x2={i * 32 + 16} y2="200"
+                    stroke="white" strokeWidth="14"
+                  />
+                ))}
+              </svg>
+
+              {/* ── Item photo — swings in ── */}
+              <motion.div
+                className="relative z-10 w-36 shrink-0 overflow-hidden"
+                initial={{ x: -24, rotate: -6, scale: 0.85 }}
+                animate={{ x: 0,   rotate: 0,  scale: 1    }}
+                transition={{ type: "spring", stiffness: 380, damping: 24, delay: 0.05 }}
+              >
+                {/* Diagonal clip on right edge of photo */}
+                <div
+                  className="h-full w-full"
+                  style={{ clipPath: "polygon(0 0, 88% 0, 100% 100%, 0 100%)" }}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </motion.div>
+
+              {/* ── Text info ── */}
+              <div className="relative z-10 flex min-w-0 flex-1 flex-col justify-center px-4 text-white">
+                {/* chapter/label */}
+                <motion.p
+                  className="font-display text-[9px] font-bold uppercase tracking-[0.3em] text-white/60"
+                  initial={{ opacity: 0, x: 12 }}
+                  animate={{ opacity: 1, x: 0  }}
+                  transition={{ delay: 0.1 }}
+                >
+                  {item.featured ? "✦ Signature" : item.isNew ? "✦ New Arrival" : "Menu"}
+                </motion.p>
+
+                <motion.h3
+                  className="mt-0.5 font-display text-xl font-black leading-tight"
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0  }}
+                  transition={{ type: "spring", stiffness: 340, damping: 22, delay: 0.08 }}
+                >
+                  {item.name}
+                </motion.h3>
+
+                <motion.p
+                  className="mt-0.5 line-clamp-1 text-[11px] text-white/65"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.16 }}
+                >
+                  {item.desc}
+                </motion.p>
+
+                {/* Price — big, P5-style */}
+                <motion.p
+                  className="mt-1 font-display text-2xl font-black text-white"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1   }}
+                  transition={{ type: "spring", stiffness: 440, damping: 18, delay: 0.12 }}
+                >
+                  Rp {item.price}
+                </motion.p>
+              </div>
+
+              {/* ── Bottom progress bar (auto-dismiss timer) ── */}
+              <motion.div
+                className="absolute bottom-0 left-0 h-[3px] bg-white/40"
+                initial={{ width: "100%" }}
+                animate={{ width: "0%"   }}
+                transition={{ duration: 3.0, ease: "linear" }}
+              />
+            </motion.div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}
+
+// ─── Desktop Panel — Persona 5 enhanced ─────────────────────────────────────
+function DesktopPanel({
+  chapter,
+  title,
+  blurb,
+  active,
+  defaultItem,
+}: {
+  chapter:     string;
+  title:       string;
+  blurb:       string;
+  active:      MenuItem | null;
+  defaultItem: MenuItem;
+}) {
+  const displayed = active ?? defaultItem;
+
+  return (
+    <motion.div
+      className="relative isolate hidden h-full min-h-[520px] flex-col justify-between overflow-hidden rounded-[1.75rem] p-10 text-white lg:flex"
+      animate={{ backgroundColor: displayed.tone }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+    >
+      {/* ── P5 diagonal stripe bg ── */}
+      <svg
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full opacity-[0.07]"
+        preserveAspectRatio="none"
+      >
+        {Array.from({ length: 16 }).map((_, i) => (
+          <line
+            key={i}
+            x1={i * 48 - 30} y1="0"
+            x2={i * 48 + 40} y2="600"
+            stroke="white" strokeWidth="24"
+          />
+        ))}
+      </svg>
+
+      {/* ── Large watermark chapter number ── */}
+      <div
+        aria-hidden="true"
+        className="absolute -right-4 -top-6 select-none font-display text-[11rem] font-black leading-none text-white opacity-[0.06]"
+      >
+        {chapter.replace("Chapter ", "")}
+      </div>
+
+      {/* ── Background photo per-item ── */}
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={displayed.name}
+          src={displayed.image}
+          alt=""
+          aria-hidden="true"
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 0.28, scale: 1  }}
+          exit={{    opacity: 0, scale: 1.08  }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="absolute inset-0 h-full w-full object-cover mix-blend-luminosity"
+        />
+      </AnimatePresence>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+
+      {/* ── Top: chapter label + title ── */}
+      <div className="relative z-10">
+        <motion.p
+          className="font-display text-[10px] font-bold uppercase tracking-[0.35em] text-white/60"
+          key={chapter}
+        >
+          {chapter}
+        </motion.p>
+        <h2 className="mt-2 font-display text-6xl font-black leading-[0.9]">{title}</h2>
+        <p className="mt-3 max-w-[22ch] text-sm text-white/70">{blurb}</p>
+      </div>
+
+      {/* ── Bottom: floating product image + name/price ── */}
+      <div className="relative z-10 flex items-end justify-between gap-4">
+        {/* Photo with Persona 5-style diagonal clip */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={displayed.name + "-img"}
+            className="shrink-0 overflow-hidden rounded-2xl shadow-2xl ring-2 ring-white/15"
+            style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0 100%)" }}
+            initial={{ opacity: 0, y: 20, rotate: -8, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0,  rotate: 0,  scale: 1   }}
+            exit={{    opacity: 0, y: 12, rotate: 4,  scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 380, damping: 24 }}
+          >
+            <motion.img
+              src={displayed.image}
+              alt={displayed.name}
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+              className="h-36 w-36 object-cover"
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Name + price — slides in from right */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={displayed.name + "-text"}
+            className="min-w-0 flex-1 text-right"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0  }}
+            exit={{    opacity: 0, x: 16 }}
+            transition={{ type: "spring", stiffness: 380, damping: 28, delay: 0.05 }}
+          >
+            {!active ? (
+              <p className="text-sm text-white/40 italic">← Arahkan ke item</p>
+            ) : (
+              <>
+                <p className="truncate font-display text-2xl font-black leading-tight">
+                  {active.name}
+                </p>
+                <p className="font-display text-4xl font-black text-white">
+                  Rp {active.price}
+                </p>
+                <p className="mt-1 line-clamp-2 text-xs text-white/60">
+                  {active.desc}
+                </p>
+              </>
+            )}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </motion.div>
+  );
+}
+
+// ─── MenuShowcase ────────────────────────────────────────────────────────────
+const listVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.045 } },
+};
+const rowVariants = {
+  hidden:   { opacity: 0, x: -18 },
+  visible:  { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 280, damping: 22 } },
+};
+
+function MenuShowcase({
+  chapter,
+  title,
+  blurb,
+  items,
+  reverse = false,
+}: {
+  chapter: string;
+  title:   string;
+  blurb:   string;
+  items:   MenuItem[];
+  reverse?: boolean;
+}) {
+  // activeIndex — driven purely by mouse hover (desktop only)
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  // mobileItem — driven purely by tap (mobile only), never touched by hover handlers
+  const [mobileItem, setMobileItem]   = useState<MenuItem | null>(null);
+  const active = activeIndex !== null ? items[activeIndex] : null;
+
+  
+  const handleTap = (i: number) => {
+    setMobileItem((prev) => (prev?.name === items[i].name ? null : items[i]));
+  };
+
+  const dismissMobile = () => setMobileItem(null);
+
+  return (
+    <section className="relative">
+      <div className="grid gap-0 lg:grid-cols-12">
+        {/* Desktop sticky panel */}
+        <div className={`relative hidden lg:block lg:col-span-5 ${reverse ? "lg:order-2" : "lg:order-1"}`}>
+          <div className="sticky top-24">
+            <DesktopPanel
+              chapter={chapter}
+              title={title}
+              blurb={blurb}
+              active={active}
+              defaultItem={items[0]}
+            />
+          </div>
+        </div>
+
+        {/* Mobile: category header (no image panel — just text) */}
+        <div className="mb-2 lg:hidden">
+          <p className="font-display text-[10px] font-bold uppercase tracking-[0.3em] text-accent-foreground/60">
+            {chapter}
+          </p>
+          <h2 className="mt-1 font-display text-4xl font-black leading-[0.9]">{title}</h2>
+          <p className="mt-2 text-xs text-foreground/60">{blurb}</p>
+        </div>
+
+        {/* Item list */}
+        <motion.ul
+          className={`divide-y divide-border lg:col-span-7 lg:mt-0 ${
+            reverse ? "lg:order-1 lg:pr-10" : "lg:order-2 lg:pl-10"
+          }`}
+          variants={listVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
+          {items.map((item, i) => {
+            const isActive = activeIndex === i;
+            return (
+              <motion.li
+                key={item.name}
+                variants={rowVariants}
+                
+                onPointerEnter={(e) => { if (e.pointerType === "mouse") setActiveIndex(i); }}
+                onPointerLeave={(e) => { if (e.pointerType === "mouse") setActiveIndex(null); }}
+                onClick={() => handleTap(i)}
+                whileTap={{ scale: 0.97 }}
+                className="group relative -mx-3 cursor-pointer overflow-hidden rounded-xl px-3 py-4 lg:gap-6 lg:py-5"
+              >
+                {/* ── P5 accent — full-row colored bg that slides in from left ── */}
+                <motion.div
+                  className="absolute inset-y-0 left-0 rounded-xl"
+                  style={{ backgroundColor: item.tone, originX: 0 }}
+                  animate={{ scaleX: isActive ? 1 : 0, opacity: isActive ? 0.18 : 0 }}
+                  transition={{ duration: 0.22, ease: "easeOut" }}
+                />
+                {/* Left accent bar */}
+                <motion.div
+                  className="absolute inset-y-2 left-0 w-[3px] rounded-full"
+                  style={{ backgroundColor: item.tone }}
+                  animate={{ scaleY: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                />
+
+                <div className="relative flex items-center justify-between gap-4">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-baseline gap-2">
+                      <motion.h3
+                        className="font-display text-lg font-bold lg:text-2xl"
+                        animate={{ x: isActive ? 6 : 0 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 28 }}
+                      >
+                        {item.name}
+                      </motion.h3>
+                      {item.featured && (
+                        <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
+                          Signature
+                        </span>
+                      )}
+                      {item.isNew && (
+                        <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
+                          New
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-0.5 text-xs text-muted-foreground lg:mt-1 lg:text-sm">
+                      {item.desc}
+                    </p>
+                  </div>
+
+                  <motion.p
+                    className="shrink-0 font-display text-xl font-bold text-primary lg:text-2xl"
+                    animate={{ scale: isActive ? 1.08 : 1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 22 }}
+                  >
+                    Rp {item.price}
+                  </motion.p>
+                </div>
+              </motion.li>
+            );
+          })}
+        </motion.ul>
+      </div>
+
+      {/* Mobile floating card — portal-like bottom sheet */}
+      <FloatingCard item={mobileItem} onDismiss={dismissMobile} />
+    </section>
+  );
+}
+
+// ─── Page ────────────────────────────────────────────────────────────────────
 export default function MenuPage() {
   return (
     <div>
       {/* HERO */}
-      <section className="mx-auto max-w-7xl px-6 pt-6 pb-4 lg:px-10 lg:pt-20 lg:pb-12">
-        <p className="font-display text-[10px] font-bold uppercase tracking-[0.25em] text-primary lg:text-xs">
+      <section className="mx-auto max-w-7xl px-5 pt-12 pb-6 lg:px-10 lg:pt-16 lg:pb-10">
+        <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-foreground/70">
           The Menu
         </p>
-        <h1 className="mt-3 font-display text-[clamp(2.6rem,10vw,8rem)] font-bold leading-[0.95] tracking-tight lg:mt-6">
+        <h1 className="mt-3 font-display text-[clamp(2rem,9vw,8rem)] font-bold leading-[0.92] tracking-tight">
           Pilih <em className="text-primary">racikanmu</em>.
         </h1>
-        <p className="mt-4 max-w-xl text-sm leading-relaxed text-foreground/70 lg:mt-8 lg:text-lg">
-          Semua minuman dibuat fresh setiap pesanan. Bisa request less sugar
-          atau extra shot — tinggal bilang ke barista kami.
+        <p className="mt-4 max-w-xl text-base text-foreground/70 lg:mt-6 lg:text-lg">
+          Semua dibuat fresh tiap pesanan.{" "}
+          <span className="hidden sm:inline">
+            Arahkan kursor atau{" "}
+          </span>
+          Tap item buat preview — less sugar atau extra shot tinggal bilang ke barista.
         </p>
       </section>
 
-      {/* COFFEE */}
-      <section className="mx-auto max-w-7xl px-6 py-8 lg:px-10 lg:py-20">
-        <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-4">
-            {/* Mobile Header */}
-            <div className="flex items-center gap-5 lg:hidden">
-              <div className="flex-1">
-                <p className="font-display text-[9px] font-bold uppercase tracking-[0.22em] text-primary">
-                  Chapter 01
-                </p>
-                <h2 className="mt-1 font-display text-4xl font-bold leading-none">
-                  Coffee
-                </h2>
-                <p className="mt-2 text-xs leading-relaxed text-foreground/60">
-                  Espresso-based, klasik dan signature. Hot atau iced.
-                </p>
-              </div>
-              <div className="h-24 w-24 shrink-0 overflow-hidden rounded-[1.5rem] shadow-sm">
-                <img
-                  src={menuCoffee}
-                  alt="Iced coffee"
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
-            {/* Desktop Sidebar */}
-            <div className="hidden lg:block sticky top-32 self-start">
-              <p className="font-display text-xs font-bold uppercase tracking-[0.22em] text-primary">
-                Chapter 01
-              </p>
-              <h2 className="mt-3 font-display text-7xl font-bold leading-none">
-                Coffee
-              </h2>
-              <p className="mt-6 max-w-xs text-base text-foreground/60 leading-relaxed">
-                Espresso-based, klasik dan signature. Disajikan hot atau iced sesuai selera.
-              </p>
-              <div className="mt-10 overflow-hidden rounded-[2.5rem] shadow-2xl">
-                <img
-                  src={menuCoffee}
-                  alt="Iced coffee"
-                  loading="lazy"
-                  width={1280}
-                  height={1280}
-                  className="aspect-square w-full object-cover transition duration-700 hover:scale-110"
-                />
-              </div>
-            </div>
-          </div>
-          <ul className="divide-y divide-border lg:col-span-8 lg:pt-4">
-            {coffeeMenu.map((item) => (
-              <li
-                key={item.name}
-                className="group flex items-center justify-between gap-4 py-5 lg:py-8"
-              >
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="font-display text-lg font-bold transition group-hover:text-primary lg:text-3xl">
-                      {item.name}
-                    </h3>
-                    {item.featured && (
-                      <span className="rounded-full bg-accent px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-accent-foreground lg:px-3 lg:py-1">
-                        Best Seller
-                      </span>
-                    )}
-                  </div>
-                  <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground lg:mt-2 lg:text-base">{item.desc}</p>
-                </div>
-                <p className="font-display text-lg font-bold text-primary shrink-0 lg:text-4xl">
-                  {item.price}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* NON-COFFEE */}
-      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-24">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-4 lg:order-2">
-            {/* Mobile Header */}
-            <div className="flex items-center gap-5 lg:hidden">
-              <div className="flex-1 text-right">
-                <p className="font-display text-[9px] font-bold uppercase tracking-[0.22em] text-primary">
-                  Chapter 02
-                </p>
-                <h2 className="mt-1 font-display text-4xl font-bold leading-none">
-                  Non-Coffee
-                </h2>
-                <p className="mt-2 text-xs leading-relaxed text-foreground/60">
-                  Buat yang gak suka kopi — tetep punya banyak pilihan asik.
-                </p>
-              </div>
-              <div className="h-24 w-24 shrink-0 overflow-hidden rounded-[1.5rem] shadow-sm">
-                <img
-                  src={menuNoncoffee}
-                  alt="Non-coffee drinks"
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
-            {/* Desktop Sidebar */}
-            <div className="hidden lg:block sticky top-32 self-start">
-              <p className="font-display text-xs font-bold uppercase tracking-[0.22em] text-primary text-right lg:text-left">
-                Chapter 02
-              </p>
-              <h2 className="mt-3 font-display text-7xl font-bold leading-none text-right lg:text-left">
-                Non-Coffee
-              </h2>
-              <p className="mt-6 max-w-xs text-base text-foreground/60 text-right lg:text-left lg:ml-auto leading-relaxed">
-                Beragam pilihan segar mulai dari susu korea, matcha, sampai squash soda yang ikonik.
-              </p>
-              <div className="mt-10 overflow-hidden rounded-[2.5rem] shadow-2xl">
-                <img
-                  src={menuNoncoffee}
-                  alt="Non-coffee drinks"
-                  loading="lazy"
-                  width={1280}
-                  height={1280}
-                  className="aspect-square w-full object-cover transition duration-700 hover:scale-110"
-                />
-              </div>
-            </div>
-          </div>
-          <ul className="divide-y divide-border lg:col-span-8 lg:order-1 lg:pt-4">
-            {nonCoffeeMenu.map((item) => (
-              <li
-                key={item.name}
-                className="group flex items-center justify-between gap-4 py-5 lg:py-8"
-              >
-                <div className="flex flex-1 items-start gap-4 min-w-0">
-                  <span
-                    className="mt-2 h-2 w-2 shrink-0 rounded-full lg:h-3 lg:w-3"
-                    style={{ background: item.color }}
-                    aria-hidden
-                  />
-                  <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="font-display text-lg font-bold transition group-hover:text-primary lg:text-3xl">
-                        {item.name}
-                      </h3>
-                      <div className="flex gap-1">
-                        {item.isNew && (
-                          <span className="rounded-full bg-accent px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-accent-foreground lg:px-3 lg:py-1">
-                            New
-                          </span>
-                        )}
-                        {item.featured && (
-                          <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-primary lg:px-3 lg:py-1">
-                            Signature
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground lg:mt-2 lg:text-base">{item.desc}</p>
-                  </div>
-                </div>
-                <p className="font-display text-lg font-bold text-primary shrink-0 lg:text-4xl">
-                  {item.price}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* FOOD & SNACKS */}
-      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-24">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-4">
-            {/* Mobile Header */}
-            <div className="flex items-center gap-5 lg:hidden">
-              <div className="flex-1">
-                <p className="font-display text-[9px] font-bold uppercase tracking-[0.22em] text-primary">
-                  Chapter 03
-                </p>
-                <h2 className="mt-1 font-display text-4xl font-bold leading-none">
-                  Snacks
-                </h2>
-                <p className="mt-2 text-xs leading-relaxed text-foreground/60">
-                  Teman ngopi paling asik buat nemenin tugas.
-                </p>
-              </div>
-              <div className="h-24 w-24 shrink-0 overflow-hidden rounded-[1.5rem] shadow-sm">
-                <img
-                  src={menuSnack}
-                  alt="Snacks and food"
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
-            {/* Desktop Sidebar */}
-            <div className="hidden lg:block sticky top-32 self-start">
-              <p className="font-display text-xs font-bold uppercase tracking-[0.22em] text-primary">
-                Chapter 03
-              </p>
-              <h2 className="mt-3 font-display text-7xl font-bold leading-none">
-                Snacks
-              </h2>
-              <p className="mt-6 max-w-xs text-base text-foreground/60 leading-relaxed">
-                Biar ngopi makin seru — ada camilan dan makanan buat nemenin sesi panjangmu.
-              </p>
-              <div className="mt-10 overflow-hidden rounded-[2.5rem] shadow-2xl">
-                <img
-                  src={menuSnack}
-                  alt="Snacks and food"
-                  loading="lazy"
-                  width={1280}
-                  height={1280}
-                  className="aspect-square w-full object-cover transition duration-700 hover:scale-110"
-                />
-              </div>
-            </div>
-          </div>
-          <ul className="divide-y divide-border lg:col-span-8 lg:pt-4">
-            {foodMenu.map((item) => (
-              <li
-                key={item.name}
-                className="group flex items-center justify-between gap-4 py-5 lg:py-8"
-              >
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="font-display text-lg font-bold transition group-hover:text-primary lg:text-3xl">
-                      {item.name}
-                    </h3>
-                    {item.featured && (
-                      <span className="rounded-full bg-accent px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-accent-foreground lg:px-3 lg:py-1">
-                        Bundle
-                      </span>
-                    )}
-                  </div>
-                  <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground lg:mt-2 lg:text-base">{item.desc}</p>
-                </div>
-                <p className="font-display text-lg font-bold text-primary shrink-0 lg:text-4xl">
-                  {item.price}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <div className="mx-auto flex max-w-7xl flex-col gap-12 px-5 py-8 lg:gap-24 lg:px-10 lg:py-16">
+        <MenuShowcase
+          chapter="Chapter 01"
+          title="Coffee"
+          blurb="Espresso-based, klasik dan signature. Disajikan hot atau iced."
+          items={coffeeMenu}
+        />
+        <MenuShowcase
+          chapter="Chapter 02"
+          title="Non-Coffee"
+          blurb="Buat yang gak suka kopi — tetep punya banyak pilihan asik."
+          items={nonCoffeeMenu}
+          reverse
+        />
+        <MenuShowcase
+          chapter="Chapter 03"
+          title="Food & Snacks"
+          blurb="Biar ngopi makin asik — ada camilan dan makanan buat nemenin sesi panjang."
+          items={foodMenu}
+        />
+      </div>
 
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-32">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-accent p-10 text-center lg:rounded-[3.5rem] lg:p-24">
-          <div className="absolute inset-0 bg-primary/5 opacity-50" />
-          <div className="relative">
-            <h2 className="font-display text-4xl font-bold text-primary lg:text-7xl">
-              Udah nemu favoritmu?
-            </h2>
-            <p className="mx-auto mt-4 max-w-lg text-sm text-primary/70 lg:mt-8 lg:text-xl">
-              Pesan sekarang via WhatsApp biar gak antri pas jam istirahat.
-            </p>
-            <a
-              href="https://wa.me/6285217971601"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-10 inline-flex items-center gap-2 rounded-full bg-primary px-10 py-4 text-sm font-bold text-primary-foreground transition active:scale-95 lg:mt-14 lg:px-12 lg:py-5 lg:text-lg"
-            >
-              Pesan Sekarang
-            </a>
-          </div>
+      <section className="mx-auto max-w-7xl px-5 py-16 lg:px-10">
+        <div className="rounded-2xl bg-accent p-8 text-center lg:rounded-3xl lg:p-16">
+          <h2 className="font-display text-3xl font-bold text-primary lg:text-5xl">
+            Udah nemu favoritmu?
+          </h2>
+          <a
+            href="https://wa.me/6281234567890?text=Halo%20Kopi%20Mitra%2C%20saya%20mau%20pesan"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground transition hover:scale-105 lg:mt-8"
+          >
+            Pesan Sekarang
+          </a>
         </div>
       </section>
     </div>
