@@ -3,22 +3,22 @@
 # Pastikan path Bun terdeteksi
 export PATH="$HOME/.bun/bin:$PATH"
 
-echo "🚀 Memulai proses update & deploy..."
+echo "Memulai proses update & deploy..."
 
 # 1. Tarik kode terbaru dari GitHub
-echo "📥 Menarik kode terbaru dari GitHub..."
+echo "Menarik kode terbaru dari GitHub..."
 git pull origin main
 
 # 2. Install dependensi jika ada yang baru
-echo "📦 Menginstal dependensi..."
+echo "Menginstal dependensi..."
 bun install
 
 # 3. Build proyek
-echo "🏗️  Melakukan build proyek..."
+echo "Melakukan build proyek..."
 bun run build
 
 # 4. Restart server preview
-echo "🔄 Me-restart server preview..."
+echo "Me-restart server preview..."
 # Mencari PID proses yang berjalan di port 3001 dan mematikannya
 OLD_PID=$(lsof -t -i:3001)
 if [ -n "$OLD_PID" ]; then
