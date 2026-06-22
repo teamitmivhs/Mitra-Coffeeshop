@@ -37,57 +37,90 @@ type MenuItem = {
   image:     string;   
   featured?: boolean;
   isNew?:    boolean;
+  hasPhoto?: boolean;  // false = show "Photo will be added soon" placeholder
 };
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 // ── Coffee ──
 // TODO: ganti tiap `image` ke import dari ../assets/menu/coffee/<nama>.jpg
 const coffeeMenu: MenuItem[] = [
-  { name: "Americano",          desc: "Espresso shot + air panas. Pahit klasik.",            price: "10K", tone: "#3d2418", image: latteArt                     },
-  { name: "Long Black",         desc: "Double shot espresso over cold water. Bold & clean.", price: "16K", tone: "#241410", image: latteArt                     },
-  { name: "Light Brown Sugar",  desc: "Espresso + brown sugar + susu. Karamel subtle.",      price: "20K", tone: "#a9703c", image: brownSugar,    featured: true   },
-  { name: "Nutty Coffee",       desc: "Hazelnut + espresso + susu. Kacang yang asik.",       price: "18K", tone: "#8a5a35", image: nuttyCoffee                  },
-  { name: "Coffee Latte",       desc: "Lembut, milky, cocok buat pemula.",                   price: "16K", tone: "#caa06a", image: latteArt                     },
-  { name: "Caramel Macchiato",  desc: "Espresso + vanilla + susu + caramel drizzle.",        price: "18K", tone: "#c08838", image: latteArt                     },
-  { name: "Cappuccino",         desc: "Espresso + steamed milk + busa tebal.",               price: "18K", tone: "#b48a5e", image: latteArt                     },
-  { name: "Creamy Coffee",      desc: "Rich, creamy, smooth. Juara buat santai.",            price: "17K", tone: "#9c7148", image: galleryBarista                 },
-  { name: "Brown Sugar Shaken", desc: "Shaken espresso + brown sugar + susu. Seger.",        price: "17K", tone: "#7a4a28", image: menuCoffee                     },
-  { name: "M.I Signature",      desc: "Racikan spesial house blend. Must try.",              price: "15K", tone: "#5c3420", image: galleryBarista, featured: true  },
-  { name: "Gula Aren Coffee",   desc: "Espresso + gula aren + susu segar lokal.",            price: "16K", tone: "#6b3f22", image: menuCoffee                     },
+  { name: "Americano",          desc: "Espresso shot + air panas. Pahit klasik.",            price: "10K", tone: "#3d2418", image: latteArt,       hasPhoto: false },
+  { name: "Long Black",         desc: "Double shot espresso over cold water. Bold & clean.", price: "16K", tone: "#241410", image: latteArt,       hasPhoto: false },
+  { name: "Light Brown Sugar",  desc: "Espresso + brown sugar + susu. Karamel subtle.",      price: "20K", tone: "#a9703c", image: brownSugar,     featured: true, hasPhoto: true  },
+  { name: "Nutty Coffee",       desc: "Hazelnut + espresso + susu. Kacang yang asik.",       price: "18K", tone: "#8a5a35", image: nuttyCoffee,   hasPhoto: true  },
+  { name: "Coffee Latte",       desc: "Lembut, milky, cocok buat pemula.",                   price: "16K", tone: "#caa06a", image: latteArt,       hasPhoto: false },
+  { name: "Caramel Macchiato",  desc: "Espresso + vanilla + susu + caramel drizzle.",        price: "18K", tone: "#c08838", image: latteArt,       hasPhoto: false },
+  { name: "Cappuccino",         desc: "Espresso + steamed milk + busa tebal.",               price: "18K", tone: "#b48a5e", image: latteArt,       hasPhoto: false },
+  { name: "Creamy Coffee",      desc: "Rich, creamy, smooth. Juara buat santai.",            price: "17K", tone: "#9c7148", image: galleryBarista, hasPhoto: false },
+  { name: "Brown Sugar Shaken", desc: "Shaken espresso + brown sugar + susu. Seger.",        price: "17K", tone: "#7a4a28", image: menuCoffee,     hasPhoto: false },
+  { name: "M.I Signature",      desc: "Racikan spesial house blend. Must try.",              price: "15K", tone: "#5c3420", image: galleryBarista, featured: true, hasPhoto: false },
+  { name: "Gula Aren Coffee",   desc: "Espresso + gula aren + susu segar lokal.",            price: "16K", tone: "#6b3f22", image: menuCoffee,     hasPhoto: false },
 ];
 
 // ── Non-Coffee ──
 // TODO: ganti tiap `image` ke import dari ../assets/menu/noncoffee/<nama>.jpg
 const nonCoffeeMenu: MenuItem[] = [
-  { name: "Creamy Milky Choco",     desc: "Cokelat premium + susu full cream. Rich banget.",  price: "16K", tone: "#5a3420", image: brownSugar                     },
-  { name: "Creamy Milk Matcha",     desc: "Matcha premium + susu creamy. Balance perfect.",   price: "17K", tone: "#6f8f43", image: brownSugar                     },
-  { name: "Korean Strawberry Milk", desc: "Susu + strawberry saus ala Korea. Viral!",         price: "18K", tone: "#c2496f", image: strawberryLatte                  },
-  { name: "Bubblegum Latte",        desc: "Warna cantik, rasa manis playful. New arrival.",   price: "20K", tone: "#cc5f9a", image: brownSugar, isNew: true      },
-  { name: "Pistachio Honey Matcha", desc: "Matcha + pistachio + madu. Kolaborasi spesial.",   price: "23K", tone: "#5e7d34", image: brownSugar, featured: true   },
-  { name: "Matcha Latte",           desc: "Bubuk matcha premium + susu segar.",               price: "16K", tone: "#6f8f43", image: brownSugar                  },
-  { name: "Ice Tea",                desc: "Teh tawar dingin klasik. Simpel & menyegarkan.",   price: "6K",  tone: "#9a7a3e", image: galleryStudents                },
-  { name: "Lemon Tea",              desc: "Teh + lemon segar. Bikin melek.",                  price: "12K", tone: "#c79a3e", image: galleryStudents                },
-  { name: "Thai Tea",               desc: "Teh Thailand creamy dengan susu kental.",          price: "15K", tone: "#a85a1f", image: galleryStudents                },
-  { name: "Green Tea",              desc: "Teh hijau dingin, ringan dan menyegarkan.",        price: "15K", tone: "#4f8a2a", image: galleryStudents                },
-  { name: "Lemon Mint Mojito",      desc: "Lemon + mint + soda. Summer vibes banget.",        price: "13K", tone: "#5fae6a", image: galleryInterior                },
-  { name: "Blue Ocean",             desc: "Soda biru segar dengan rasa tropical.",            price: "16K", tone: "#2f7ab8", image: blueOcean                },
-  { name: "Orange Squash",          desc: "Jeruk peras segar, simpel dan real.",              price: "8K",  tone: "#d4762a", image: galleryInterior                },
-  { name: "Pink Beach",             desc: "Fruity, segar, instagrammable. New arrival.",      price: "16K", tone: "#d9657a", image: galleryInterior, isNew: true    },
+  { name: "Creamy Milky Choco",     desc: "Cokelat premium + susu full cream. Rich banget.",  price: "16K", tone: "#5a3420", image: brownSugar,      hasPhoto: false },
+  { name: "Creamy Milk Matcha",     desc: "Matcha premium + susu creamy. Balance perfect.",   price: "17K", tone: "#6f8f43", image: brownSugar,      hasPhoto: false },
+  { name: "Korean Strawberry Milk", desc: "Susu + strawberry saus ala Korea. Viral!",         price: "18K", tone: "#c2496f", image: strawberryLatte, hasPhoto: true  },
+  { name: "Bubblegum Latte",        desc: "Warna cantik, rasa manis playful. New arrival.",   price: "20K", tone: "#cc5f9a", image: brownSugar,      isNew: true,     hasPhoto: false },
+  { name: "Pistachio Honey Matcha", desc: "Matcha + pistachio + madu. Kolaborasi spesial.",   price: "23K", tone: "#5e7d34", image: brownSugar,      featured: true,  hasPhoto: false },
+  { name: "Matcha Latte",           desc: "Bubuk matcha premium + susu segar.",               price: "16K", tone: "#6f8f43", image: brownSugar,      hasPhoto: false },
+  { name: "Ice Tea",                desc: "Teh tawar dingin klasik. Simpel & menyegarkan.",   price: "6K",  tone: "#9a7a3e", image: galleryStudents, hasPhoto: false },
+  { name: "Lemon Tea",              desc: "Teh + lemon segar. Bikin melek.",                  price: "12K", tone: "#c79a3e", image: galleryStudents, hasPhoto: false },
+  { name: "Thai Tea",               desc: "Teh Thailand creamy dengan susu kental.",          price: "15K", tone: "#a85a1f", image: galleryStudents, hasPhoto: false },
+  { name: "Green Tea",              desc: "Teh hijau dingin, ringan dan menyegarkan.",        price: "15K", tone: "#4f8a2a", image: galleryStudents, hasPhoto: false },
+  { name: "Lemon Mint Mojito",      desc: "Lemon + mint + soda. Summer vibes banget.",        price: "13K", tone: "#5fae6a", image: galleryInterior, hasPhoto: false },
+  { name: "Blue Ocean",             desc: "Soda biru segar dengan rasa tropical.",            price: "16K", tone: "#2f7ab8", image: blueOcean,       hasPhoto: true  },
+  { name: "Orange Squash",          desc: "Jeruk peras segar, simpel dan real.",              price: "8K",  tone: "#d4762a", image: galleryInterior, hasPhoto: false },
+  { name: "Pink Beach",             desc: "Fruity, segar, instagrammable. New arrival.",      price: "16K", tone: "#d9657a", image: galleryInterior, isNew: true,     hasPhoto: false },
 ];
 
 // ── Food & Snacks ──
 // TODO: ganti tiap `image` ke import dari ../assets/menu/food/<nama>.jpg
 const foodMenu: MenuItem[] = [
-  { name: "French Fries",    desc: "Kentang goreng renyah. Cocok buat teman ngopi.",        price: "16K", tone: "#c08a2e", image: frenchFries               },
-  { name: "Spaghetti",       desc: "Pilihan: Bolognese / Aglio Olio / Carbonara.",          price: "10K", tone: "#a6442c", image: menuSnack               },
-  { name: "Risoles",         desc: "3 pcs risoles gurih. Crispy di luar, creamy di dalam.", price: "15K", tone: "#b8893e", image: menuSnack               },
-  { name: "Karaage",         desc: "Ayam goreng Jepang per pcs. Juicy & crispy.",           price: "5K",  tone: "#9c5a22", image: menuSnack               },
-  { name: "Indomie + Telur", desc: "Goreng atau rebus dengan telur. Classic.",              price: "13K", tone: "#bb4a2a", image: menuSnack               },
-  { name: "Telur Rebus",     desc: "Per pcs. Simple protein boost.",                        price: "5K",  tone: "#d4a23e", image: menuSnack               },
-  { name: "Dimsum",          desc: "3 pcs (11K) atau 4 pcs (14K). Pilih sesuai lapar.",    price: "11K", tone: "#a35d3a", image: dimsum              },
-  { name: "Bundle 1",        desc: "French Fries + Risoles. Hemat combo.",                  price: "22K", tone: "#8a4a26", image: frenchFries, featured: true },
-  { name: "Bundle 2",        desc: "French Fries + Risoles + Karaage. Full combo!",         price: "28K", tone: "#7a3e1e", image: menuSnack, featured: true },
+  { name: "French Fries",    desc: "Kentang goreng renyah. Cocok buat teman ngopi.",        price: "16K", tone: "#c08a2e", image: frenchFries,  hasPhoto: true  },
+  { name: "Spaghetti",       desc: "Pilihan: Bolognese / Aglio Olio / Carbonara.",          price: "10K", tone: "#a6442c", image: menuSnack,    hasPhoto: false },
+  { name: "Risoles",         desc: "3 pcs risoles gurih. Crispy di luar, creamy di dalam.", price: "15K", tone: "#b8893e", image: menuSnack,    hasPhoto: false },
+  { name: "Karaage",         desc: "Ayam goreng Jepang per pcs. Juicy & crispy.",           price: "5K",  tone: "#9c5a22", image: menuSnack,    hasPhoto: false },
+  { name: "Indomie + Telur", desc: "Goreng atau rebus dengan telur. Classic.",              price: "13K", tone: "#bb4a2a", image: menuSnack,    hasPhoto: false },
+  { name: "Telur Rebus",     desc: "Per pcs. Simple protein boost.",                        price: "5K",  tone: "#d4a23e", image: menuSnack,    hasPhoto: false },
+  { name: "Dimsum",          desc: "3 pcs (11K) atau 4 pcs (14K). Pilih sesuai lapar.",    price: "11K", tone: "#a35d3a", image: dimsum,        hasPhoto: true  },
+  { name: "Bundle 1",        desc: "French Fries + Risoles. Hemat combo.",                  price: "22K", tone: "#8a4a26", image: frenchFries,  featured: true, hasPhoto: true  },
+  { name: "Bundle 2",        desc: "French Fries + Risoles + Karaage. Full combo!",         price: "28K", tone: "#7a3e1e", image: menuSnack,    featured: true, hasPhoto: false },
 ];
+
+// ─── PhotoPlaceholder ────────────────────────────────────────────────────────
+function PhotoPlaceholder({ tone, className = "" }: { tone: string; className?: string }) {
+  return (
+    <div
+      className={`flex flex-col items-center justify-center gap-1 ${className}`}
+      style={{ backgroundColor: tone + "33" }}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-6 w-6 opacity-50"
+        style={{ color: tone }}
+      >
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <circle cx="8.5" cy="8.5" r="1.5" />
+        <path d="m21 15-5-5L5 21" />
+      </svg>
+      <p
+        className="text-center text-[9px] font-semibold uppercase tracking-wider leading-tight opacity-60 px-2"
+        style={{ color: tone }}
+      >
+        Photo will be<br />added soon
+      </p>
+    </div>
+  );
+}
 
 // ─── Mobile Floating Card (Persona 5 bottom-sheet style) ────────────────────
 // Muncul dari bawah saat item di-tap di mobile. Auto-dismiss setelah 3 detik
@@ -164,11 +197,15 @@ function FloatingCard({
                   className="h-full w-full"
                   style={{ clipPath: "polygon(0 0, 88% 0, 100% 100%, 0 100%)" }}
                 >
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="h-full w-full object-cover"
-                  />
+                  {item.hasPhoto ? (
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <PhotoPlaceholder tone="#ffffff" className="h-full w-full min-h-[144px]" />
+                  )}
                 </div>
               </motion.div>
 
@@ -276,17 +313,28 @@ function DesktopPanel({
 
       {/* ── Background photo per-item ── */}
       <AnimatePresence mode="wait">
-        <motion.img
-          key={displayed.name}
-          src={displayed.image}
-          alt=""
-          aria-hidden="true"
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 0.28, scale: 1  }}
-          exit={{    opacity: 0, scale: 1.08  }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="absolute inset-0 h-full w-full object-cover mix-blend-luminosity"
-        />
+        {displayed.hasPhoto ? (
+          <motion.img
+            key={displayed.name}
+            src={displayed.image}
+            alt=""
+            aria-hidden="true"
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 0.28, scale: 1  }}
+            exit={{    opacity: 0, scale: 1.08  }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="absolute inset-0 h-full w-full object-cover mix-blend-luminosity"
+          />
+        ) : (
+          <motion.div
+            key={displayed.name + "-no-bg"}
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{    opacity: 0 }}
+            transition={{ duration: 0.4 }}
+          />
+        )}
       </AnimatePresence>
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
 
@@ -304,24 +352,30 @@ function DesktopPanel({
 
       {/* ── Bottom: floating product image + name/price ── */}
       <div className="relative z-10 flex items-end justify-between gap-4">
-        {/* Photo with Persona 5-style diagonal clip */}
+        {/* Photo — plain square, no diagonal clip */}
         <AnimatePresence mode="wait">
           <motion.div
             key={displayed.name + "-img"}
             className="shrink-0 overflow-hidden rounded-2xl shadow-2xl ring-2 ring-white/15"
-            style={{ clipPath: "polygon(0 0, 90% 0, 100% 100%, 0 100%)" }}
             initial={{ opacity: 0, y: 20, rotate: -8, scale: 0.8 }}
             animate={{ opacity: 1, y: 0,  rotate: 0,  scale: 1   }}
             exit={{    opacity: 0, y: 12, rotate: 4,  scale: 0.9 }}
             transition={{ type: "spring", stiffness: 380, damping: 24 }}
           >
-            <motion.img
-              src={displayed.image}
-              alt={displayed.name}
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-              className="h-36 w-36 object-cover"
-            />
+            {displayed.hasPhoto ? (
+              <motion.img
+                src={displayed.image}
+                alt={displayed.name}
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+                className="h-36 w-36 object-cover"
+              />
+            ) : (
+              <PhotoPlaceholder
+                tone="#ffffff"
+                className="h-36 w-36"
+              />
+            )}
           </motion.div>
         </AnimatePresence>
 
