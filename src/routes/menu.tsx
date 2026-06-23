@@ -399,24 +399,25 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
           {/* backdrop tap-to-dismiss */}
           <motion.div
             key="backdrop"
-            className="fixed inset-0 z-40 lg:hidden"
+            className="fixed inset-0 z-40 bg-black/10 backdrop-blur-[2px] lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             onClick={onDismiss}
           />
           {/* card */}
           <motion.div
             key="card"
-            className="fixed inset-x-5 bottom-[calc(env(safe-area-inset-bottom)+1rem)] z-50 mx-auto max-h-[74svh] max-w-[24rem] overflow-hidden rounded-3xl bg-background shadow-2xl lg:hidden"
-            initial={{ y: 80, opacity: 0, scale: 0.95 }}
+            className="fixed inset-x-5 bottom-[calc(env(safe-area-inset-bottom)+1rem)] z-50 mx-auto max-h-[74svh] max-w-[24rem] lg:hidden"
+            initial={{ y: 72, opacity: 0, scale: 0.96 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
-            exit={{ y: 80, opacity: 0, scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 420, damping: 30 }}
+            exit={{ y: 72, opacity: 0, scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 360, damping: 34, mass: 0.9 }}
           >
-            {/* Colored background */}
-            <motion.div
-              className="relative isolate overflow-hidden"
+            {/* Unified preview surface */}
+            <div
+              className="relative isolate overflow-hidden rounded-3xl text-white shadow-2xl ring-1 ring-white/15"
               style={{ backgroundColor: item.tone }}
             >
               <button
@@ -428,13 +429,10 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
                 ×
               </button>
 
-              {/* ── Item photo — swings in ── */}
-              <motion.div
-                className="relative z-10 overflow-hidden bg-black/10"
-                initial={{ y: -20, scale: 0.95 }}
-                animate={{ y: 0, scale: 1 }}
-                transition={{ type: "spring", stiffness: 380, damping: 24, delay: 0.05 }}
-              >
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-white/5" />
+
+              {/* Item photo */}
+              <div className="relative z-10 overflow-hidden bg-black/10">
                 {item.hasPhoto ? (
                   <img
                     src={item.image}
@@ -444,49 +442,35 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
                 ) : (
                   <PhotoPlaceholder tone="#ffffff" className="aspect-square w-full bg-white/10" />
                 )}
-              </motion.div>
+              </div>
 
-              {/* ── Text info ── */}
+              {/* Text info */}
               <div className="relative z-10 px-5 pb-3.5 pt-3 text-white">
-                {/* chapter/label */}
-                <motion.p
+                <p
                   className="font-display text-[9px] font-bold uppercase leading-none tracking-[0.28em] text-white/60"
-                  initial={{ opacity: 0, x: 12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 }}
                 >
                   {item.featured ? "✦ Signature" : item.isNew ? "✦ New Arrival" : "Menu"}
-                </motion.p>
+                </p>
 
-                <motion.h3
+                <h3
                   className="mt-1.5 font-display text-[clamp(1.55rem,7vw,1.85rem)] font-black leading-[0.95]"
-                  initial={{ opacity: 0, x: 16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ type: "spring", stiffness: 340, damping: 22, delay: 0.08 }}
                 >
                   {item.name}
-                </motion.h3>
+                </h3>
 
-                <motion.p
+                <p
                   className="mt-1.5 line-clamp-2 text-[12px] leading-snug text-white/70"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.16 }}
                 >
                   {item.desc}
-                </motion.p>
+                </p>
 
-                {/* Price — big, P5-style */}
-                <motion.p
+                <p
                   className="mt-2.5 font-display text-[clamp(2rem,10vw,2.35rem)] font-black leading-none text-white"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ type: "spring", stiffness: 440, damping: 18, delay: 0.12 }}
                 >
                   Rp {item.price}
-                </motion.p>
+                </p>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         </>
       )}
