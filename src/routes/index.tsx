@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Coffee, Heart, MapPin, Sparkles } from "lucide-react";
 import { useState } from "react";
-import menuCoffee from "../assets/menu-coffee.jpg";
+import caramelMacchiato from "../assets/caramel-macchiato.jpg";
 import blueOcean from "../assets/blueocean.jpg";
 import galleryStudents from "../assets/gallery-students.jpg";
 import galleryBarista from "../assets/gallery-barista.jpg";
@@ -287,7 +287,7 @@ function HomePage() {
         <div className="grid grid-cols-2 gap-3 lg:gap-8">
           <article className="group relative overflow-hidden rounded-[1.5rem] bg-card lg:rounded-[2rem]">
             <img
-              src={menuCoffee}
+              src={caramelMacchiato}
               alt="Iced coffee"
               loading="lazy"
               width={1280}
