@@ -11,21 +11,50 @@ import miSignature from "../assets/mi-signature.webp";
 import rearCard from "../assets/rear-card.webp";
 import strawberryLatte from "../assets/strawberry-latte.webp";
 
+const siteUrl = "https://coffeeshop.itmivhs.net";
+const homeTitle = "Mitra Coffeeshop - Coffee Shop SMK Mitra Industri";
+const homeDescription =
+  "Mitra Coffeeshop adalah coffee shop di SMK Mitra Industri dengan menu kopi, non-kopi, snack, dan loyalty card harga pelajar.";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Mitra Coffeeshop — Ngopi Asik di SMK Mitra Industri" },
+      { title: homeTitle },
       {
         name: "description",
-        content:
-          "Coffee shop di SMK Mitra Industri. Americano, latte, matcha, choco, dan banyak lagi. Harga pelajar, suasana seru.",
+        content: homeDescription,
       },
-      { property: "og:title", content: "Mitra Coffeeshop — Ngopi Asik di SMK Mitra Industri" },
+      { property: "og:title", content: homeTitle },
       {
         property: "og:description",
-        content: "Menu kopi & non-kopi lengkap. Tempat nongkrong favorit anak SMK Mitra Industri.",
+        content: homeDescription,
+      },
+      { property: "og:url", content: siteUrl },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Mitra Coffeeshop" },
+      { name: "twitter:title", content: homeTitle },
+      { name: "twitter:description", content: homeDescription },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "CafeOrCoffeeShop",
+          name: "Mitra Coffeeshop",
+          url: siteUrl,
+          image: `${siteUrl}/favicon.ico`,
+          description: homeDescription,
+          telephone: "+6285217971601",
+          servesCuisine: ["Coffee", "Non-coffee drinks", "Snacks"],
+          priceRange: "Rp6.000-Rp18.000",
+          address: {
+            "@type": "PostalAddress",
+            name: "SMK Mitra Industri",
+            addressCountry: "ID",
+          },
+          sameAs: ["https://gofood.link/a/G6pniU1"],
+        },
       },
     ],
+    links: [{ rel: "canonical", href: siteUrl }],
   }),
   component: HomePage,
 });
