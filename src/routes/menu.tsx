@@ -440,7 +440,7 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
                     x1={i * 32 - 20}
                     y1="0"
                     x2={i * 32 + 16}
-                    y2="383"
+                    y2="370"
                     stroke="white"
                     strokeWidth="14"
                   />
