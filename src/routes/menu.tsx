@@ -2,19 +2,19 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import caramelMacchiato from "../assets/caramel-macchiato.jpg";
-import blueOcean from "../assets/blueocean.jpg";
-import latteArt from "../assets/latteart.jpg";
-import galleryBarista from "../assets/gallery-barista.jpg";
-import galleryInterior from "../assets/gallery-interior.jpg";
-import galleryStudents from "../assets/gallery-students.jpg";
-import frenchFries from "../assets/frenchfries.jpg";
-import brownSugar from "../assets/brown-sugar.jpg";
-import miSignature from "../assets/mi-signature.jpg";
-import strawberryLatte from "../assets/strawberry-latte.jpg";
-import dimsum from "../assets/dimsum.jpg";
-import bubblePresso from "../assets/bubblepresso.jpg";
-import bubblegum from "../assets/bubblegum.jpg";
+import caramelMacchiato from "../assets/caramel-macchiato.webp";
+import blueOcean from "../assets/blueocean.webp";
+import latteArt from "../assets/latteart.webp";
+import galleryBarista from "../assets/gallery-barista.webp";
+import galleryInterior from "../assets/gallery-interior.webp";
+import galleryStudents from "../assets/gallery-students.webp";
+import frenchFries from "../assets/frenchfries.webp";
+import brownSugar from "../assets/brown-sugar.webp";
+import miSignature from "../assets/mi-signature.webp";
+import strawberryLatte from "../assets/strawberry-latte.webp";
+import dimsum from "../assets/dimsum.webp";
+import bubblePresso from "../assets/bubblepresso.webp";
+import bubblegum from "../assets/bubblegum.webp";
 
 export const Route = createFileRoute("/menu")({
   head: () => ({

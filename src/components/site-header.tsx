@@ -2,7 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logoImage from "../assets/logo.jpg";
+import logoImage from "../assets/logo.webp";
 
 const linksLeft = [
   { to: "/", label: "Beranda" },

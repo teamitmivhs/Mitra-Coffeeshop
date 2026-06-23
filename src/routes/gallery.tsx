@@ -2,12 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import latteArt        from "../assets/latteart.jpg";
-import miSignature     from "../assets/mi-signature.jpg";
-import blueOcean       from "../assets/blueocean.jpg";
-import galleryStudents from "../assets/gallery-students.jpg";
-import galleryBarista  from "../assets/gallery-barista.jpg";
-import galleryInterior from "../assets/gallery-interior.jpg";
+import latteArt        from "../assets/latteart.webp";
+import miSignature     from "../assets/mi-signature.webp";
+import blueOcean       from "../assets/blueocean.webp";
+import galleryStudents from "../assets/gallery-students.webp";
+import galleryBarista  from "../assets/gallery-barista.webp";
+import galleryInterior from "../assets/gallery-interior.webp";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({

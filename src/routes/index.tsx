@@ -2,13 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Coffee, Heart, MapPin, Sparkles } from "lucide-react";
 import { useState } from "react";
-import caramelMacchiato from "../assets/caramel-macchiato.jpg";
-import blueOcean from "../assets/blueocean.jpg";
-import galleryStudents from "../assets/gallery-students.jpg";
-import galleryBarista from "../assets/gallery-barista.jpg";
-import frontCard from "../assets/front-card.jpeg";
-import rearCard from "../assets/rear-card.jpeg";
-import strawberryLatte from "../assets/strawberry-latte.jpg";
+import caramelMacchiato from "../assets/caramel-macchiato.webp";
+import blueOcean from "../assets/blueocean.webp";
+import galleryStudents from "../assets/gallery-students.webp";
+import galleryBarista from "../assets/gallery-barista.webp";
+import frontCard from "../assets/front-card.webp";
+import rearCard from "../assets/rear-card.webp";
+import strawberryLatte from "../assets/strawberry-latte.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
