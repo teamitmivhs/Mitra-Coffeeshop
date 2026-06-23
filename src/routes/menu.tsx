@@ -416,14 +416,14 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
           >
             {/* Colored background */}
             <motion.div
-              className="relative isolate overflow-hidden p-3"
+              className="relative isolate overflow-hidden"
               style={{ backgroundColor: item.tone }}
             >
               <button
                 type="button"
                 aria-label="Tutup preview"
                 onClick={onDismiss}
-                className="absolute right-5 top-5 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/45 text-xl font-bold leading-none text-white shadow-lg backdrop-blur-md transition active:scale-95"
+                className="absolute right-3 top-3 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/45 text-xl font-bold leading-none text-white shadow-lg backdrop-blur-md transition active:scale-95"
               >
                 ×
               </button>
@@ -440,7 +440,7 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
                     x1={i * 32 - 20}
                     y1="0"
                     x2={i * 32 + 16}
-                    y2="760"
+                    y2="383"
                     stroke="white"
                     strokeWidth="14"
                   />
@@ -449,7 +449,7 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
 
               {/* ── Item photo — swings in ── */}
               <motion.div
-                className="relative z-10 overflow-hidden rounded-[1.35rem] bg-black/10"
+                className="relative z-10 overflow-hidden bg-black/10"
                 initial={{ y: -20, scale: 0.95 }}
                 animate={{ y: 0, scale: 1 }}
                 transition={{ type: "spring", stiffness: 380, damping: 24, delay: 0.05 }}
@@ -466,10 +466,10 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
               </motion.div>
 
               {/* ── Text info ── */}
-              <div className="relative z-10 px-3 pb-2 pt-4 text-white">
+              <div className="relative z-10 px-5 pb-4 pt-3.5 text-white">
                 {/* chapter/label */}
                 <motion.p
-                  className="font-display text-[9px] font-bold uppercase tracking-[0.3em] text-white/60"
+                  className="font-display text-[9px] font-bold uppercase leading-none tracking-[0.28em] text-white/60"
                   initial={{ opacity: 0, x: 12 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 }}
@@ -478,7 +478,7 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
                 </motion.p>
 
                 <motion.h3
-                  className="mt-1 font-display text-3xl font-black leading-tight"
+                  className="mt-1.5 font-display text-[1.85rem] font-black leading-none"
                   initial={{ opacity: 0, x: 16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ type: "spring", stiffness: 340, damping: 22, delay: 0.08 }}
@@ -487,7 +487,7 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
                 </motion.h3>
 
                 <motion.p
-                  className="mt-2 line-clamp-2 text-sm leading-relaxed text-white/70"
+                  className="mt-2 line-clamp-2 text-[13px] leading-snug text-white/70"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.16 }}
@@ -497,7 +497,7 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
 
                 {/* Price — big, P5-style */}
                 <motion.p
-                  className="mt-2 font-display text-4xl font-black text-white"
+                  className="mt-3 font-display text-[2.35rem] font-black leading-none text-white"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", stiffness: 440, damping: 18, delay: 0.12 }}
