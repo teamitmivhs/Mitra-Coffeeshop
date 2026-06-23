@@ -408,7 +408,7 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
           {/* card */}
           <motion.div
             key="card"
-            className="fixed inset-x-4 bottom-[calc(env(safe-area-inset-bottom)+1rem)] z-50 max-h-[76svh] overflow-hidden rounded-3xl bg-background shadow-2xl lg:hidden"
+            className="fixed inset-x-5 bottom-[calc(env(safe-area-inset-bottom)+1rem)] z-50 mx-auto max-h-[74svh] max-w-[24rem] overflow-hidden rounded-3xl bg-background shadow-2xl lg:hidden"
             initial={{ y: 80, opacity: 0, scale: 0.95 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 80, opacity: 0, scale: 0.95 }}
@@ -416,14 +416,14 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
           >
             {/* Colored background */}
             <motion.div
-              className="relative isolate overflow-hidden"
+              className="relative isolate overflow-hidden p-3"
               style={{ backgroundColor: item.tone }}
             >
               <button
                 type="button"
                 aria-label="Tutup preview"
                 onClick={onDismiss}
-                className="absolute right-3 top-3 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/45 text-xl font-bold leading-none text-white shadow-lg backdrop-blur-md transition active:scale-95"
+                className="absolute right-5 top-5 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/45 text-xl font-bold leading-none text-white shadow-lg backdrop-blur-md transition active:scale-95"
               >
                 ×
               </button>
@@ -440,7 +440,7 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
                     x1={i * 32 - 20}
                     y1="0"
                     x2={i * 32 + 16}
-                    y2="355"
+                    y2="760"
                     stroke="white"
                     strokeWidth="14"
                   />
@@ -449,7 +449,7 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
 
               {/* ── Item photo — swings in ── */}
               <motion.div
-                className="relative z-10 overflow-hidden bg-black/10"
+                className="relative z-10 overflow-hidden rounded-[1.35rem] bg-black/10"
                 initial={{ y: -20, scale: 0.95 }}
                 animate={{ y: 0, scale: 1 }}
                 transition={{ type: "spring", stiffness: 380, damping: 24, delay: 0.05 }}
@@ -466,7 +466,7 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
               </motion.div>
 
               {/* ── Text info ── */}
-              <div className="relative z-10 px-5 pb-5 pt-4 text-white">
+              <div className="relative z-10 px-3 pb-2 pt-4 text-white">
                 {/* chapter/label */}
                 <motion.p
                   className="font-display text-[9px] font-bold uppercase tracking-[0.3em] text-white/60"
