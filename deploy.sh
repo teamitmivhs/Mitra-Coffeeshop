@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Pastikan path Bun terdeteksi
 export PATH="$HOME/.bun/bin:$PATH"
@@ -7,7 +8,7 @@ echo "Memulai proses update & deploy..."
 
 # 1. Tarik kode terbaru dari GitHub
 echo "Menarik kode terbaru dari GitHub..."
-git pull origin main
+git pull --ff-only origin main
 
 # 2. Install dependensi jika ada yang baru
 echo "Menginstal dependensi..."
