@@ -135,7 +135,7 @@ function ContactPage() {
               >
                 <img src={gofoodIcon} alt="" aria-hidden="true" className="h-10 w-10" />
                 Order di GoFood
-              </a>
+              </a>                                                  
               <a
                 href="https://wa.me/6285217971601?text=Halo%20Mitra%20Coffeeshop%2C%20saya%20mau%20pesan"
                 target="_blank"
@@ -173,4 +173,4 @@ function ContactPage() {
       </section>
     </div>
   );
-}
+} 
