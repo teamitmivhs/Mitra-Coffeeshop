@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import latteArt      from "../assets/latteart.jpg";
-import menuCoffee      from "../assets/menu-coffee.jpg";
+import menuCoffee      from "../assets/caramel-macchiato.jpg";
 import blueOcean  from "../assets/blueocean.jpg";
 import galleryStudents from "../assets/gallery-students.jpg";
 import galleryBarista  from "../assets/gallery-barista.jpg";
