@@ -3,16 +3,15 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 
-import menuCoffee    from "../assets/menu-coffee.jpg";
+import caramelMacchiato    from "../assets/caramel-macchiato.jpg";
 import blueOcean from "../assets/blueocean.jpg";
-import menuSnack     from "../assets/dimsum.jpg";
 import latteArt    from "../assets/latteart.jpg";
 import galleryBarista  from "../assets/gallery-barista.jpg";
 import galleryInterior from "../assets/gallery-interior.jpg";
 import galleryStudents from "../assets/gallery-students.jpg";
 import frenchFries     from "../assets/frenchfries.jpg";
 import brownSugar from "../assets/brown-sugar.jpg";
-import nuttyCoffee from "../assets/nuttycoffee.jpg";
+import miSignature from "../assets/mi-signature.jpg";
 import strawberryLatte from "../assets/strawberry-latte.jpg";
 import dimsum from "../assets/dimsum.jpg";
 
@@ -47,14 +46,14 @@ const coffeeMenu: MenuItem[] = [
   { name: "Americano",          desc: "Espresso shot + air panas. Pahit klasik.",            price: "10K", tone: "#3d2418", image: latteArt,       hasPhoto: false },
   { name: "Long Black",         desc: "Double shot espresso over cold water. Bold & clean.", price: "16K", tone: "#241410", image: latteArt,       hasPhoto: false },
   { name: "Light Brown Sugar",  desc: "Espresso + brown sugar + susu. Karamel subtle.",      price: "20K", tone: "#a9703c", image: brownSugar,     featured: true, hasPhoto: true  },
-  { name: "Nutty Coffee",       desc: "Hazelnut + espresso + susu. Kacang yang asik.",       price: "18K", tone: "#8a5a35", image: nuttyCoffee,   hasPhoto: true  },
+  { name: "Nutty Coffee",       desc: "Hazelnut + espresso + susu. Kacang yang asik.",       price: "18K", tone: "#8a5a35", image: brownSugar,   hasPhoto: false  },
   { name: "Coffee Latte",       desc: "Lembut, milky, cocok buat pemula.",                   price: "16K", tone: "#caa06a", image: latteArt,       hasPhoto: false },
-  { name: "Caramel Macchiato",  desc: "Espresso + vanilla + susu + caramel drizzle.",        price: "18K", tone: "#c08838", image: latteArt,       hasPhoto: false },
+  { name: "Caramel Macchiato",  desc: "Espresso + vanilla + susu + caramel drizzle.",        price: "18K", tone: "#c08838", image: caramelMacchiato,       hasPhoto: true },
   { name: "Cappuccino",         desc: "Espresso + steamed milk + busa tebal.",               price: "18K", tone: "#b48a5e", image: latteArt,       hasPhoto: false },
   { name: "Creamy Coffee",      desc: "Rich, creamy, smooth. Juara buat santai.",            price: "17K", tone: "#9c7148", image: galleryBarista, hasPhoto: false },
-  { name: "Brown Sugar Shaken", desc: "Shaken espresso + brown sugar + susu. Seger.",        price: "17K", tone: "#7a4a28", image: menuCoffee,     hasPhoto: false },
-  { name: "M.I Signature",      desc: "Racikan spesial house blend. Must try.",              price: "15K", tone: "#5c3420", image: galleryBarista, featured: true, hasPhoto: false },
-  { name: "Gula Aren Coffee",   desc: "Espresso + gula aren + susu segar lokal.",            price: "16K", tone: "#6b3f22", image: menuCoffee,     hasPhoto: false },
+  { name: "Brown Sugar Shaken", desc: "Shaken espresso + brown sugar + susu. Seger.",        price: "17K", tone: "#7a4a28", image: caramelMacchiato, hasPhoto: false },
+  { name: "M.I Signature",      desc: "Racikan spesial house blend. Must try.",              price: "15K", tone: "#5c3420", image: miSignature, featured: true, hasPhoto: true },
+  { name: "Gula Aren Coffee",   desc: "Espresso + gula aren + susu segar lokal.",            price: "16K", tone: "#6b3f22", image: caramelMacchiato,     hasPhoto: false },
 ];
 
 // ── Non-Coffee ──
@@ -80,14 +79,14 @@ const nonCoffeeMenu: MenuItem[] = [
 // TODO: ganti tiap `image` ke import dari ../assets/menu/food/<nama>.jpg
 const foodMenu: MenuItem[] = [
   { name: "French Fries",    desc: "Kentang goreng renyah. Cocok buat teman ngopi.",        price: "16K", tone: "#c08a2e", image: frenchFries,  hasPhoto: true  },
-  { name: "Spaghetti",       desc: "Pilihan: Bolognese / Aglio Olio / Carbonara.",          price: "10K", tone: "#a6442c", image: menuSnack,    hasPhoto: false },
-  { name: "Risoles",         desc: "3 pcs risoles gurih. Crispy di luar, creamy di dalam.", price: "15K", tone: "#b8893e", image: menuSnack,    hasPhoto: false },
-  { name: "Karaage",         desc: "Ayam goreng Jepang per pcs. Juicy & crispy.",           price: "5K",  tone: "#9c5a22", image: menuSnack,    hasPhoto: false },
-  { name: "Indomie + Telur", desc: "Goreng atau rebus dengan telur. Classic.",              price: "13K", tone: "#bb4a2a", image: menuSnack,    hasPhoto: false },
-  { name: "Telur Rebus",     desc: "Per pcs. Simple protein boost.",                        price: "5K",  tone: "#d4a23e", image: menuSnack,    hasPhoto: false },
+  { name: "Spaghetti",       desc: "Pilihan: Bolognese / Aglio Olio / Carbonara.",          price: "10K", tone: "#a6442c", image: dimsum,    hasPhoto: false },
+  { name: "Risoles",         desc: "3 pcs risoles gurih. Crispy di luar, creamy di dalam.", price: "15K", tone: "#b8893e", image: dimsum,    hasPhoto: false },
+  { name: "Karaage",         desc: "Ayam goreng Jepang per pcs. Juicy & crispy.",           price: "5K",  tone: "#9c5a22", image: dimsum,    hasPhoto: false },
+  { name: "Indomie + Telur", desc: "Goreng atau rebus dengan telur. Classic.",              price: "13K", tone: "#bb4a2a", image: dimsum,    hasPhoto: false },
+  { name: "Telur Rebus",     desc: "Per pcs. Simple protein boost.",                        price: "5K",  tone: "#d4a23e", image: dimsum,    hasPhoto: false },
   { name: "Dimsum",          desc: "3 pcs (11K) atau 4 pcs (14K). Pilih sesuai lapar.",    price: "11K", tone: "#a35d3a", image: dimsum,        hasPhoto: true  },
   { name: "Bundle 1",        desc: "French Fries + Risoles. Hemat combo.",                  price: "22K", tone: "#8a4a26", image: frenchFries,  featured: true, hasPhoto: true  },
-  { name: "Bundle 2",        desc: "French Fries + Risoles + Karaage. Full combo!",         price: "28K", tone: "#7a3e1e", image: menuSnack,    featured: true, hasPhoto: false },
+  { name: "Bundle 2",        desc: "French Fries + Risoles + Karaage. Full combo!",         price: "28K", tone: "#7a3e1e", image: dimsum,    featured: true, hasPhoto: false },
 ];
 
 // ─── PhotoPlaceholder ────────────────────────────────────────────────────────
