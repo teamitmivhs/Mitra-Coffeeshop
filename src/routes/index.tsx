@@ -208,6 +208,7 @@ function LoyaltyCard() {
 
 function HomePage() {
   const reduceMotion = useReducedMotion();
+  const [loyaltyInfoOpen, setLoyaltyInfoOpen] = useState(false);
   const viewport = { once: true, amount: 0.22 };
 
   return (
@@ -550,15 +551,27 @@ function HomePage() {
                 Minta Loyalty Card ke kasir. Setiap pembelian on site dapat 1 stiker, kumpulkan 10
                 stiker untuk kopi gratis.
               </p>
-              <div className="group mt-4 max-w-md rounded-[1.25rem] border border-primary/15 bg-primary/8 p-3 transition lg:mt-8 lg:bg-primary/5 lg:hover:bg-primary/10">
+              <div className="mt-4 max-w-md rounded-[1.25rem] border border-primary/15 bg-primary/8 p-3 transition lg:mt-5 lg:bg-primary/5">
                 <button
                   type="button"
+                  aria-expanded={loyaltyInfoOpen}
+                  aria-controls="loyalty-card-info"
+                  onClick={() => setLoyaltyInfoOpen((open) => !open)}
                   className="flex w-full items-center justify-between gap-3 text-left text-sm font-bold text-primary"
                 >
                   Cara mendapatkan kartu
-                  <ChevronDown className="h-4 w-4 shrink-0 transition group-hover:translate-y-0.5 lg:group-hover:rotate-180" />
+                  <ChevronDown
+                    className={`h-4 w-4 shrink-0 transition ${loyaltyInfoOpen ? "rotate-180" : ""}`}
+                  />
                 </button>
-                <div className="mt-3 border-t border-primary/15 pt-3 text-sm leading-relaxed text-primary/75 lg:grid lg:grid-rows-[0fr] lg:overflow-hidden lg:border-t-0 lg:pt-0 lg:transition-all lg:duration-300 lg:group-hover:mt-3 lg:group-hover:grid-rows-[1fr] lg:group-hover:border-t lg:group-hover:pt-3 lg:group-focus-within:mt-3 lg:group-focus-within:grid-rows-[1fr] lg:group-focus-within:border-t lg:group-focus-within:pt-3">
+                <div
+                  id="loyalty-card-info"
+                  className={`grid overflow-hidden text-sm leading-relaxed text-primary/75 transition-all duration-300 ${
+                    loyaltyInfoOpen
+                      ? "mt-3 grid-rows-[1fr] border-t border-primary/15 pt-3 opacity-100"
+                      : "mt-0 grid-rows-[0fr] border-t-0 pt-0 opacity-0"
+                  }`}
+                >
                   <div className="min-h-0">
                     <p>
                       Setiap 1 pembelian di Mitra Coffeeshop akan mendapatkan 1 stiker. Untuk
