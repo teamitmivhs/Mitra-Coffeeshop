@@ -17,7 +17,6 @@ import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
 import { WhatsAppFab } from "../components/whatsapp-fab";
 
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -84,10 +83,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Mitra Coffeeshop — Ngopi Asik di SMK Mitra Industri" },
-      { name: "description", content: "Coffee shop di SMK Mitra Industri. Americano, cappuccino, latte, matcha, choco, strawberry — harga pelajar, kualitas pro." },
+      {
+        name: "description",
+        content:
+          "Coffee shop di SMK Mitra Industri. Americano, cappuccino, latte, matcha, choco, strawberry — harga pelajar, kualitas pro.",
+      },
       { name: "author", content: "Mitra Coffeeshop" },
       { property: "og:title", content: "Mitra Coffeeshop — Ngopi Asik di SMK Mitra Industri" },
-      { property: "og:description", content: "Menu kopi & non-kopi lengkap. Tempat nongkrong favorit anak SMK Mitra Industri." },
+      {
+        property: "og:description",
+        content: "Menu kopi & non-kopi lengkap. Tempat nongkrong favorit anak SMK Mitra Industri.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -126,12 +132,17 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
+  const isHome = location.pathname === "/";
 
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col">
         <SiteHeader />
-        <main className="flex-1 pt-[68px] lg:pt-[76px]">
+        <main
+          className={
+            isHome ? "flex-1 pt-0 md:pt-[68px] lg:pt-[76px]" : "flex-1 pt-[68px] lg:pt-[76px]"
+          }
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
@@ -150,5 +161,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-
-
