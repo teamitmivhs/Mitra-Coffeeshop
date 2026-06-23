@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/assets/logo.jpg" width="120" alt="Mitra Coffeeshop Logo">
+  <img src="src/assets/logo.webp" width="120" alt="Mitra Coffeeshop Logo">
 </p>
 
 <h1 align="center">Mitra Coffeeshop</h1>
@@ -44,7 +44,7 @@ Project ini mengimplementasikan arsitektur modern untuk menjamin performa maksim
 *   **Runtime:** Bun — Eksekusi JavaScript berperforma tinggi.
 *   **Framework:** TanStack Start — Full-stack React dengan Type-safe routing.
 *   **Styling:** Tailwind CSS v4 — High-performance CSS engine.
-*   **UI Components:** Radix UI & Shadcn UI.
+*   **Motion:** Framer Motion untuk animasi UI.
 
 ---
 
