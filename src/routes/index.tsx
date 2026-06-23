@@ -537,7 +537,7 @@ function HomePage() {
           <div className="absolute inset-x-0 top-0 h-16 bg-white/15" />
           <div className="absolute inset-x-0 bottom-0 h-20 bg-primary/10" />
 
-          <div className="relative grid gap-5 lg:grid-cols-2 lg:items-center lg:gap-16">
+          <div className="relative grid gap-5 md:gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
             {/* Text — always first on mobile */}
             <div className="lg:order-1">
               <p className="font-display text-[10px] font-bold uppercase tracking-[0.22em] text-primary lg:text-xs">
