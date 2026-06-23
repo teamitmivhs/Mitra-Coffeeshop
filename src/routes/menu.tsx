@@ -14,6 +14,8 @@ import brownSugar from "../assets/brown-sugar.jpg";
 import miSignature from "../assets/mi-signature.jpg";
 import strawberryLatte from "../assets/strawberry-latte.jpg";
 import dimsum from "../assets/dimsum.jpg";
+import bubblePresso from "../assets/bubblepresso.jpg";
+import bubblegum from "../assets/bubblegum.jpg";
 
 export const Route = createFileRoute("/menu")({
   head: () => ({
@@ -54,6 +56,7 @@ const coffeeMenu: MenuItem[] = [
   { name: "Brown Sugar Shaken", desc: "Shaken espresso + brown sugar + susu. Seger.",        price: "17K", tone: "#7a4a28", image: caramelMacchiato, hasPhoto: false },
   { name: "M.I Signature",      desc: "Racikan spesial house blend. Must try.",              price: "15K", tone: "#5c3420", image: miSignature, featured: true, hasPhoto: true },
   { name: "Gula Aren Coffee",   desc: "Espresso + gula aren + susu segar lokal.",            price: "16K", tone: "#6b3f22", image: caramelMacchiato,     hasPhoto: false },
+  { name: "Bubble Presso",          desc: "Espresso + soda + bubble. Unik dan menyegarkan.", price: "18K", tone: "#5a3420", image: bubblePresso, isNew: true,  hasPhoto: true  },
 ];
 
 // ── Non-Coffee ──
@@ -62,7 +65,7 @@ const nonCoffeeMenu: MenuItem[] = [
   { name: "Creamy Milky Choco",     desc: "Cokelat premium + susu full cream. Rich banget.",  price: "16K", tone: "#5a3420", image: brownSugar,      hasPhoto: false },
   { name: "Creamy Milk Matcha",     desc: "Matcha premium + susu creamy. Balance perfect.",   price: "17K", tone: "#6f8f43", image: brownSugar,      hasPhoto: false },
   { name: "Korean Strawberry Milk", desc: "Susu + strawberry saus ala Korea. Viral!",         price: "18K", tone: "#c2496f", image: strawberryLatte, hasPhoto: true  },
-  { name: "Bubblegum Latte",        desc: "Warna cantik, rasa manis playful. New arrival.",   price: "20K", tone: "#cc5f9a", image: brownSugar,      isNew: true,     hasPhoto: false },
+  { name: "Bubblegum Latte",        desc: "Warna cantik, rasa manis playful. New arrival.",   price: "20K", tone: "#cc5f9a", image: bubblegum,      isNew: true,     hasPhoto: true },
   { name: "Pistachio Honey Matcha", desc: "Matcha + pistachio + madu. Kolaborasi spesial.",   price: "23K", tone: "#5e7d34", image: brownSugar,      featured: true,  hasPhoto: false },
   { name: "Matcha Latte",           desc: "Bubuk matcha premium + susu segar.",               price: "16K", tone: "#6f8f43", image: brownSugar,      hasPhoto: false },
   { name: "Ice Tea",                desc: "Teh tawar dingin klasik. Simpel & menyegarkan.",   price: "6K",  tone: "#9a7a3e", image: galleryStudents, hasPhoto: false },
@@ -73,6 +76,7 @@ const nonCoffeeMenu: MenuItem[] = [
   { name: "Blue Ocean",             desc: "Soda biru segar dengan rasa tropical.",            price: "16K", tone: "#2f7ab8", image: blueOcean,       hasPhoto: true  },
   { name: "Orange Squash",          desc: "Jeruk peras segar, simpel dan real.",              price: "8K",  tone: "#d4762a", image: galleryInterior, hasPhoto: false },
   { name: "Pink Beach",             desc: "Fruity, segar, instagrammable. New arrival.",      price: "16K", tone: "#d9657a", image: galleryInterior, isNew: true,     hasPhoto: false },
+  
 ];
 
 // ── Food & Snacks ──
