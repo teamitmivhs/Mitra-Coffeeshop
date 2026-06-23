@@ -1,12 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Coffee, Heart, MapPin, Sparkles } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Coffee, Heart, MessageCircle, Sparkles } from "lucide-react";
 import { useState } from "react";
 import caramelMacchiato from "../assets/caramel-macchiato.webp";
 import blueOcean from "../assets/blueocean.webp";
 import galleryStudents from "../assets/gallery-students.webp";
 import galleryBarista from "../assets/gallery-barista.webp";
 import frontCard from "../assets/front-card.webp";
+import miSignature from "../assets/mi-signature.webp";
 import rearCard from "../assets/rear-card.webp";
 import strawberryLatte from "../assets/strawberry-latte.webp";
 
@@ -69,7 +70,41 @@ const imageReveal = {
   },
 };
 
-function LoyalityCard() {
+const whatsappOrderUrl =
+  "https://wa.me/6285217971601?text=Halo%20Mitra%20Coffeeshop%2C%20saya%20mau%20pesan";
+
+const bestSellerItems = [
+  {
+    image: caramelMacchiato,
+    title: "Caramel Macchiato",
+    label: "Coffee",
+    price: "18K",
+    desc: "Espresso, vanilla, susu, dan caramel drizzle.",
+  },
+  {
+    image: blueOcean,
+    title: "Blue Ocean",
+    label: "Fresh",
+    price: "15K",
+    desc: "Soda segar dengan warna biru yang standout.",
+  },
+  {
+    image: strawberryLatte,
+    title: "Korean Strawberry",
+    label: "Non-Coffee",
+    price: "18K",
+    desc: "Susu creamy dengan saus strawberry ala Korea.",
+  },
+  {
+    image: miSignature,
+    title: "M.I Signature",
+    label: "House Blend",
+    price: "15K",
+    desc: "Racikan spesial Mitra Coffeeshop.",
+  },
+];
+
+function LoyaltyCard() {
   const [flipped, setFlipped] = useState(false);
 
   return (
@@ -82,7 +117,7 @@ function LoyalityCard() {
         onMouseEnter={() => setFlipped(true)}
         onMouseLeave={() => setFlipped(false)}
         role="button"
-        aria-label="Flip Loyality card"
+        aria-label="Flip Loyalty card"
       >
         <div
           style={{
@@ -108,7 +143,7 @@ function LoyalityCard() {
           >
             <img
               src={frontCard}
-              alt="Loyality card depan"
+              alt="Loyalty card depan"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
@@ -128,7 +163,7 @@ function LoyalityCard() {
           >
             <img
               src={rearCard}
-              alt="Loyality card belakang"
+              alt="Loyalty card belakang"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
@@ -151,32 +186,20 @@ function HomePage() {
       {/* ===== HERO ===== */}
       <section className="relative overflow-hidden">
         {/* Mobile: full-bleed hero image */}
-        <div className="relative flex min-h-[92svh] flex-col justify-between pb-7 pt-5 lg:hidden">
+        <div className="relative flex h-[34rem] flex-col justify-end overflow-hidden pb-5 pt-20 sm:h-[36rem] lg:hidden">
           <motion.img
             src={galleryBarista}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-cover object-center"
+            className="absolute inset-0 h-full w-full object-cover object-[50%_34%]"
             initial={reduceMotion ? false : { scale: 1.08, opacity: 0.85 }}
             animate={reduceMotion ? undefined : { scale: 1, opacity: 1 }}
             transition={{ duration: 1.25, ease: easeOut }}
           />
           {/* layered gradient: dark top for readability, heavy bottom for text */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/55 to-transparent" />
-
-          {/* top pill — location badge */}
-          <motion.div
-            className="relative z-10 px-5"
-            initial={reduceMotion ? false : { opacity: 0, y: -10 }}
-            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: easeOut }}
-          >
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-background/50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] backdrop-blur-md">
-              <MapPin className="h-2.5 w-2.5 text-primary" />
-              SMK Mitra Industri
-            </span>
-          </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/68 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-background to-transparent" />
 
           {/* bottom content */}
           <motion.div
@@ -187,61 +210,67 @@ function HomePage() {
           >
             {/* eyebrow */}
             <motion.p
-              className="font-display text-[9px] font-bold uppercase tracking-[0.32em] text-primary/90"
+              className="font-display text-[10px] font-bold uppercase tracking-[0.18em] text-primary/90"
               variants={mobileHeroItem}
             >
-              Coffee · Vibes · School Life
+              Coffee bar · SMK Mitra Industri
             </motion.p>
 
             {/* headline — big, editorial, two-line */}
             <motion.h1
-              className="mt-2 font-display text-[2.75rem] font-bold leading-[0.92] tracking-tighter"
+              className="mt-2 max-w-[14rem] font-display text-[3.15rem] font-bold leading-[0.88] tracking-tight"
               variants={mobileHeroItem}
             >
-              Ngopi
+              Mitra
               <br />
-              di sekolah? <span className="italic text-primary">Bisa.</span>
+              Coffeeshop
             </motion.h1>
 
             <motion.p
-              className="mt-3 max-w-[260px] text-[13px] leading-snug text-foreground/65"
+              className="mt-3 max-w-[18rem] text-[13px] leading-snug text-foreground/70"
               variants={mobileHeroItem}
             >
-              Americano, matcha latte, choco — fresh, terjangkau, tiap hari.
+              Fresh drinks, harga pelajar, siap nemenin nugas dan nongkrong.
             </motion.p>
 
             {/* CTA row */}
-            <motion.div className="mt-5 flex items-center gap-2.5" variants={mobileHeroItem}>
+            <motion.div
+              className="mt-5 grid grid-cols-[1fr_auto] gap-2.5"
+              variants={mobileHeroItem}
+            >
+              <a
+                href={whatsappOrderUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-[13px] font-bold text-primary-foreground shadow-lg shadow-primary/25 transition active:scale-95"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Pesan Sekarang
+              </a>
               <Link
                 to="/menu"
-                className="inline-flex items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-[13px] font-bold text-primary-foreground shadow-lg shadow-primary/20 transition active:scale-95"
+                aria-label="Lihat menu"
+                className="inline-flex aspect-square h-11 items-center justify-center rounded-full border border-white/20 bg-white/15 text-foreground backdrop-blur-md transition active:scale-95"
               >
-                Lihat Menu
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </Link>
-              <Link
-                to="/gallery"
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-[13px] font-bold text-foreground backdrop-blur-md transition active:scale-95"
-              >
-                Suasana
+                <ArrowUpRight className="h-4 w-4" />
               </Link>
             </motion.div>
 
             <motion.div
-              className="mt-6 grid grid-cols-3 overflow-hidden rounded-2xl border border-white/15 bg-background/55 text-center backdrop-blur-md"
+              className="mt-4 flex snap-x gap-2 overflow-x-auto pb-1"
               variants={mobileHeroItem}
             >
               {[
-                { value: "6K", label: "mulai" },
-                { value: "07.00", label: "buka" },
-                { value: "GoFood", label: "order" },
+                { value: "Coffee", label: "mulai 10K" },
+                { value: "Non-coffee", label: "mulai 6K" },
+                { value: "GoFood", label: "ready" },
               ].map((item) => (
                 <div
-                  key={item.label}
-                  className="border-r border-white/15 px-2.5 py-3 last:border-r-0"
+                  key={item.value}
+                  className="min-w-fit snap-start rounded-full border border-white/15 bg-background/65 px-3.5 py-2 text-left backdrop-blur-md"
                 >
-                  <p className="font-display text-sm font-bold text-primary">{item.value}</p>
-                  <p className="mt-0.5 text-[9px] font-bold uppercase tracking-[0.18em] text-foreground/55">
+                  <p className="text-[11px] font-bold leading-none text-primary">{item.value}</p>
+                  <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-foreground/55">
                     {item.label}
                   </p>
                 </div>
@@ -251,7 +280,7 @@ function HomePage() {
         </div>
 
         {/* Desktop: full-bleed background, mirroring mobile */}
-        <div className="relative hidden min-h-[90svh] flex-col justify-between pb-14 pt-8 lg:flex">
+        <div className="relative hidden min-h-[90svh] flex-col justify-end pb-14 pt-8 lg:flex">
           <img
             src={galleryBarista}
             alt=""
@@ -261,18 +290,10 @@ function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-background/55 via-transparent to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
 
-          {/* top bar */}
-          <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-10">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-background/50 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] backdrop-blur-md">
-              <MapPin className="h-3 w-3 text-primary" />
-              SMK Mitra Industri
-            </span>
-          </div>
-
           {/* bottom content */}
           <div className="relative z-10 mx-auto w-full max-w-7xl px-10">
             <p className="font-display text-xs font-bold uppercase tracking-[0.3em] text-primary/90">
-              Coffee · Vibes · School Life
+              SMK Mitra Industri · Coffee · Vibes
             </p>
             <h1 className="mt-3 font-display text-[clamp(3.5rem,7vw,7rem)] font-bold leading-[0.92] tracking-tighter">
               Ngopi di sekolah? <span className="italic text-primary">Bisa banget.</span>
@@ -373,43 +394,27 @@ function HomePage() {
           </Link>
         </div>
 
-        <div className="grid gap-3 lg:hidden">
-          {[
-            {
-              image: caramelMacchiato,
-              alt: "Iced coffee",
-              icon: Coffee,
-              label: "The Classics",
-              title: "Coffee",
-              desc: "Americano · Espresso · Latte · Signature",
-              price: "mulai Rp 10K",
-            },
-            {
-              image: blueOcean,
-              alt: "Non-coffee drinks",
-              icon: Sparkles,
-              label: "Sweet Side",
-              title: "Non-Coffee",
-              desc: "Matcha · Choco · Strawberry · Soda",
-              price: "mulai Rp 6K",
-            },
-          ].map(({ image, alt, icon: Icon, label, title, desc, price }) => (
+        <div className="-mx-4 flex snap-x gap-3 overflow-x-auto px-4 pb-2 lg:hidden">
+          {bestSellerItems.map(({ image, title, label, desc, price }, index) => (
             <motion.article
               key={title}
-              className="grid grid-cols-[6.5rem_1fr] overflow-hidden rounded-[1.25rem] border border-border bg-card shadow-sm shadow-primary/5"
+              className="relative min-w-[78%] snap-start overflow-hidden rounded-[1.35rem] border border-border bg-card shadow-sm shadow-primary/5"
               variants={imageReveal}
               initial={reduceMotion ? false : "hidden"}
               whileInView={reduceMotion ? undefined : "show"}
               viewport={viewport}
+              transition={{ delay: index * 0.05 }}
             >
-              <img src={image} alt={alt} loading="lazy" className="h-full min-h-32 object-cover" />
-              <div className="flex min-w-0 flex-col justify-center p-4">
-                <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.18em] text-primary">
-                  <Icon className="h-2.5 w-2.5" /> {label}
+              <img src={image} alt={title} loading="lazy" className="h-56 w-full object-cover" />
+              <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-primary via-primary/80 to-transparent p-4 pt-16 text-primary-foreground">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="rounded-full bg-accent px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-accent-foreground">
+                    {label}
+                  </span>
+                  <span className="font-display text-lg font-bold text-accent">{price}</span>
                 </div>
-                <h3 className="mt-1 font-display text-xl font-bold leading-none">{title}</h3>
-                <p className="mt-2 text-xs leading-snug text-muted-foreground">{desc}</p>
-                <p className="mt-3 font-display text-sm font-bold text-primary">{price}</p>
+                <h3 className="mt-2 font-display text-2xl font-bold leading-none">{title}</h3>
+                <p className="mt-2 text-xs leading-snug text-primary-foreground/75">{desc}</p>
               </div>
             </motion.article>
           ))}
@@ -499,8 +504,8 @@ function HomePage() {
         viewport={viewport}
       >
         <div className="relative overflow-hidden rounded-[1.75rem] bg-accent p-5 shadow-2xl shadow-primary/10 sm:p-8 lg:rounded-[3rem] lg:p-20">
-          <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
+          <div className="absolute inset-x-0 top-0 h-16 bg-white/15" />
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-primary/10" />
 
           <div className="relative grid gap-5 lg:grid-cols-2 lg:items-center lg:gap-16">
             {/* Text — always first on mobile */}
@@ -508,26 +513,39 @@ function HomePage() {
               <p className="font-display text-[10px] font-bold uppercase tracking-[0.22em] text-primary lg:text-xs">
                 Membership Benefit
               </p>
-              <h2 className="mt-2 font-display text-2xl font-bold leading-[1] tracking-tight text-primary sm:text-3xl lg:text-7xl">
-                Beli 10, <em className="text-primary-foreground">gratis 1!</em>
+              <h2 className="mt-2 font-display text-3xl font-bold leading-[0.95] tracking-tight text-primary sm:text-3xl lg:text-7xl">
+                Beli 10,
+                <br className="lg:hidden" /> <em className="text-primary-foreground">gratis 1!</em>
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-primary/70 lg:mt-4 lg:text-lg">
-                Minta Loyality Card ke kasir. Kumpulkan 10 stempel, nikmati kopi favoritmu{" "}
-                <strong>gratis!</strong>
+              <p className="mt-2 max-w-sm text-sm leading-relaxed text-primary/70 lg:mt-4 lg:text-lg">
+                Minta Loyalty Card ke kasir. Setiap pembelian on site dapat 1 stiker, kumpulkan 10
+                stiker untuk kopi gratis.
               </p>
-              <div className="mt-3 lg:mt-8">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline"
+              <div className="group mt-4 max-w-md rounded-[1.25rem] border border-primary/15 bg-primary/8 p-3 transition lg:mt-8 lg:bg-primary/5 lg:hover:bg-primary/10">
+                <button
+                  type="button"
+                  className="flex w-full items-center justify-between gap-3 text-left text-sm font-bold text-primary"
                 >
-                  Cara mendapatkan kartu <ArrowUpRight className="h-4 w-4" />
-                </Link>
+                  Cara mendapatkan kartu
+                  <ChevronDown className="h-4 w-4 shrink-0 transition group-hover:translate-y-0.5 lg:group-hover:rotate-180" />
+                </button>
+                <div className="mt-3 border-t border-primary/15 pt-3 text-sm leading-relaxed text-primary/75 lg:grid lg:grid-rows-[0fr] lg:overflow-hidden lg:border-t-0 lg:pt-0 lg:transition-all lg:duration-300 lg:group-hover:mt-3 lg:group-hover:grid-rows-[1fr] lg:group-hover:border-t lg:group-hover:pt-3 lg:group-focus-within:mt-3 lg:group-focus-within:grid-rows-[1fr] lg:group-focus-within:border-t lg:group-focus-within:pt-3">
+                  <div className="min-h-0">
+                    <p>
+                      Setiap 1 pembelian di Mitra Coffeeshop akan mendapatkan 1 stiker. Untuk
+                      mendapatkan kopi gratis, kamu harus mengumpulkan 10 stiker.
+                    </p>
+                    <p className="mt-2 text-xs font-semibold text-primary/60">
+                      *Berlaku hanya untuk pembelian on site.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Card — second on mobile */}
             <div className="mx-auto w-full lg:order-2">
-              <LoyalityCard />
+              <LoyaltyCard />
             </div>
           </div>
         </div>
@@ -537,61 +555,61 @@ function HomePage() {
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-10 lg:py-32">
         <div className="grid gap-4 lg:hidden">
           <motion.article
-            className="grid grid-cols-[7.5rem_1fr] items-stretch gap-4"
+            className="relative min-h-[22rem] overflow-hidden rounded-[1.5rem] bg-card"
             variants={revealUp}
             initial={reduceMotion ? false : "hidden"}
             whileInView={reduceMotion ? undefined : "show"}
             viewport={viewport}
           >
-            <div className="relative overflow-hidden rounded-[1.25rem]">
-              <img
-                src={galleryStudents}
-                alt="Siswa SMK Mitra Industri nongkrong"
-                loading="lazy"
-                width={1280}
-                height={1600}
-                className="h-full min-h-44 w-full object-cover"
-              />
-            </div>
-            <div className="flex min-w-0 flex-col justify-center">
-              <p className="font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+            <img
+              src={galleryStudents}
+              alt="Siswa SMK Mitra Industri nongkrong"
+              loading="lazy"
+              width={1280}
+              height={1600}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-linear-to-t from-primary via-primary/55 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 p-5 text-primary-foreground">
+              <p className="font-display text-[10px] font-bold uppercase tracking-[0.22em] text-accent">
                 The Vibes
               </p>
-              <h2 className="mt-2 font-display text-2xl font-bold leading-[1] tracking-tight">
-                Nongkrong favorit <em className="text-primary">anak SMK Mitra</em>.
+              <h2 className="mt-2 font-display text-3xl font-bold leading-[0.95] tracking-tight">
+                Nongkrong favorit anak SMK Mitra.
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-foreground/70">
+              <p className="mt-3 max-w-[17rem] text-sm leading-relaxed text-primary-foreground/75">
                 Ramai buat ngopi, nugas, atau rehat bareng teman.
               </p>
             </div>
           </motion.article>
 
           <motion.article
-            className="grid grid-cols-[1fr_7.5rem] items-stretch gap-4 rounded-[1.25rem] bg-card p-4 shadow-sm shadow-primary/5"
+            className="relative min-h-[18rem] overflow-hidden rounded-[1.5rem] bg-card"
             variants={revealUp}
             initial={reduceMotion ? false : "hidden"}
             whileInView={reduceMotion ? undefined : "show"}
             viewport={viewport}
           >
-            <div className="flex min-w-0 flex-col justify-center">
-              <p className="font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
-                Our Story
-              </p>
-              <h2 className="mt-2 font-display text-2xl font-bold leading-[1] tracking-tight">
-                Lebih dari <em className="text-primary">secangkir kopi</em>.
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-foreground/70">
-                Ruang kecil buat rehat, ngobrol, dan kreatif bareng.
-              </p>
-            </div>
             <img
               src={strawberryLatte}
               alt="Strawberry latte"
               loading="lazy"
               width={1280}
               height={1600}
-              className="h-full min-h-44 w-full rounded-[1rem] object-cover"
+              className="absolute inset-0 h-full w-full object-cover"
             />
+            <div className="absolute inset-0 bg-linear-to-t from-background via-background/55 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 p-5">
+              <p className="font-display text-[10px] font-bold uppercase tracking-[0.22em] text-primary">
+                Our Story
+              </p>
+              <h2 className="mt-2 font-display text-3xl font-bold leading-[0.95] tracking-tight">
+                Lebih dari <em className="text-primary">secangkir kopi</em>.
+              </h2>
+              <p className="mt-3 max-w-[17rem] text-sm leading-relaxed text-foreground/70">
+                Ruang kecil buat rehat, ngobrol, dan kreatif bareng.
+              </p>
+            </div>
           </motion.article>
 
           <div className="grid grid-cols-3 gap-2">
