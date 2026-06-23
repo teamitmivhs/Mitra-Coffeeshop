@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Coffee, Heart, MapPin, Sparkles } from "lucide-react";
 import { useState } from "react";
 import caramelMacchiato from "../assets/caramel-macchiato.jpg";
@@ -27,6 +28,46 @@ export const Route = createFileRoute("/")({
   }),
   component: HomePage,
 });
+
+const easeOut = [0.22, 1, 0.36, 1] as const;
+
+const mobileHeroStagger = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const mobileHeroItem = {
+  hidden: { opacity: 0, y: 18 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: easeOut },
+  },
+};
+
+const revealUp = {
+  hidden: { opacity: 0, y: 22 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: easeOut },
+  },
+};
+
+const imageReveal = {
+  hidden: { opacity: 0, scale: 0.97, y: 18 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: easeOut },
+  },
+};
 
 function LoyalityCard() {
   const [flipped, setFlipped] = useState(false);
@@ -102,68 +143,111 @@ function LoyalityCard() {
 }
 
 function HomePage() {
+  const reduceMotion = useReducedMotion();
+  const viewport = { once: true, amount: 0.22 };
+
   return (
     <div>
       {/* ===== HERO ===== */}
       <section className="relative overflow-hidden">
         {/* Mobile: full-bleed hero image */}
         <div className="relative flex min-h-[92svh] flex-col justify-between pb-7 pt-5 lg:hidden">
-          <img
+          <motion.img
             src={galleryBarista}
             alt=""
             aria-hidden="true"
             className="absolute inset-0 h-full w-full object-cover object-center"
+            initial={reduceMotion ? false : { scale: 1.08, opacity: 0.85 }}
+            animate={reduceMotion ? undefined : { scale: 1, opacity: 1 }}
+            transition={{ duration: 1.25, ease: easeOut }}
           />
           {/* layered gradient: dark top for readability, heavy bottom for text */}
           <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/55 to-transparent" />
 
           {/* top pill — location badge */}
-          <div className="relative z-10 px-5">
+          <motion.div
+            className="relative z-10 px-5"
+            initial={reduceMotion ? false : { opacity: 0, y: -10 }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: easeOut }}
+          >
             <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-background/50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] backdrop-blur-md">
               <MapPin className="h-2.5 w-2.5 text-primary" />
               SMK Mitra Industri
             </span>
-          </div>
+          </motion.div>
 
           {/* bottom content */}
-          <div className="relative z-10 px-5">
+          <motion.div
+            className="relative z-10 px-5"
+            variants={mobileHeroStagger}
+            initial={reduceMotion ? false : "hidden"}
+            animate={reduceMotion ? undefined : "show"}
+          >
             {/* eyebrow */}
-            <p className="font-display text-[9px] font-bold uppercase tracking-[0.32em] text-primary/90">
+            <motion.p
+              className="font-display text-[9px] font-bold uppercase tracking-[0.32em] text-primary/90"
+              variants={mobileHeroItem}
+            >
               Coffee · Vibes · School Life
-            </p>
+            </motion.p>
 
             {/* headline — big, editorial, two-line */}
-            <h1 className="mt-2 font-display text-[2.75rem] font-bold leading-[0.92] tracking-tighter">
+            <motion.h1
+              className="mt-2 font-display text-[2.75rem] font-bold leading-[0.92] tracking-tighter"
+              variants={mobileHeroItem}
+            >
               Ngopi
               <br />
-              di sekolah?{" "}
-              <span className="italic text-primary">Bisa.</span>
-            </h1>
+              di sekolah? <span className="italic text-primary">Bisa.</span>
+            </motion.h1>
 
-            <p className="mt-3 max-w-[260px] text-[13px] leading-snug text-foreground/65">
+            <motion.p
+              className="mt-3 max-w-[260px] text-[13px] leading-snug text-foreground/65"
+              variants={mobileHeroItem}
+            >
               Americano, matcha latte, choco — fresh, terjangkau, tiap hari.
-            </p>
+            </motion.p>
 
             {/* CTA row */}
-            <div className="mt-5 flex items-center gap-2.5">
+            <motion.div className="mt-5 flex items-center gap-2.5" variants={mobileHeroItem}>
               <Link
                 to="/menu"
-                className="inline-flex items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-[13px] font-bold text-primary-foreground active:scale-95"
+                className="inline-flex items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-[13px] font-bold text-primary-foreground shadow-lg shadow-primary/20 transition active:scale-95"
               >
                 Lihat Menu
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
               <Link
                 to="/gallery"
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-[13px] font-bold text-foreground backdrop-blur-md active:scale-95"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 text-[13px] font-bold text-foreground backdrop-blur-md transition active:scale-95"
               >
                 Suasana
               </Link>
-            </div>
+            </motion.div>
 
-
-          </div>
+            <motion.div
+              className="mt-6 grid grid-cols-3 overflow-hidden rounded-2xl border border-white/15 bg-background/55 text-center backdrop-blur-md"
+              variants={mobileHeroItem}
+            >
+              {[
+                { value: "6K", label: "mulai" },
+                { value: "07.00", label: "buka" },
+                { value: "GoFood", label: "order" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="border-r border-white/15 px-2.5 py-3 last:border-r-0"
+                >
+                  <p className="font-display text-sm font-bold text-primary">{item.value}</p>
+                  <p className="mt-0.5 text-[9px] font-bold uppercase tracking-[0.18em] text-foreground/55">
+                    {item.label}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* Desktop: full-bleed background, mirroring mobile */}
@@ -191,12 +275,11 @@ function HomePage() {
               Coffee · Vibes · School Life
             </p>
             <h1 className="mt-3 font-display text-[clamp(3.5rem,7vw,7rem)] font-bold leading-[0.92] tracking-tighter">
-              Ngopi di sekolah?{" "}
-              <span className="italic text-primary">Bisa banget.</span>
+              Ngopi di sekolah? <span className="italic text-primary">Bisa banget.</span>
             </h1>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-foreground/65">
-              Dari americano klasik sampai matcha latte yang creamy — Mitra Coffeeshop
-              jadi tempat seru buat ngerjain tugas, ngobrol bareng teman, atau sekedar rehat.
+              Dari americano klasik sampai matcha latte yang creamy — Mitra Coffeeshop jadi tempat
+              seru buat ngerjain tugas, ngobrol bareng teman, atau sekedar rehat.
             </p>
             <div className="mt-8 flex items-center gap-3">
               <Link
@@ -265,9 +348,15 @@ function HomePage() {
       </section>
 
       {/* ===== MENU PREVIEW ===== */}
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10 lg:py-24">
+      <motion.section
+        className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-10 lg:py-24"
+        variants={revealUp}
+        initial={reduceMotion ? false : "hidden"}
+        whileInView={reduceMotion ? undefined : "show"}
+        viewport={viewport}
+      >
         {/* Intro — satu baris di mobile */}
-        <div className="mb-6 flex items-end justify-between gap-4 lg:mb-16">
+        <div className="mb-4 flex items-end justify-between gap-4 lg:mb-16">
           <div>
             <p className="font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-primary lg:text-xs">
               Menu Spotlight
@@ -284,8 +373,56 @@ function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 lg:gap-8">
-          <article className="group relative overflow-hidden rounded-[1.5rem] bg-card lg:rounded-[2rem]">
+        <div className="grid gap-3 lg:hidden">
+          {[
+            {
+              image: caramelMacchiato,
+              alt: "Iced coffee",
+              icon: Coffee,
+              label: "The Classics",
+              title: "Coffee",
+              desc: "Americano · Espresso · Latte · Signature",
+              price: "mulai Rp 10K",
+            },
+            {
+              image: blueOcean,
+              alt: "Non-coffee drinks",
+              icon: Sparkles,
+              label: "Sweet Side",
+              title: "Non-Coffee",
+              desc: "Matcha · Choco · Strawberry · Soda",
+              price: "mulai Rp 6K",
+            },
+          ].map(({ image, alt, icon: Icon, label, title, desc, price }) => (
+            <motion.article
+              key={title}
+              className="grid grid-cols-[6.5rem_1fr] overflow-hidden rounded-[1.25rem] border border-border bg-card shadow-sm shadow-primary/5"
+              variants={imageReveal}
+              initial={reduceMotion ? false : "hidden"}
+              whileInView={reduceMotion ? undefined : "show"}
+              viewport={viewport}
+            >
+              <img src={image} alt={alt} loading="lazy" className="h-full min-h-32 object-cover" />
+              <div className="flex min-w-0 flex-col justify-center p-4">
+                <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.18em] text-primary">
+                  <Icon className="h-2.5 w-2.5" /> {label}
+                </div>
+                <h3 className="mt-1 font-display text-xl font-bold leading-none">{title}</h3>
+                <p className="mt-2 text-xs leading-snug text-muted-foreground">{desc}</p>
+                <p className="mt-3 font-display text-sm font-bold text-primary">{price}</p>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        <div className="hidden grid-cols-2 gap-3 lg:grid lg:gap-8">
+          <motion.article
+            className="group relative overflow-hidden rounded-[1.5rem] bg-card shadow-xl shadow-primary/5 lg:rounded-[2rem]"
+            variants={imageReveal}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView={reduceMotion ? undefined : "show"}
+            viewport={viewport}
+          >
             <img
               src={caramelMacchiato}
               alt="Iced coffee"
@@ -307,9 +444,16 @@ function HomePage() {
                 mulai Rp 10K
               </p>
             </div>
-          </article>
+          </motion.article>
 
-          <article className="group relative overflow-hidden rounded-[1.5rem] bg-card lg:rounded-[2rem]">
+          <motion.article
+            className="group relative overflow-hidden rounded-[1.5rem] bg-card shadow-xl shadow-primary/5 lg:rounded-[2rem]"
+            variants={imageReveal}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView={reduceMotion ? undefined : "show"}
+            viewport={viewport}
+            transition={{ delay: 0.08 }}
+          >
             <img
               src={blueOcean}
               alt="Non-coffee drinks"
@@ -323,7 +467,9 @@ function HomePage() {
               <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-accent lg:gap-2 lg:text-[10px]">
                 <Sparkles className="h-2.5 w-2.5 lg:h-3 lg:w-3" /> Sweet Side
               </div>
-              <h3 className="mt-1 font-display text-xl font-bold lg:mt-2 lg:text-5xl">Non-Coffee</h3>
+              <h3 className="mt-1 font-display text-xl font-bold lg:mt-2 lg:text-5xl">
+                Non-Coffee
+              </h3>
               <p className="mt-1 hidden text-[10px] text-primary-foreground/70 sm:block lg:mt-2 lg:text-sm">
                 Matcha · Choco · Strawberry · Soda
               </p>
@@ -331,7 +477,7 @@ function HomePage() {
                 mulai Rp 6K
               </p>
             </div>
-          </article>
+          </motion.article>
         </div>
 
         <div className="mt-5 flex justify-center lg:hidden">
@@ -342,14 +488,20 @@ function HomePage() {
             Lihat Menu Lengkap <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
-      </section>
+      </motion.section>
 
       {/* ===== LOYALITY CARD BANNER ===== */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-        <div className="relative overflow-hidden rounded-[1.75rem] bg-accent p-5 sm:p-8 lg:rounded-[3rem] lg:p-20">
+      <motion.section
+        className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10"
+        variants={revealUp}
+        initial={reduceMotion ? false : "hidden"}
+        whileInView={reduceMotion ? undefined : "show"}
+        viewport={viewport}
+      >
+        <div className="relative overflow-hidden rounded-[1.75rem] bg-accent p-5 shadow-2xl shadow-primary/10 sm:p-8 lg:rounded-[3rem] lg:p-20">
           <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
           <div className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
-          
+
           <div className="relative grid gap-5 lg:grid-cols-2 lg:items-center lg:gap-16">
             {/* Text — always first on mobile */}
             <div className="lg:order-1">
@@ -357,32 +509,120 @@ function HomePage() {
                 Membership Benefit
               </p>
               <h2 className="mt-2 font-display text-2xl font-bold leading-[1] tracking-tight text-primary sm:text-3xl lg:text-7xl">
-                Beli 10,{" "}
-                <em className="text-primary-foreground">gratis 1!</em>
+                Beli 10, <em className="text-primary-foreground">gratis 1!</em>
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-primary/70 lg:mt-4 lg:text-lg">
-                Minta Loyality Card ke kasir. Kumpulkan 10 stempel, nikmati kopi favoritmu <strong>gratis!</strong>
+                Minta Loyality Card ke kasir. Kumpulkan 10 stempel, nikmati kopi favoritmu{" "}
+                <strong>gratis!</strong>
               </p>
               <div className="mt-3 lg:mt-8">
-                <Link to="/contact" className="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline"
+                >
                   Cara mendapatkan kartu <ArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
             </div>
-            
+
             {/* Card — second on mobile */}
-            <div className="lg:order-2"> 
+            <div className="mx-auto w-full lg:order-2">
               <LoyalityCard />
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ===== VIBE / STORY ===== */}
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10 lg:py-32">
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-10 lg:py-32">
+        <div className="grid gap-4 lg:hidden">
+          <motion.article
+            className="grid grid-cols-[7.5rem_1fr] items-stretch gap-4"
+            variants={revealUp}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView={reduceMotion ? undefined : "show"}
+            viewport={viewport}
+          >
+            <div className="relative overflow-hidden rounded-[1.25rem]">
+              <img
+                src={galleryStudents}
+                alt="Siswa SMK Mitra Industri nongkrong"
+                loading="lazy"
+                width={1280}
+                height={1600}
+                className="h-full min-h-44 w-full object-cover"
+              />
+            </div>
+            <div className="flex min-w-0 flex-col justify-center">
+              <p className="font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+                The Vibes
+              </p>
+              <h2 className="mt-2 font-display text-2xl font-bold leading-[1] tracking-tight">
+                Nongkrong favorit <em className="text-primary">anak SMK Mitra</em>.
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-foreground/70">
+                Ramai buat ngopi, nugas, atau rehat bareng teman.
+              </p>
+            </div>
+          </motion.article>
+
+          <motion.article
+            className="grid grid-cols-[1fr_7.5rem] items-stretch gap-4 rounded-[1.25rem] bg-card p-4 shadow-sm shadow-primary/5"
+            variants={revealUp}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView={reduceMotion ? undefined : "show"}
+            viewport={viewport}
+          >
+            <div className="flex min-w-0 flex-col justify-center">
+              <p className="font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+                Our Story
+              </p>
+              <h2 className="mt-2 font-display text-2xl font-bold leading-[1] tracking-tight">
+                Lebih dari <em className="text-primary">secangkir kopi</em>.
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-foreground/70">
+                Ruang kecil buat rehat, ngobrol, dan kreatif bareng.
+              </p>
+            </div>
+            <img
+              src={strawberryLatte}
+              alt="Strawberry latte"
+              loading="lazy"
+              width={1280}
+              height={1600}
+              className="h-full min-h-44 w-full rounded-[1rem] object-cover"
+            />
+          </motion.article>
+
+          <div className="grid grid-cols-3 gap-2">
+            {[
+              { icon: Coffee, t: "Biji", d: "Pilihan" },
+              { icon: Heart, t: "Harga", d: "Pelajar" },
+              { icon: Sparkles, t: "Vibes", d: "Seru" },
+            ].map(({ icon: Icon, t, d }) => (
+              <div
+                key={t}
+                className="rounded-xl border border-border bg-card p-3 text-center shadow-sm shadow-primary/5"
+              >
+                <div className="mx-auto flex h-8 w-8 items-center justify-center rounded-full bg-primary/8 text-primary">
+                  <Icon className="h-3.5 w-3.5" />
+                </div>
+                <p className="mt-2 font-display text-xs font-bold">{t}</p>
+                <p className="text-[10px] text-muted-foreground">{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Section 1 — image + teks */}
-        <div className="grid gap-6 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-5">
+        <div className="hidden gap-6 lg:grid lg:grid-cols-12 lg:gap-16">
+          <motion.div
+            className="lg:col-span-5"
+            variants={imageReveal}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView={reduceMotion ? undefined : "show"}
+            viewport={viewport}
+          >
             <div className="relative overflow-hidden rounded-[1.5rem] lg:rounded-[3rem]">
               <img
                 src={galleryStudents}
@@ -399,8 +639,14 @@ function HomePage() {
                 </span>
               </div>
             </div>
-          </div>
-          <div className="flex flex-col justify-center lg:col-span-7 lg:pl-10">
+          </motion.div>
+          <motion.div
+            className="flex flex-col justify-center lg:col-span-7 lg:pl-10"
+            variants={revealUp}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView={reduceMotion ? undefined : "show"}
+            viewport={viewport}
+          >
             <p className="hidden font-display text-xs font-semibold uppercase tracking-[0.22em] text-primary lg:block">
               The Vibes
             </p>
@@ -408,14 +654,21 @@ function HomePage() {
               Tempat nongkrong favorit <em className="text-primary">anak SMK Mitra</em>.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-foreground/70 lg:mt-8 lg:text-lg">
-              Dari pagi sampai sore, cafe kami selalu ramai dengan siswa yang datang buat ngopi, ngerjain tugas, atau sekedar nongkrong bareng teman.
+              Dari pagi sampai sore, cafe kami selalu ramai dengan siswa yang datang buat ngopi,
+              ngerjain tugas, atau sekedar nongkrong bareng teman.
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* Section 2 — teks + image */}
-        <div className="mt-10 grid gap-6 lg:mt-32 lg:grid-cols-12 lg:gap-16">
-          <div className="order-2 lg:col-span-7 lg:order-1 lg:pr-10">
+        <div className="mt-10 hidden gap-6 lg:mt-32 lg:grid lg:grid-cols-12 lg:gap-16">
+          <motion.div
+            className="order-2 lg:col-span-7 lg:order-1 lg:pr-10"
+            variants={revealUp}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView={reduceMotion ? undefined : "show"}
+            viewport={viewport}
+          >
             <p className="font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-primary lg:text-xs">
               Our Story
             </p>
@@ -423,18 +676,26 @@ function HomePage() {
               Lebih dari sekedar <em className="text-primary">secangkir kopi</em>.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-foreground/70 lg:mt-8 lg:text-lg">
-              Mitra Coffeeshop lahir dari mimpi sederhana: kasih ruang buat anak SMK
-              Mitra Industri buat rehat, ngobrol, dan kreatif bareng.
+              Mitra Coffeeshop lahir dari mimpi sederhana: kasih ruang buat anak SMK Mitra Industri
+              buat rehat, ngobrol, dan kreatif bareng.
             </p>
 
             {/* Feature cards — 1-col on mobile (row layout), 3-col on desktop */}
-            <div className="mt-5 flex flex-col gap-2.5 sm:grid sm:grid-cols-3 sm:gap-3 lg:mt-12 lg:gap-6">
+            <div className="-mx-4 mt-5 flex snap-x gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0 sm:pb-0 lg:mt-12 lg:gap-6">
               {[
                 { icon: Coffee, t: "Biji Pilihan", d: "Arabika lokal" },
                 { icon: Heart, t: "Harga Pelajar", d: "Mulai 8 Ribu" },
                 { icon: Sparkles, t: "Vibes Seru", d: "Nongkrong asik" },
-              ].map(({ icon: Icon, t, d }) => (
-                <div key={t} className="flex items-center gap-3 rounded-xl border border-border bg-card p-3 sm:flex-col sm:items-center sm:text-center lg:items-start lg:rounded-2xl lg:p-6 lg:text-left">
+              ].map(({ icon: Icon, t, d }, index) => (
+                <motion.div
+                  key={t}
+                  className="flex min-w-[145px] snap-start items-center gap-3 rounded-xl border border-border bg-card p-3 shadow-sm shadow-primary/5 sm:min-w-0 sm:flex-col sm:items-center sm:text-center lg:items-start lg:rounded-2xl lg:p-6 lg:text-left"
+                  variants={revealUp}
+                  initial={reduceMotion ? false : "hidden"}
+                  whileInView={reduceMotion ? undefined : "show"}
+                  viewport={viewport}
+                  transition={{ delay: index * 0.06 }}
+                >
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/8 text-primary lg:h-12 lg:w-12">
                     <Icon className="h-3.5 w-3.5 lg:h-6 lg:w-6" />
                   </div>
@@ -442,25 +703,37 @@ function HomePage() {
                     <p className="font-display text-xs font-bold lg:text-base">{t}</p>
                     <p className="text-[10px] text-muted-foreground lg:text-xs">{d}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
-          <div className="order-1 lg:col-span-5 lg:order-2">
+          </motion.div>
+          <motion.div
+            className="order-1 lg:col-span-5 lg:order-2"
+            variants={imageReveal}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView={reduceMotion ? undefined : "show"}
+            viewport={viewport}
+          >
             <img
               src={strawberryLatte}
               alt="Strawberry latte"
               loading="lazy"
               width={1280}
               height={1600}
-              className="w-full rounded-[1.5rem] object-cover lg:aspect-[4/5] lg:rounded-[3rem]"
+              className="aspect-[16/10] w-full rounded-[1.5rem] object-cover shadow-xl shadow-primary/5 lg:aspect-[4/5] lg:rounded-[3rem]"
             />
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-10 lg:pb-32">
+      <motion.section
+        className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-10 lg:pb-32"
+        variants={revealUp}
+        initial={reduceMotion ? false : "hidden"}
+        whileInView={reduceMotion ? undefined : "show"}
+        viewport={viewport}
+      >
         <div className="relative overflow-hidden rounded-[1.75rem] bg-primary px-6 py-10 text-center text-primary-foreground sm:px-8 sm:py-12 lg:rounded-[2.5rem] lg:py-24">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent opacity-50" />
           <div className="relative">
@@ -468,7 +741,8 @@ function HomePage() {
               Mampir hari ini?
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-sm text-primary-foreground/70 lg:mt-8 lg:text-lg">
-              Pesan duluan via WhatsApp biar gak antri pas jam istirahat. Atau order delivery lewat GoFood!
+              Pesan duluan via WhatsApp biar gak antri pas jam istirahat. Atau order delivery lewat
+              GoFood!
             </p>
             <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row lg:mt-14 lg:gap-5">
               <a
@@ -491,7 +765,7 @@ function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }
