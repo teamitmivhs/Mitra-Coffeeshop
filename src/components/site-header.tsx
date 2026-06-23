@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Coffee, Home, Images, Menu, MessageCircle, Phone, ShoppingBag, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logoImage from "../assets/logo.webp";
 
@@ -14,7 +14,12 @@ const linksRight = [
   { to: "/contact", label: "Kontak" },
 ] as const;
 
-const allLinks = [...linksLeft, ...linksRight];
+const mobileLinks = [
+  { to: "/", label: "Beranda", icon: Home },
+  { to: "/menu", label: "Menu", icon: Coffee },
+  { to: "/gallery", label: "Galeri", icon: Images },
+  { to: "/contact", label: "Kontak", icon: Phone },
+] as const;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -22,14 +27,13 @@ export function SiteHeader() {
   const pathname = routerState.location.pathname;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/85 backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50 md:bg-background/85 md:backdrop-blur-md">
       {/* Hairline top accent — satu garis tipis warna primary */}
-      <div className="h-[2px] w-full bg-primary" />
+      <div className="hidden h-[2px] w-full bg-primary md:block" />
 
       {/* ── DESKTOP ── */}
       <div className="hidden md:block border-b border-border/50">
         <div className="mx-auto flex max-w-7xl items-center px-10">
-
           {/* Nav kiri */}
           <nav className="flex flex-1 items-center gap-8">
             {linksLeft.map((l) => {
@@ -108,91 +112,125 @@ export function SiteHeader() {
       </div>
 
       {/* ── MOBILE ── */}
-      <div className="flex items-center justify-between border-b border-border/50 px-6 py-3 md:hidden">
-        <Link to="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
-          <div className="h-8 w-8 overflow-hidden rounded-full ring-2 ring-primary/20">
-            <img src={logoImage} alt="Mitra Coffeeshop Logo" className="h-full w-full object-cover" />
-          </div>
-          <div className="leading-none">
-            <p className="font-display text-sm font-bold tracking-tight">Mitra Coffeeshop</p>
-            <p className="text-[9px] uppercase tracking-[0.18em] text-muted-foreground">SMK Mitra Industri</p>
-          </div>
-        </Link>
+      <div className="px-3 pt-[max(0.75rem,env(safe-area-inset-top))] md:hidden">
+        <div className="flex items-center justify-between rounded-full border border-white/45 bg-background/82 px-2.5 py-2 shadow-xl shadow-primary/10 backdrop-blur-xl">
+          <Link
+            to="/"
+            className="flex min-w-0 items-center gap-2.5 pl-1"
+            onClick={() => setOpen(false)}
+          >
+            <div className="h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2 ring-primary/15">
+              <img
+                src={logoImage}
+                alt="Mitra Coffeeshop Logo"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="min-w-0 leading-none">
+              <p className="truncate font-display text-sm font-bold tracking-tight">
+                Mitra Coffeeshop
+              </p>
+              <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                SMK Mitra Industri
+              </p>
+            </div>
+          </Link>
 
-        <button
-          aria-label="Toggle menu"
-          className="relative h-6 w-6"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <AnimatePresence mode="wait">
-            {open ? (
-              <motion.div
-                key="close"
-                initial={{ opacity: 0, rotate: -90 }}
-                animate={{ opacity: 1, rotate: 0 }}
-                exit={{ opacity: 0, rotate: 90 }}
-                transition={{ duration: 0.18 }}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <X className="h-5 w-5" />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="menu"
-                initial={{ opacity: 0, rotate: 90 }}
-                animate={{ opacity: 1, rotate: 0 }}
-                exit={{ opacity: 0, rotate: -90 }}
-                transition={{ duration: 0.18 }}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <Menu className="h-5 w-5" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </button>
+          <button
+            type="button"
+            aria-label={open ? "Tutup menu" : "Buka menu"}
+            aria-expanded={open}
+            className="inline-flex h-10 shrink-0 items-center gap-2 rounded-full bg-primary px-3 text-xs font-bold uppercase tracking-[0.12em] text-primary-foreground shadow-lg shadow-primary/20 transition active:scale-95"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              {open ? (
+                <motion.span
+                  key="close"
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 90 }}
+                  transition={{ duration: 0.18 }}
+                >
+                  <X className="h-4 w-4" />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="menu"
+                  initial={{ opacity: 0, rotate: 90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: -90 }}
+                  transition={{ duration: 0.18 }}
+                >
+                  <Menu className="h-4 w-4" />
+                </motion.span>
+              )}
+            </AnimatePresence>
+            Menu
+          </button>
+        </div>
       </div>
 
       {/* Mobile drawer */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-            className="overflow-hidden border-b border-border/50 bg-background md:hidden"
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            className="px-3 pt-2 md:hidden"
           >
-            <nav className="mx-auto flex max-w-7xl flex-col px-6 py-2">
-              {allLinks.map((l, i) => (
-                <motion.div
-                  key={l.to}
-                  initial={{ x: -16, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: i * 0.045 + 0.05, ease: "easeOut" }}
-                >
-                  <Link
-                    to={l.to}
-                    className="flex items-center justify-between border-b border-border/30 py-3.5 text-sm font-semibold uppercase tracking-[0.14em]"
-                    activeProps={{ className: "text-primary" }}
-                    onClick={() => setOpen(false)}
-                  >
-                    {l.label}
-                    <span className="text-foreground/30">→</span>
-                  </Link>
-                </motion.div>
-              ))}
+            <div className="overflow-hidden rounded-[1.35rem] border border-white/45 bg-background/95 p-3 shadow-2xl shadow-primary/15 backdrop-blur-xl">
+              <nav className="grid grid-cols-2 gap-2">
+                {mobileLinks.map(({ to, label, icon: Icon }, i) => {
+                  const isActive = pathname === to;
+
+                  return (
+                    <motion.div
+                      key={to}
+                      initial={{ y: -6, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: i * 0.035 + 0.03, ease: "easeOut" }}
+                    >
+                      <Link
+                        to={to}
+                        className={`flex items-center gap-2.5 rounded-2xl border px-3 py-3 text-sm font-bold transition active:scale-[0.98] ${
+                          isActive
+                            ? "border-primary/20 bg-primary text-primary-foreground shadow-lg shadow-primary/15"
+                            : "border-border/60 bg-white/35 text-foreground hover:bg-white/55"
+                        }`}
+                        onClick={() => setOpen(false)}
+                      >
+                        <span
+                          className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
+                            isActive ? "bg-white/15" : "bg-primary/10 text-primary"
+                          }`}
+                        >
+                          <Icon className="h-4 w-4" />
+                        </span>
+                        {label}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </nav>
               <motion.a
-                href="https://wa.me/6285217971601"
+                href="https://wa.me/6285217971601?text=Halo%20Mitra%20Coffeeshop%2C%20saya%20mau%20pesan"
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ y: 8, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.25 }}
-                className="mb-2 mt-4 rounded-full bg-primary px-5 py-3 text-center text-sm font-semibold text-primary-foreground"
+                transition={{ delay: 0.18 }}
+                className="mt-3 flex items-center justify-between rounded-2xl bg-accent px-4 py-3 text-sm font-bold text-accent-foreground shadow-lg shadow-accent/20"
               >
-                Pesan via WhatsApp
+                <span className="inline-flex items-center gap-2">
+                  <MessageCircle className="h-4 w-4" />
+                  Pesan via WhatsApp
+                </span>
+                <ShoppingBag className="h-4 w-4" />
               </motion.a>
-            </nav>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
