@@ -78,7 +78,7 @@ function TickerRow({ items, direction = 1, speed = 28 }: {
         {items.map((photo, i) => (
           <div key={i} className="group relative h-44 w-60 shrink-0 overflow-hidden rounded-2xl sm:h-52 sm:w-72 lg:h-64 lg:w-80">
             <img src={photo.src} alt={photo.alt} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/5 to-transparent" />
             <div className="absolute left-3 top-3 rounded-full bg-white/10 px-2.5 py-0.5 backdrop-blur-md ring-1 ring-white/20">
               <span className="font-display text-[9px] font-bold uppercase tracking-[0.2em] text-white">{photo.tag}</span>
             </div>

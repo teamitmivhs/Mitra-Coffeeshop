@@ -428,25 +428,6 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
                 ×
               </button>
 
-              {/* ── P5 diagonal stripe decoration ── */}
-              <svg
-                aria-hidden="true"
-                className="absolute inset-0 h-full w-full opacity-10"
-                preserveAspectRatio="none"
-              >
-                {Array.from({ length: 18 }).map((_, i) => (
-                  <line
-                    key={i}
-                    x1={i * 32 - 20}
-                    y1="0"
-                    x2={i * 32 + 16}
-                    y2="355"
-                    stroke="white"
-                    strokeWidth="14"
-                  />
-                ))}
-              </svg>
-
               {/* ── Item photo — swings in ── */}
               <motion.div
                 className="relative z-10 overflow-hidden bg-black/10"
@@ -466,7 +447,7 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
               </motion.div>
 
               {/* ── Text info ── */}
-              <div className="relative z-10 px-5 pb-4 pt-3.5 text-white">
+              <div className="relative z-10 px-5 pb-3.5 pt-3 text-white">
                 {/* chapter/label */}
                 <motion.p
                   className="font-display text-[9px] font-bold uppercase leading-none tracking-[0.28em] text-white/60"
@@ -478,7 +459,7 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
                 </motion.p>
 
                 <motion.h3
-                  className="mt-1.5 font-display text-[1.85rem] font-black leading-none"
+                  className="mt-1.5 font-display text-[clamp(1.55rem,7vw,1.85rem)] font-black leading-[0.95]"
                   initial={{ opacity: 0, x: 16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ type: "spring", stiffness: 340, damping: 22, delay: 0.08 }}
@@ -487,7 +468,7 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
                 </motion.h3>
 
                 <motion.p
-                  className="mt-2 line-clamp-2 text-[13px] leading-snug text-white/70"
+                  className="mt-1.5 line-clamp-2 text-[12px] leading-snug text-white/70"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.16 }}
@@ -497,7 +478,7 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
 
                 {/* Price — big, P5-style */}
                 <motion.p
-                  className="mt-3 font-display text-[2.35rem] font-black leading-none text-white"
+                  className="mt-2.5 font-display text-[clamp(2rem,10vw,2.35rem)] font-black leading-none text-white"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", stiffness: 440, damping: 18, delay: 0.12 }}
@@ -749,7 +730,7 @@ function MenuShowcase({
                 }}
                 onClick={() => handleTap(i)}
                 whileTap={{ scale: 0.98 }}
-                className="group relative -mx-3 cursor-pointer overflow-hidden rounded-xl px-3 py-4 lg:gap-6 lg:py-5"
+                className="group relative cursor-pointer overflow-hidden rounded-xl py-4 pl-5 pr-3 lg:-mx-3 lg:gap-6 lg:px-3 lg:py-5"
               >
                 {/* Desktop: P5 accent bg */}
                 <motion.div
@@ -767,7 +748,7 @@ function MenuShowcase({
                 />
                 {/* Left accent bar — mobile, always visible & subtle */}
                 <motion.div
-                  className="absolute inset-y-3 left-0 w-[3px] rounded-full lg:hidden"
+                  className="absolute inset-y-0 left-0 w-[3px] rounded-l-xl lg:hidden"
                   style={{ backgroundColor: item.tone }}
                   animate={{ opacity: isMobileActive ? 1 : 0.35 }}
                   transition={{ duration: 0.2 }}
