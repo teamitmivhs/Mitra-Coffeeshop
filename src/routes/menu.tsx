@@ -446,27 +446,19 @@ function FloatingCard({ item, onDismiss }: { item: MenuItem | null; onDismiss: (
 
               {/* Text info */}
               <div className="relative z-10 px-5 pb-3.5 pt-3 text-white">
-                <p
-                  className="font-display text-[9px] font-bold uppercase leading-none tracking-[0.28em] text-white/60"
-                >
+                <p className="font-display text-[9px] font-bold uppercase leading-none tracking-[0.28em] text-white/60">
                   {item.featured ? "✦ Signature" : item.isNew ? "✦ New Arrival" : "Menu"}
                 </p>
 
-                <h3
-                  className="mt-1.5 font-display text-[clamp(1.55rem,7vw,1.85rem)] font-black leading-[0.95]"
-                >
+                <h3 className="mt-1.5 font-display text-[clamp(1.55rem,7vw,1.85rem)] font-black leading-[0.95]">
                   {item.name}
                 </h3>
 
-                <p
-                  className="mt-1.5 line-clamp-2 text-[12px] leading-snug text-white/70"
-                >
+                <p className="mt-1.5 line-clamp-2 text-[12px] leading-snug text-white/70">
                   {item.desc}
                 </p>
 
-                <p
-                  className="mt-2.5 font-display text-[clamp(2rem,10vw,2.35rem)] font-black leading-none text-white"
-                >
+                <p className="mt-2.5 font-display text-[clamp(2rem,10vw,2.35rem)] font-black leading-none text-white">
                   Rp {item.price}
                 </p>
               </div>
@@ -781,7 +773,7 @@ function MenuShowcase({
                     </motion.p>
                     {/* Mobile-only: kecil, subtle tap hint di bawah harga */}
                     <span className="text-[10px] text-muted-foreground/60 lg:hidden">
-                      {isMobileActive ? "✓ preview aktif" : "tap preview"}
+                      {isMobileActive ? "Lihat produk" : "Lihat produk"}
                     </span>
                   </div>
                 </div>

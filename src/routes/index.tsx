@@ -227,8 +227,8 @@ function HomePage() {
             transition={{ duration: 1.25, ease: easeOut }}
           />
           {/* layered gradient: dark top for readability, heavy bottom for text */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/68 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-b from-background/30 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-background via-background/68 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-background to-transparent" />
 
           {/* bottom content */}
