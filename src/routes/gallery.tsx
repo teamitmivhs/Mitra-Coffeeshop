@@ -34,6 +34,7 @@ const photos = [
   { src: ourBarista, alt: "Barista kami", tag: "Behind the Bar" },
   { src: galleryInterior, alt: "Interior cafe", tag: "Space" },
   { src: miSignature, alt: "M.I Signature", tag: "Coffee" },
+  { src: galleryBarista, alt: "Karya Barista", tag: "Behind the Bar" },
 ];
 
 const row1 = [...photos, ...photos, ...photos];
