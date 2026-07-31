@@ -8,6 +8,7 @@ import blueOcean from "../assets/blueocean.webp";
 import galleryStudents from "../assets/gallery-students.webp";
 import galleryBarista from "../assets/gallery-barista.webp";
 import galleryInterior from "../assets/gallery-interior.webp";
+import ourBarista from "../assets/our-barista.webp";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -30,7 +31,7 @@ const photos = [
   { src: latteArt, alt: "Latte art", tag: "Signature" },
   { src: galleryStudents, alt: "Made with passion", tag: "Vibes" },
   { src: blueOcean, alt: "Blue Ocean", tag: "Menu" },
-  { src: galleryBarista, alt: "Barista kami", tag: "Behind the Bar" },
+  { src: ourBarista, alt: "Barista kami", tag: "Behind the Bar" },
   { src: galleryInterior, alt: "Interior cafe", tag: "Space" },
   { src: miSignature, alt: "M.I Signature", tag: "Coffee" },
 ];
